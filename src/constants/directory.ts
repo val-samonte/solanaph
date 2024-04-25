@@ -56,134 +56,36 @@ interface Project {
 
 export const directory: Project[] = [
   {
-    name: 'Paldo.io',
-    image: 'paldoio.png',
-    url: 'https://paldo.io/',
-    links: [{ type: 'telegram', url: 'https://t.me/paldo_io' }],
-    tags: ['airdrops', 'farming'],
-  },
-  {
-    name: 'Drift',
-    image: 'https://app.drift.trade/assets/icons/driftIcon.svg',
-    url: 'https://app.drift.trade/',
+    name: 'Armada DAO',
+    image: 'https://www.thearmadadao.xyz/logo.png',
+    url: 'https://www.thearmadadao.xyz/',
     links: [
-      { type: 'x', url: 'https://twitter.com/DriftProtocol' },
-      { type: 'discord', url: 'https://discord.com/invite/driftprotocol' },
-    ],
-    tags: ['defi', 'dex', 'lending', 'staking'],
-  },
-  {
-    name: 'Drip',
-    image: 'https://drip.haus/drip_logo_white.a87ccb99.svg',
-    url: 'https://drip.haus/',
-    links: [
-      { type: 'x', url: 'https://twitter.com/drip_haus' },
-      { type: 'linktree', url: 'https://linktr.ee/drip.haus' },
-    ],
-    tags: ['art', 'marketplace', 'nft'],
-  },
-  {
-    name: 'Step',
-    image: 'https://app.step.finance/favicon.ico',
-    url: 'https://app.step.finance/',
-    links: [
-      { type: 'x', url: 'https://twitter.com/StepFinance_' },
-      { type: 'discord', url: 'https://discord.com/invite/Pab8wcH5Yt' },
-    ],
-    tags: ['defi', 'utility', 'analytics', 'aggregator'],
-  },
-  {
-    name: 'Zed Wars Beta',
-    image: 'https://beta.zedwars.com/logo.webp',
-    url: 'https://beta.zedwars.com/',
-    links: [
-      { type: 'x', url: 'https://twitter.com/ZedWarsSOL' },
-      { type: 'discord', url: 'https://discord.com/invite/zedwars' },
-    ],
-    tags: ['games', 'nft'],
-  },
-  {
-    name: 'DeezQuest Beta',
-    image: 'deezquest.png',
-    url: 'https://deezquest.vercel.app/',
-    links: [
-      { type: 'x', url: 'https://twitter.com/deezquest' },
       {
-        type: 'xnft',
-        url: 'https://www.xnft.gg/app/J15EFLZCaUNaVN57Yvp4JjU6mGi3M3m24jgR6Vm46aLd',
+        type: 'twitter',
+        url: 'https://twitter.com/TheArmadaDAO',
       },
     ],
-    tags: ['games', 'nft'],
+    tags: ['dao', 'social', 'nft', 'governance'],
   },
   {
-    name: 'Splitr Tool',
-    url: 'https://splitr-tool.vercel.app/',
-    links: [{ type: 'github', url: 'https://github.com/val-samonte/splitr' }],
-    tags: ['utility'],
-  },
-  {
-    name: 'SonarWatch',
-    url: 'https://sonar.watch/',
-    image: 'sonarwatch.jpg',
-    links: [
-      { type: 'x', url: 'https://twitter.com/Sonarwatch' },
-      { type: 'discord', url: 'https://discord.com/invite/gG4DvM2JGw' },
-      { type: 'docs', url: 'https://docs.sonar.watch/' },
-    ],
-    tags: ['defi', 'utility', 'analytics', 'aggregator'],
-  },
-  {
-    name: 'Magic Eden',
-    url: 'https://magiceden.io/solana',
-    image: 'magiceden.jpg',
+    name: 'Backpack',
+    image: 'backpack.jpg',
+    url: 'https://backpack.app/',
     links: [
       {
         type: 'x',
-        url: 'https://twitter.com/MagicEden',
+        url: 'https://twitter.com/Backpack',
       },
       {
         type: 'discord',
-        url: 'https://discord.com/invite/magiceden',
+        url: 'https://discord.com/invite/backpack',
       },
       {
-        type: 'community',
-        url: 'https://community.magiceden.io/',
+        type: 'github',
+        url: 'https://github.com/coral-xyz/backpack',
       },
     ],
-    tags: ['nft', 'marketplace', 'art'],
-  },
-  {
-    name: 'Tensor',
-    url: 'https://www.tensor.trade/',
-    image: 'tensor.jpg',
-    links: [
-      {
-        type: 'x',
-        url: 'https://twitter.com/tensor_hq',
-      },
-      { type: 'discord', url: 'https://discord.com/invite/tensor' },
-    ],
-    tags: ['nft', 'marketplace', 'art'],
-  },
-  {
-    name: 'Jupiter',
-    url: 'https://jup.ag/swap',
-    image: 'jupiter.jpg',
-    links: [
-      {
-        type: 'x',
-        url: 'https://twitter.com/JupiterExchange',
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com/invite/jup',
-      },
-      {
-        type: 'blog',
-        url: 'https://station.jup.ag/blog/',
-      },
-    ],
-    tags: ['defi', 'dex', 'aggregator'],
+    tags: ['wallet', 'staking'],
   },
   {
     name: 'Birdeye',
@@ -214,6 +116,142 @@ export const directory: Project[] = [
     tags: ['defi', 'dex', 'crosschain', 'aggregator'],
   },
   {
+    name: 'DeezQuest Beta',
+    image: 'deezquest.png',
+    url: 'https://deezquest.vercel.app/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/deezquest',
+      },
+      {
+        type: 'xnft',
+        url: 'https://www.xnft.gg/app/J15EFLZCaUNaVN57Yvp4JjU6mGi3M3m24jgR6Vm46aLd',
+      },
+    ],
+    tags: ['games', 'nft'],
+  },
+  {
+    name: 'Drift',
+    image: 'https://app.drift.trade/assets/icons/driftIcon.svg',
+    url: 'https://app.drift.trade/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/DriftProtocol',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/driftprotocol',
+      },
+    ],
+    tags: ['defi', 'dex', 'lending', 'staking'],
+  },
+  {
+    name: 'Drip',
+    image: 'https://drip.haus/drip_logo_white.a87ccb99.svg',
+    url: 'https://drip.haus/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/drip_haus',
+      },
+      {
+        type: 'linktree',
+        url: 'https://linktr.ee/drip.haus',
+      },
+    ],
+    tags: ['art', 'marketplace', 'nft'],
+  },
+  {
+    name: 'Hawksight',
+    image: 'https://www.hawksight.co/logo192.png',
+    url: 'https://www.hawksight.co/',
+    links: [
+      {
+        type: 'twitter',
+        url: 'https://twitter.com/hawksightco',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.gg/hawksight',
+      },
+      {
+        type: 'docs',
+        url: 'https://hawksight.gitbook.io/whitepaper',
+      },
+    ],
+    tags: ['defi', 'analytics'],
+  },
+  {
+    name: 'Jupiter',
+    url: 'https://jup.ag/swap',
+    image: 'jupiter.jpg',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/JupiterExchange',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/jup',
+      },
+      {
+        type: 'blog',
+        url: 'https://station.jup.ag/blog/',
+      },
+    ],
+    tags: ['defi', 'dex', 'aggregator'],
+  },
+  {
+    name: 'Magic Eden',
+    url: 'https://magiceden.io/solana',
+    image: 'magiceden.jpg',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/MagicEden',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/magiceden',
+      },
+      {
+        type: 'community',
+        url: 'https://community.magiceden.io/',
+      },
+    ],
+    tags: ['nft', 'marketplace', 'art'],
+  },
+  {
+    name: 'Paldo.io',
+    image: 'paldoio.png',
+    url: 'https://paldo.io/',
+    links: [
+      {
+        type: 'telegram',
+        url: 'https://t.me/paldo_io',
+      },
+    ],
+    tags: ['airdrops', 'farming'],
+  },
+  {
+    name: 'Phantom',
+    image: 'phantom.jpg',
+    url: 'https://phantom.app/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/phantom',
+      },
+      {
+        type: 'docs',
+        url: 'https://help.phantom.app/hc/en-us',
+      },
+    ],
+    tags: ['wallet', 'staking'],
+  },
+  {
     name: 'Sanctum',
     url: 'https://app.sanctum.so/trade',
     image: 'sanctum.jpg',
@@ -234,22 +272,20 @@ export const directory: Project[] = [
     tags: ['defi', 'dex', 'aggregator', 'staking'],
   },
   {
-    name: 'Hawksight',
-    image: 'https://www.hawksight.co/logo192.png',
-    url: 'https://www.hawksight.co/',
+    name: 'SolanaFM',
+    image: 'solanafm.jpg',
+    url: 'https://solana.fm/',
     links: [
-      { type: 'twitter', url: 'https://twitter.com/hawksightco' },
-      { type: 'discord', url: 'https://discord.gg/hawksight' },
-      { type: 'docs', url: 'https://hawksight.gitbook.io/whitepaper' },
+      {
+        type: 'x',
+        url: 'https://twitter.com/solanafm',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/K9VNGyQgZc',
+      },
     ],
-    tags: ['defi', 'analytics'],
-  },
-  {
-    name: 'Armada DAO',
-    image: 'https://www.thearmadadao.xyz/logo.png',
-    url: 'https://www.thearmadadao.xyz/',
-    links: [{ type: 'twitter', url: 'https://twitter.com/TheArmadaDAO' }],
-    tags: ['dao', 'social', 'nft', 'governance'],
+    tags: ['explorer'],
   },
   {
     name: 'SolanaHub',
@@ -276,20 +312,16 @@ export const directory: Project[] = [
     tags: ['defi', 'dex', 'aggregator', 'staking', 'lending', 'analytics'],
   },
   {
-    name: 'SolanaFM',
-    image: 'solanafm.jpg',
-    url: 'https://solana.fm/',
+    name: 'Solflare',
+    image: 'solflare.jpg',
+    url: 'https://solflare.com/',
     links: [
       {
         type: 'x',
-        url: 'https://twitter.com/solanafm',
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com/invite/K9VNGyQgZc',
+        url: 'https://twitter.com/solflare_wallet',
       },
     ],
-    tags: ['explorer'],
+    tags: ['wallet', 'staking'],
   },
   {
     name: 'Solscan',
@@ -308,24 +340,35 @@ export const directory: Project[] = [
     tags: ['explorer'],
   },
   {
-    name: 'Xray',
-    image: 'helius.jpg',
-    url: 'https://xray.helius.xyz/',
+    name: 'SonarWatch',
+    url: 'https://sonar.watch/',
+    image: 'sonarwatch.jpg',
     links: [
       {
         type: 'x',
-        url: 'https://twitter.com/heliuslabs',
+        url: 'https://twitter.com/Sonarwatch',
       },
       {
         type: 'discord',
-        url: 'https://discord.com/invite/nSkq35VUf5',
+        url: 'https://discord.com/invite/gG4DvM2JGw',
       },
       {
-        type: 'github',
-        url: 'https://github.com/helius-labs/xray',
+        type: 'docs',
+        url: 'https://docs.sonar.watch/',
       },
     ],
-    tags: ['explorer'],
+    tags: ['defi', 'utility', 'analytics', 'aggregator'],
+  },
+  {
+    name: 'Splitr Tool',
+    url: 'https://splitr-tool.vercel.app/',
+    links: [
+      {
+        type: 'github',
+        url: 'https://github.com/val-samonte/splitr',
+      },
+    ],
+    tags: ['utility'],
   },
   {
     name: 'Squads',
@@ -352,52 +395,72 @@ export const directory: Project[] = [
     tags: ['dao', 'social', 'governance', 'staking'],
   },
   {
-    name: 'Phantom',
-    image: 'phantom.jpg',
-    url: 'https://phantom.app/',
+    name: 'Step',
+    image: 'https://app.step.finance/favicon.ico',
+    url: 'https://app.step.finance/',
     links: [
       {
         type: 'x',
-        url: 'https://twitter.com/phantom',
-      },
-      {
-        type: 'docs',
-        url: 'https://help.phantom.app/hc/en-us',
-      },
-    ],
-    tags: ['wallet', 'staking'],
-  },
-  {
-    name: 'Backpack',
-    image: 'backpack.jpg',
-    url: 'https://backpack.app/',
-    links: [
-      {
-        type: 'x',
-        url: 'https://twitter.com/Backpack',
+        url: 'https://twitter.com/StepFinance_',
       },
       {
         type: 'discord',
-        url: 'https://discord.com/invite/backpack',
-      },
-      {
-        type: 'github',
-        url: 'https://github.com/coral-xyz/backpack',
+        url: 'https://discord.com/invite/Pab8wcH5Yt',
       },
     ],
-    tags: ['wallet', 'staking'],
+    tags: ['defi', 'utility', 'analytics', 'aggregator'],
   },
   {
-    name: 'Solflare',
-    image: 'solflare.jpg',
-    url: 'https://solflare.com/',
+    name: 'Tensor',
+    url: 'https://www.tensor.trade/',
+    image: 'tensor.jpg',
     links: [
       {
         type: 'x',
-        url: 'https://twitter.com/solflare_wallet',
+        url: 'https://twitter.com/tensor_hq',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/tensor',
       },
     ],
-    tags: ['wallet', 'staking'],
+    tags: ['nft', 'marketplace', 'art'],
+  },
+  {
+    name: 'Xray',
+    image: 'helius.jpg',
+    url: 'https://xray.helius.xyz/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/heliuslabs',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/nSkq35VUf5',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/helius-labs/xray',
+      },
+    ],
+    tags: ['explorer'],
+  },
+  {
+    name: 'Zed Wars Beta',
+    image: 'https://beta.zedwars.com/logo.webp',
+    url: 'https://beta.zedwars.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/ZedWarsSOL',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/zedwars',
+      },
+    ],
+    tags: ['games', 'nft'],
   },
 ]
 
