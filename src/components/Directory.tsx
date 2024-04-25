@@ -45,7 +45,7 @@ export default function Directory() {
         <p>Nothing Found</p>
         <button
           onClick={() => setFilterTags([])}
-          className='text-gray-100 rounded-full bg-gray-400 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
+          className='min-w-40 text-gray-100 rounded-full bg-gray-400 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
         >
           Clear Filter
         </button>
