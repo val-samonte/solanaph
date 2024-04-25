@@ -38,6 +38,7 @@ export const projectTagsArray = [
   'airdrops',
   'farming',
   'rpc',
+  'depin',
 ] as const
 
 export type ProjectTags = (typeof projectTagsArray)[number]
@@ -250,7 +251,106 @@ export const directory: Project[] = [
     links: [{ type: 'twitter', url: 'https://twitter.com/TheArmadaDAO' }],
     tags: ['dao', 'social', 'nft', 'governance'],
   },
+  {
+    name: 'SolanaHub',
+    image: 'solanahub.webp',
+    url: 'https://solanahub.app/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/SolanaHubApp',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/YTTVV5qaKp',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.solanahub.app/',
+      },
+      {
+        type: 'blog',
+        url: 'https://blog.solanahub.app/',
+      },
+    ],
+    tags: ['defi', 'dex', 'aggregator', 'staking', 'lending', 'analytics'],
+  },
+  {
+    name: 'SolanaFM',
+    image: 'solanafm.jpg',
+    url: 'https://solana.fm/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/solanafm',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/K9VNGyQgZc',
+      },
+    ],
+    tags: ['explorer'],
+  },
+  {
+    name: 'Solscan',
+    image: 'solscan.webp',
+    url: 'https://solscan.io/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/solscanofficial',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/vhq8N4hMvA',
+      },
+    ],
+    tags: ['explorer'],
+  },
+  {
+    name: 'Xray',
+    image: 'helius.jpg',
+    url: 'https://xray.helius.xyz/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/heliuslabs',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/nSkq35VUf5',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/helius-labs/xray',
+      },
+    ],
+    tags: ['explorer'],
+  },
+  {
+    name: 'Squads',
+    image: 'squads.jpg',
+    url: 'https://v3.squads.so/squads',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/SquadsProtocol',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/Qwhew4M4RS',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.squads.so/squads-v3-docs',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/Squads-Protocol/squads-mpl',
+      },
+    ],
+    tags: ['dao', 'social', 'governance', 'staking'],
+  },
 ]
 
-// todo: wallets, explorers, bridges, oracles
-// squads
+// todo: wallets, bridges, oracles
