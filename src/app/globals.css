@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -30,4 +30,17 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+} 
+*/
+
+.show-next-when-empty:empty {
+  display: none;
+}
+
+.show-next-when-empty:not(:empty) + * {
+  display: none;
+}
+
+.show-next-when-empty:empty + * {
+  display: flex;
 }
