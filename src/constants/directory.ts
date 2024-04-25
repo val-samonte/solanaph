@@ -205,14 +205,15 @@ export const directory: Project[] = [
     links: [
       { type: "twitter", url: "https://twitter.com/hawksightco" },
       { type: "discord", url: "https://discord.gg/hawksight" },
+      { type: "docs", url: "https://hawksight.gitbook.io/whitepaper" },
     ],
-    tags: ["defi"],
+    tags: ["defi", "dashboard"],
   },
   {
     name: "Armada DAO",
     image: "https://www.thearmadadao.xyz/logo.png",
     url: "https://www.thearmadadao.xyz/",
     links: [{ type: "twitter", url: "https://twitter.com/TheArmadaDAO" }],
-    tags: ["dao"],
+    tags: ["dao", "community", "nft"],
   },
 ];

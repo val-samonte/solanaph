@@ -5,7 +5,10 @@ import {
   GithubLogo,
   Link,
   LinktreeLogo,
+  Notebook,
+  ReadCvLogo,
   TelegramLogo,
+  UsersFour,
   XLogo,
 } from "@phosphor-icons/react";
 
@@ -29,6 +32,12 @@ const Icon = ({ icon }: IIcon) => {
       return <GithubLogo size={18} />;
     case "linktree":
       return <LinktreeLogo size={18} />;
+    case "docs":
+      return <Notebook size={18} />;
+    case "community":
+      return <UsersFour size={18} />;
+    case "blog":
+      return <ReadCvLogo size={18} />;
     case "xnft":
     default:
       return <Link size={18} />;
