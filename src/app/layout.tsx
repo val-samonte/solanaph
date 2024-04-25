@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -41,7 +42,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className='relative flex min-h-screen flex-col px-4 pb-20 xl:p-16 gap-4 xl:gap-12 items-center'>
           <nav className='sticky top-0 flex min-h-16 w-full items-center justify-between from-white to-white xl:to-white/0 bg-gradient-to-b z-20'>
-            <div className='flex items-center gap-4'>
+            <Link
+              href='https://www.facebook.com/groups/solanaphilippines'
+              target='_blank'
+              rel='noreferrer noopener'
+              className='flex items-center gap-4'
+            >
               <Image
                 src={'logo.svg'}
                 alt='Solana PH'
@@ -50,7 +56,7 @@ export default function RootLayout({
                 className='h-14 w-14'
               />
               <h1 className='text-gray-600'>Solana Philippines</h1>
-            </div>
+            </Link>
             <ul className='flex items-center gap-6 xl:gap-12 flex-auto justify-end'>
               <li>Directory</li>
             </ul>

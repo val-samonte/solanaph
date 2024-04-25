@@ -34,7 +34,6 @@ export const projectTagsArray = [
   'prediction',
   'insurance',
   'aggregator',
-  'governance',
   'airdrops',
   'farming',
   'rpc',
@@ -65,7 +64,7 @@ export const directory: Project[] = [
         url: 'https://twitter.com/TheArmadaDAO',
       },
     ],
-    tags: ['dao', 'social', 'nft', 'governance'],
+    tags: ['dao', 'social', 'nft'],
   },
   {
     name: 'Backpack',
@@ -309,7 +308,16 @@ export const directory: Project[] = [
         url: 'https://blog.solanahub.app/',
       },
     ],
-    tags: ['defi', 'dex', 'aggregator', 'staking', 'lending', 'analytics'],
+    tags: [
+      'defi',
+      'dex',
+      'aggregator',
+      'staking',
+      'lending',
+      'analytics',
+      'airdrops',
+      'dao',
+    ],
   },
   {
     name: 'Solflare',
@@ -392,7 +400,7 @@ export const directory: Project[] = [
         url: 'https://github.com/Squads-Protocol/squads-mpl',
       },
     ],
-    tags: ['dao', 'social', 'governance', 'staking'],
+    tags: ['dao', 'social', 'staking'],
   },
   {
     name: 'Step',
@@ -465,3 +473,5 @@ export const directory: Project[] = [
 ]
 
 // todo: bridges, oracles
+// wormhole portal, shadow storage, realms.today, mallow, exchange art, bonkrewards.com
+// star atlas, aurory,
