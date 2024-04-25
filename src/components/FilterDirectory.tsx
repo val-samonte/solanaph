@@ -65,7 +65,30 @@ export default function FilterDirectory() {
       <Dialog show={filterOpen} onClose={() => setFilterOpen(false)}>
         <UiDialog.Panel className='flex flex-col relative bg-white rounded-2xl max-w-sm w-full '>
           <UiDialog.Title>
-            <div className='flex p-4 border-b border-gray-100'>Filter</div>
+            <div className='flex p-4 border-b border-gray-100 justify-between text-gray-800'>
+              <span>Filter</span>
+              <button
+                className='hover:text-gray-600'
+                onClick={() => {
+                  setFilterOpen(false)
+                }}
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M6 18 18 6M6 6l12 12'
+                  />
+                </svg>
+              </button>
+            </div>
           </UiDialog.Title>
           <div className='flex p-4 flex-col gap-4'>
             <div className='flex flex-wrap gap-2'>
