@@ -63,7 +63,7 @@ export default function RootLayout({
           </nav>
           {children}
         </main>
-        <footer className='max-w-7xl p-4 pb-20 xl:p-16 mx-auto text-center text-xs text-gray-400'>
+        <footer className='max-w-xl xl:max-w-4xl p-4 pb-20 xl:p-16 xl:pt-0 mx-auto text-center text-xs text-gray-400'>
           Disclaimer: This is a community project and is not affiliated with
           Solana Labs. The team behind this project is not responsible for any
           loss of funds or any other damages that may occur from using the
