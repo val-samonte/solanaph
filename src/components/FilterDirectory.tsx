@@ -6,14 +6,20 @@ import { projectTagsArray } from '@/constants/directory'
 import { Dialog as UiDialog } from '@headlessui/react'
 import Dialog from './Dialog'
 
-export const tagFilterAtom = atom<string[]>(
-  new URLSearchParams(window.location.search).get('tags')?.split(',') ?? []
-)
+export const tagFilterAtom = atom<string[]>([])
 
 const useTagFilter = () => {
   const [tags, setTags] = useAtom(tagFilterAtom)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    setTags(
+      new URLSearchParams(window.location.search).get('tags')?.split(',') ?? []
+    )
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
     const params = new URLSearchParams(window.location.search)
     if (tags.length === 0) {
       params.delete('tags')
