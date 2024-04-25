@@ -108,7 +108,7 @@ export default function Card({ name, image, url, links }: CardProps) {
           )}
         </button>
       </div>
-      <div className='flex items-center justify-end gap-2 text-gray-100 text-xs relative pointer-events-none'>
+      <div className='mt-auto flex flex-wrap items-center justify-end gap-2 text-gray-100 text-xs relative pointer-events-none'>
         {links.map((link) => (
           <Link
             key={link.type}
