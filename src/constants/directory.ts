@@ -351,6 +351,54 @@ export const directory: Project[] = [
     ],
     tags: ['dao', 'social', 'governance', 'staking'],
   },
+  {
+    name: 'Phantom',
+    image: 'phantom.jpg',
+    url: 'https://phantom.app/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/phantom',
+      },
+      {
+        type: 'docs',
+        url: 'https://help.phantom.app/hc/en-us',
+      },
+    ],
+    tags: ['wallet', 'staking'],
+  },
+  {
+    name: 'Backpack',
+    image: 'backpack.jpg',
+    url: 'https://backpack.app/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/Backpack',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/backpack',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/coral-xyz/backpack',
+      },
+    ],
+    tags: ['wallet', 'staking'],
+  },
+  {
+    name: 'Solflare',
+    image: 'solflare.jpg',
+    url: 'https://solflare.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/solflare_wallet',
+      },
+    ],
+    tags: ['wallet', 'staking'],
+  },
 ]
 
-// todo: wallets, bridges, oracles
+// todo: bridges, oracles
