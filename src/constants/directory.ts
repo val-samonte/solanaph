@@ -248,6 +248,9 @@ export const directory: Project[] = [
     image: 'https://www.thearmadadao.xyz/logo.png',
     url: 'https://www.thearmadadao.xyz/',
     links: [{ type: 'twitter', url: 'https://twitter.com/TheArmadaDAO' }],
-    tags: ['dao', 'social', 'nft'],
+    tags: ['dao', 'social', 'nft', 'governance'],
   },
 ]
+
+// todo: wallets, explorers, bridges, oracles
+// squads

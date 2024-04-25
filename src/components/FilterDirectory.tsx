@@ -82,9 +82,9 @@ export default function FilterDirectory() {
                   }}
                   className={`${
                     filteredTags.includes(tag)
-                      ? 'bg-blue-400 hover:bg-blue-600'
-                      : 'bg-gray-400 hover:bg-gray-600'
-                  } text-gray-100 text-xs rounded-full hover:text-white px-3 py-2 transition-colors duration-300 pointer-events-auto`}
+                      ? 'bg-blue-500 hover:bg-blue-600'
+                      : 'bg-gray-500 hover:bg-gray-600'
+                  } text-gray-100 text-xs rounded-lg hover:text-white px-3 py-1 transition-colors duration-300 pointer-events-auto`}
                 >
                   {tag}
                 </button>
@@ -93,7 +93,7 @@ export default function FilterDirectory() {
             <div>
               <button
                 onClick={() => setFilteredTags([])}
-                className='w-full text-gray-100 rounded-full bg-gray-400 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
+                className='w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
               >
                 Clear Filter
               </button>

@@ -118,7 +118,7 @@ export default function Card({ name, image, url, links }: CardProps) {
             href={link.url}
             target='_blank'
             rel='noreferrer noopener'
-            className='rounded-full bg-gray-400 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 pointer-events-auto'
+            className='rounded-lg bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-1 transition-colors duration-300 pointer-events-auto'
           >
             <Icon icon={link.type} />
           </Link>
@@ -133,7 +133,7 @@ export default function Card({ name, image, url, links }: CardProps) {
             isBookmarked
               ? 'text-amber-300 hover:text-amber-400'
               : 'text-gray-100 hover:text-white'
-          } rounded-full bg-gray-400 hover:bg-gray-600 px-3 py-2 transition-colors duration-300 pointer-events-auto`}
+          } rounded-lg bg-gray-500 hover:bg-gray-600 px-3 py-1 transition-colors duration-300 pointer-events-auto`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -141,7 +141,7 @@ export default function Card({ name, image, url, links }: CardProps) {
             viewBox='0 0 24 24'
             strokeWidth={1.5}
             stroke='currentColor'
-            className='w-4 h-4'
+            className='w-[1.5em] h-[1.5em]'
           >
             <path
               strokeLinecap='round'
