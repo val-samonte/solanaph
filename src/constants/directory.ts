@@ -365,7 +365,7 @@ export const directory: Project[] = [
         url: 'https://docs.sonar.watch/',
       },
     ],
-    tags: ['defi', 'utility', 'analytics', 'aggregator'],
+    tags: ['defi', 'utility', 'analytics', 'aggregator', 'crosschain'],
   },
   {
     name: 'Splitr Tool',
@@ -475,3 +475,4 @@ export const directory: Project[] = [
 // todo: bridges, oracles
 // wormhole portal, shadow storage, realms.today, mallow, exchange art, bonkrewards.com
 // star atlas, aurory,
+// teleport, helium, hive mapper, code, sol incinerator, parcl, kamino, mrgnfi, orca, meteora
