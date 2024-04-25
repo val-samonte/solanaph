@@ -40,7 +40,7 @@ export default function RootLayout({
       <meta name='msapplication-TileColor' content='#da532c' />
       <meta name='theme-color' content='#ffffff' />
       <body className={inter.className}>
-        <main className='relative flex min-h-screen flex-col px-4 pb-20 xl:p-16 gap-4 xl:gap-12 items-center'>
+        <main className='relative flex min-h-screen flex-col px-4 pb-4 xl:p-16 gap-4 xl:gap-12 items-center'>
           <nav className='sticky top-0 flex min-h-16 w-full items-center justify-between from-white to-white xl:to-white/0 bg-gradient-to-b z-20'>
             <Link
               href='https://www.facebook.com/groups/solanaphilippines'
@@ -63,6 +63,12 @@ export default function RootLayout({
           </nav>
           {children}
         </main>
+        <footer className='max-w-7xl p-4 pb-20 xl:p-16 mx-auto text-center text-xs text-gray-400'>
+          Disclaimer: This is a community project and is not affiliated with
+          Solana Labs. The team behind this project is not responsible for any
+          loss of funds or any other damages that may occur from using the
+          information provided on this website.
+        </footer>
       </body>
     </html>
   )
