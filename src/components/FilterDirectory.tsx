@@ -1,16 +1,34 @@
 'use client'
 
 import { atom, useAtom } from 'jotai'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { projectTagsArray } from '@/constants/directory'
 import { Dialog as UiDialog } from '@headlessui/react'
 import Dialog from './Dialog'
 
-export const tagFilterAtom = atom<string[]>([])
+export const tagFilterAtom = atom<string[]>(
+  new URLSearchParams(window.location.search).get('tags')?.split(',') ?? []
+)
+
+const useTagFilter = () => {
+  const [tags, setTags] = useAtom(tagFilterAtom)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (tags.length === 0) {
+      params.delete('tags')
+    } else {
+      params.set('tags', tags.join(','))
+    }
+    window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
+  }, [tags])
+
+  return [tags, setTags] as const
+}
 
 export default function FilterDirectory() {
   const [filterOpen, setFilterOpen] = useState(false)
-  const [filteredTags, setFilteredTags] = useAtom(tagFilterAtom)
+  const [filteredTags, setFilteredTags] = useTagFilter()
 
   return (
     <>
