@@ -36,7 +36,7 @@ export default function Directory() {
 
   return (
     <>
-      <div className='show-next-when-empty grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full xl:gap-8 max-w-7xl'>
+      <div className='show-next-when-empty grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full xl:gap-8 max-w-7xl'>
         {filteredDirectory.map((project) => (
           <Card {...project} key={project.name} />
         ))}
