@@ -72,6 +72,30 @@ export const directory: Project[] = [
     tags: ['airdrops', 'utility'],
   },
   {
+    name: 'Armada',
+    image: 'armada.jpg',
+    url: 'https://app.armadafi.so/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/ArmadaFi',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/TSBBdfZMhq',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.armadafi.so/',
+      },
+      {
+        type: 'blog',
+        url: 'https://blog.armadafi.so/',
+      },
+    ],
+    tags: ['staking', 'farming'],
+  },
+  {
     name: 'Armada DAO',
     image: 'https://www.thearmadadao.xyz/logo.png',
     url: 'https://www.thearmadadao.xyz/',
@@ -130,6 +154,22 @@ export const directory: Project[] = [
       },
     ],
     tags: ['defi', 'dex', 'crosschain', 'aggregator'],
+  },
+  {
+    name: 'Bonk Rewards',
+    image: 'https://bonkrewards.com/assets/bonkrewards-logo-lcp3OaC8.png',
+    url: 'https://bonkrewards.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/ArmadaFi',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/TSBBdfZMhq',
+      },
+    ],
+    tags: ['staking', 'farming'],
   },
   {
     name: 'deBridge',
@@ -288,6 +328,26 @@ export const directory: Project[] = [
     tags: ['defi', 'dex', 'aggregator'],
   },
   {
+    name: 'Kamino',
+    image: 'kamino.jpg',
+    url: 'https://app.kamino.finance/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/KaminoFinance',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/kaminofinance',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.kamino.finance/',
+      },
+    ],
+    tags: ['defi', 'dex', 'aggregator', 'staking', 'lending'],
+  },
+  {
     name: 'Magic Eden',
     url: 'https://magiceden.io/solana',
     image: 'magiceden.jpg',
@@ -322,6 +382,86 @@ export const directory: Project[] = [
       },
     ],
     tags: ['nft', 'marketplace', 'art'],
+  },
+  {
+    name: 'marginfi',
+    image: 'marginfi.jpg',
+    url: 'https://app.marginfi.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/marginfi',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/mrgn',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.marginfi.com/',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/mrgnlabs',
+      },
+    ],
+    tags: ['defi', 'dex', 'aggregator', 'staking', 'lending'],
+  },
+  {
+    name: 'Meteora',
+    image: 'meteora.jpg',
+    url: 'https://app.meteora.ag/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/MeteoraAG',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/bbNxzYbucn',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.meteora.ag/',
+      },
+      {
+        type: 'blog',
+        url: 'https://meteoraag.medium.com/',
+      },
+    ],
+    tags: ['defi', 'aggregator', 'staking', 'farming'],
+  },
+  {
+    name: 'Orca',
+    image: 'orca.jpg',
+    url: 'https://www.orca.so/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/orca_so',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/rdrW577act',
+      },
+      {
+        type: 'blog',
+        url: 'https://medium.com/orca-so',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.orca.so/',
+      },
+      {
+        type: 'community',
+        url: 'https://forums.orca.so/',
+      },
+      {
+        type: 'linktree',
+        url: 'https://linktr.ee/orca_so',
+      },
+    ],
+    tags: ['defi', 'aggregator', 'staking', 'farming'],
   },
   {
     name: 'Paldo.io',
@@ -746,6 +886,5 @@ export const directory: Project[] = [
 ]
 
 // todo:
-// bonkrewards.com
 // star atlas, aurory,
-// teleport, helium, hive mapper, code, parcl, kamino, mrgnfi, orca, meteora
+// teleport, helium, hive mapper, code, parcl,
