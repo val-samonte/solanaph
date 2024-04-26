@@ -1098,8 +1098,18 @@ export const directory: Project[] = [
   // },
 ]
 
+// NEED HELP!
+// If you are a member of Solana PH community, please submit PRs so that
+// we can correct some of the information and
+// add more known projects used by the community.
+
 // todo:
 // teleport, helium, hive mapper,
 
 // todo rpc:
 // helius, quicknode, triton, hellomoon
+
+// todo identity:
+// civic, matrica
+
+// metaplex
