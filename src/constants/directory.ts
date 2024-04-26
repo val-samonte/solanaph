@@ -38,6 +38,7 @@ export const projectTagsArray = [
   'farming',
   'rpc',
   'depin',
+  'storage',
 ] as const
 
 export type ProjectTags = (typeof projectTagsArray)[number]
@@ -113,6 +114,34 @@ export const directory: Project[] = [
       },
     ],
     tags: ['defi', 'dex', 'crosschain', 'aggregator'],
+  },
+  {
+    name: 'deBridge',
+    image: 'debridge.png',
+    url: 'https://app.debridge.finance/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/deBridgeFinance',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.debridge.finance/',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/deBridge_finance',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/debridge',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/debridge-finance/',
+      },
+    ],
+    tags: ['bridge', 'crosschain'],
   },
   {
     name: 'DeezQuest Beta',
@@ -251,6 +280,22 @@ export const directory: Project[] = [
     tags: ['wallet', 'staking'],
   },
   {
+    name: 'Portal Bridge',
+    image: 'portalbridge.png',
+    url: 'https://portalbridge.com/',
+    links: [
+      {
+        type: 'docs',
+        url: 'https://portalbridge.com/docs/',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/XLabs/portal-bridge-ui',
+      },
+    ],
+    tags: ['bridge', 'crosschain'],
+  },
+  {
     name: 'Sanctum',
     url: 'https://app.sanctum.so/trade',
     image: 'sanctum.jpg',
@@ -269,6 +314,34 @@ export const directory: Project[] = [
       },
     ],
     tags: ['defi', 'dex', 'aggregator', 'staking'],
+  },
+  {
+    name: 'ShdwDrive',
+    image: 'https://portal.shdwdrive.com/img/shadow-logo-svg.svg',
+    url: 'https://portal.shdwdrive.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/genesysgo',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/genesysgo',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/shadowdriveecosystem',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.shdwdrive.com/',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/GenesysGo/',
+      },
+    ],
+    tags: ['storage', 'depin'],
   },
   {
     name: 'SolanaFM',
@@ -318,6 +391,30 @@ export const directory: Project[] = [
       'airdrops',
       'dao',
     ],
+  },
+  {
+    name: 'Solcasino.io',
+    image: 'solcasinoio.jpg',
+    url: 'https://solcasino.io/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/solcasinoio',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/solcasinoio',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/SolcasinoIOBot',
+      },
+      {
+        type: 'blog',
+        url: 'https://medium.com/@Solcasinoio',
+      },
+    ],
+    tags: ['games', 'nft'],
   },
   {
     name: 'Solflare',
@@ -470,9 +567,16 @@ export const directory: Project[] = [
     ],
     tags: ['games', 'nft'],
   },
+  // {
+  //   name: '',
+  //   image: '',
+  //   url: '',
+  //   links: [],
+  //   tags: [],
+  // },
 ]
 
-// todo: bridges, oracles, solcasino
-// wormhole portal, shadow storage, realms.today, mallow, exchange art, bonkrewards.com
+// todo: oracles
+// realms.today, mallow, exchange art, bonkrewards.com
 // star atlas, aurory,
 // teleport, helium, hive mapper, code, sol incinerator, parcl, kamino, mrgnfi, orca, meteora
