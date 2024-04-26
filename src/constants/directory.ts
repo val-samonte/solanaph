@@ -56,6 +56,22 @@ export interface Project {
 
 export const directory: Project[] = [
   {
+    name: 'Airdrop Checker',
+    image: 'airdropchecker.webp',
+    url: 'https://www.airdropped.link/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/solworks_',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/Qbd7yNcEPS',
+      },
+    ],
+    tags: ['airdrops', 'utility'],
+  },
+  {
     name: 'Armada DAO',
     image: 'https://www.thearmadadao.xyz/logo.png',
     url: 'https://www.thearmadadao.xyz/',
@@ -160,6 +176,30 @@ export const directory: Project[] = [
     tags: ['games', 'nft'],
   },
   {
+    name: 'DFlow',
+    image: 'dflow.jpg',
+    url: 'https://dflow.net/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/DFlowProtocol',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/dflow',
+      },
+      {
+        type: 'blog',
+        url: 'https://dflow.net/en/blog',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.dflow.net/docs/introduction',
+      },
+    ],
+    tags: ['defi', 'dex'],
+  },
+  {
     name: 'Drift',
     image: 'https://app.drift.trade/assets/icons/driftIcon.svg',
     url: 'https://app.drift.trade/',
@@ -190,6 +230,22 @@ export const directory: Project[] = [
       },
     ],
     tags: ['art', 'marketplace', 'nft'],
+  },
+  {
+    name: 'Exchange Art',
+    image: 'exchangeart.jpg',
+    url: 'https://exchange.art/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/exchgART',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/exchangeart',
+      },
+    ],
+    tags: ['nft', 'marketplace', 'art'],
   },
   {
     name: 'Hawksight',
@@ -252,6 +308,22 @@ export const directory: Project[] = [
     tags: ['nft', 'marketplace', 'art'],
   },
   {
+    name: 'mallow.',
+    image: 'mallow.jpg',
+    url: 'https://www.mallow.art/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/mallow__art',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/mallowart',
+      },
+    ],
+    tags: ['nft', 'marketplace', 'art'],
+  },
+  {
     name: 'Paldo.io',
     image: 'paldoio.png',
     url: 'https://paldo.io/',
@@ -294,6 +366,50 @@ export const directory: Project[] = [
       },
     ],
     tags: ['bridge', 'crosschain'],
+  },
+  {
+    name: 'Pyth Network',
+    image: 'pythnetwork.jpg',
+    url: 'https://pyth.network/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/PythNetwork',
+      },
+      {
+        type: 'linktree',
+        url: 'https://linktr.ee/pythnetwork',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/pythnetwork',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/Pyth_Network',
+      },
+    ],
+    tags: ['oracle', 'crosschain', 'analytics'],
+  },
+  {
+    name: 'Realms',
+    image: 'realms.jpg',
+    url: 'https://realms.today/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/Realms_DAOs',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/VsPbrK2hJk',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/solana-labs/governance-ui',
+      },
+    ],
+    tags: ['dao', 'utility', 'social'],
   },
   {
     name: 'Sanctum',
@@ -341,7 +457,23 @@ export const directory: Project[] = [
         url: 'https://github.com/GenesysGo/',
       },
     ],
-    tags: ['storage', 'depin'],
+    tags: ['storage', 'depin', 'utility'],
+  },
+  {
+    name: 'Sol-Incinerator',
+    image: 'solincinerator.jpg',
+    url: 'https://sol-incinerator.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/solincinerator',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/solslugs',
+      },
+    ],
+    tags: ['utility', 'nft'],
   },
   {
     name: 'SolanaFM',
@@ -393,6 +525,18 @@ export const directory: Project[] = [
     ],
   },
   {
+    name: 'Solarplex',
+    image: 'solarplex.jpg',
+    url: 'https://www.solarplex.xyz/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/solarplex_xyz',
+      },
+    ],
+    tags: ['social'],
+  },
+  {
     name: 'Solcasino.io',
     image: 'solcasinoio.jpg',
     url: 'https://solcasino.io/',
@@ -428,6 +572,7 @@ export const directory: Project[] = [
     ],
     tags: ['wallet', 'staking'],
   },
+
   {
     name: 'Solscan',
     image: 'solscan.webp',
@@ -497,7 +642,7 @@ export const directory: Project[] = [
         url: 'https://github.com/Squads-Protocol/squads-mpl',
       },
     ],
-    tags: ['dao', 'social', 'staking'],
+    tags: ['dao', 'social', 'staking', 'utility'],
   },
   {
     name: 'Step',
@@ -514,6 +659,30 @@ export const directory: Project[] = [
       },
     ],
     tags: ['defi', 'utility', 'analytics', 'aggregator'],
+  },
+  {
+    name: 'Switchboard',
+    image: 'switchboard.jpg',
+    url: 'https://app.switchboard.xyz/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/switchboardxyz',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/switchboardxyz',
+      },
+      {
+        type: 'blog',
+        url: 'https://switchboardxyz.medium.com/',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/switchboard-xyz',
+      },
+    ],
+    tags: ['oracle', 'analytics', 'crosschain'],
   },
   {
     name: 'Tensor',
@@ -576,7 +745,7 @@ export const directory: Project[] = [
   // },
 ]
 
-// todo: oracles
-// realms.today, mallow, exchange art, bonkrewards.com
+// todo:
+// bonkrewards.com
 // star atlas, aurory,
-// teleport, helium, hive mapper, code, sol incinerator, parcl, kamino, mrgnfi, orca, meteora
+// teleport, helium, hive mapper, code, parcl, kamino, mrgnfi, orca, meteora
