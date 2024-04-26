@@ -2,37 +2,39 @@
 
 import { useAtom, useAtomValue } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { useMemo } from 'react'
-import { directory } from '@/constants/directory'
+import { useEffect, useState } from 'react'
+import { directory, Project } from '@/constants/directory'
+import { filterDirectory } from '@/utils/filterDirectory'
 import Card from './Card'
-import { tagFilterAtom } from './FilterDirectory'
+import { tagsFilterAtom } from './FilterDirectory'
 
 export const bookmarkedProjectsAtom = atomWithStorage<string[]>(
   'bookmarkedProjects',
   []
 )
 
-export default function Directory() {
+export default function Directory({
+  initialDirectory,
+}: {
+  initialDirectory: Project[]
+}) {
   const bookmarked = useAtomValue(bookmarkedProjectsAtom)
-  const [filteredTags, setFilterTags] = useAtom(tagFilterAtom)
+  const [tags, setTags] = useAtom(tagsFilterAtom)
+  const [filteredDirectory, setFilteredDirectory] = useState(initialDirectory)
 
-  const filteredDirectory = useMemo(() => {
-    const filtered =
-      filteredTags.length === 0
-        ? directory
-        : directory.filter((project) => {
-            return project.tags.some((tag) => filteredTags.includes(tag))
-          })
+  useEffect(() => {
+    if (!tags) return
 
+    const filtered = filterDirectory(directory, tags)
     const bookmarkedProjects = filtered.filter((project) =>
       bookmarked.includes(project.url)
     )
-
     const notBookmarkedProjects = filtered.filter(
       (project) => !bookmarked.includes(project.url)
     )
-    return [...bookmarkedProjects, ...notBookmarkedProjects]
-  }, [filteredTags, bookmarked])
+
+    setFilteredDirectory([...bookmarkedProjects, ...notBookmarkedProjects])
+  }, [tags, bookmarked, setFilteredDirectory])
 
   return (
     <>
@@ -44,7 +46,7 @@ export default function Directory() {
       <div className='mx-auto h-60  flex-col items-center justify-center gap-4'>
         <p>Nothing Found</p>
         <button
-          onClick={() => setFilterTags([])}
+          onClick={() => setTags([])}
           className='min-w-40 text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
         >
           Clear Filter

@@ -42,7 +42,7 @@ export const projectTagsArray = [
 
 export type ProjectTags = (typeof projectTagsArray)[number]
 
-interface Project {
+export interface Project {
   name: string
   image?: string
   url: string
@@ -472,7 +472,7 @@ export const directory: Project[] = [
   },
 ]
 
-// todo: bridges, oracles
+// todo: bridges, oracles, solcasino
 // wormhole portal, shadow storage, realms.today, mallow, exchange art, bonkrewards.com
 // star atlas, aurory,
 // teleport, helium, hive mapper, code, sol incinerator, parcl, kamino, mrgnfi, orca, meteora

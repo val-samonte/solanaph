@@ -6,35 +6,34 @@ import { projectTagsArray } from '@/constants/directory'
 import { Dialog as UiDialog } from '@headlessui/react'
 import Dialog from './Dialog'
 
-export const tagFilterAtom = atom<string[]>([])
+export const tagsFilterAtom = atom<string[] | null>(null)
 
-const useTagFilter = () => {
-  const [tags, setTags] = useAtom(tagFilterAtom)
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    setTags(
-      new URLSearchParams(window.location.search).get('tags')?.split(',') ?? []
-    )
-  }, [])
+export default function FilterDirectory({
+  initialFilters,
+}: {
+  initialFilters: string[]
+}) {
+  const [filterOpen, setFilterOpen] = useState(false)
+  const [tags, setTags] = useAtom(tagsFilterAtom)
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    setTags(initialFilters)
+  }, [setTags, initialFilters])
+
+  useEffect(() => {
+    if (tags === null) return
     const params = new URLSearchParams(window.location.search)
     if (tags.length === 0) {
       params.delete('tags')
     } else {
       params.set('tags', tags.join(','))
     }
-    window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
+    window.history.replaceState(
+      {},
+      '',
+      `${window.location.pathname}${params.size > 0 ? `?${params}` : ''}`
+    )
   }, [tags])
-
-  return [tags, setTags] as const
-}
-
-export default function FilterDirectory() {
-  const [filterOpen, setFilterOpen] = useState(false)
-  const [filteredTags, setFilteredTags] = useTagFilter()
 
   return (
     <>
@@ -58,7 +57,7 @@ export default function FilterDirectory() {
             />
           </svg>
         </button>
-        {filteredTags.length > 0 && (
+        {tags && tags.length > 0 && (
           <div className='bg-red-600 w-3 h-3 absolute top-0 right-0 rounded-full' />
         )}
       </div>
@@ -96,7 +95,8 @@ export default function FilterDirectory() {
                 <button
                   key={tag}
                   onClick={() => {
-                    setFilteredTags((prev) => {
+                    setTags((prev) => {
+                      if (!prev) return null
                       if (prev.includes(tag)) {
                         return prev.filter((t) => t !== tag)
                       }
@@ -104,7 +104,7 @@ export default function FilterDirectory() {
                     })
                   }}
                   className={`${
-                    filteredTags.includes(tag)
+                    tags?.includes(tag)
                       ? 'bg-blue-500 hover:bg-blue-600'
                       : 'bg-gray-500 hover:bg-gray-600'
                   } text-gray-100 text-xs rounded-lg hover:text-white px-3 py-1 transition-colors duration-300 pointer-events-auto`}
@@ -115,7 +115,7 @@ export default function FilterDirectory() {
             </div>
             <div>
               <button
-                onClick={() => setFilteredTags([])}
+                onClick={() => setTags([])}
                 className='w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
               >
                 Clear Filter
