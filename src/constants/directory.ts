@@ -10,6 +10,7 @@ export type ProjectLinkType =
   | 'docs'
   | 'community'
   | 'blog'
+  | 'website'
 
 export const projectTagsArray = [
   'games',
@@ -39,6 +40,7 @@ export const projectTagsArray = [
   'rpc',
   'depin',
   'storage',
+  'ai|ml',
 ] as const
 
 export type ProjectTags = (typeof projectTagsArray)[number]
@@ -108,6 +110,26 @@ export const directory: Project[] = [
     tags: ['dao', 'social', 'nft'],
   },
   {
+    name: 'Aurory',
+    image: 'aurory.jpg',
+    url: 'https://app.aurory.io/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/AuroryProject',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/aurory-project-836601552130801676',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/aurory_project',
+      },
+    ],
+    tags: ['games', 'nft'],
+  },
+  {
     name: 'Backpack',
     image: 'backpack.jpg',
     url: 'https://backpack.app/',
@@ -170,6 +192,22 @@ export const directory: Project[] = [
       },
     ],
     tags: ['staking', 'farming'],
+  },
+  {
+    name: 'Code',
+    image: 'code.jpg',
+    url: 'https://getcode.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/getcode',
+      },
+      {
+        type: 'docs',
+        url: 'https://code-payments.github.io/code-sdk/docs/guide/introduction.html',
+      },
+    ],
+    tags: ['wallet', 'utility'],
   },
   {
     name: 'deBridge',
@@ -286,6 +324,30 @@ export const directory: Project[] = [
       },
     ],
     tags: ['nft', 'marketplace', 'art'],
+  },
+  {
+    name: 'Grass',
+    image: 'grass.jpg',
+    url: 'https://www.getgrass.io/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/getgrass_io',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/getgrass',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.getgrass.io/',
+      },
+      {
+        type: 'blog',
+        url: 'https://www.getgrass.io/blog',
+      },
+    ],
+    tags: ['ai|ml', 'depin', 'farming'],
   },
   {
     name: 'Hawksight',
@@ -432,6 +494,30 @@ export const directory: Project[] = [
     tags: ['defi', 'aggregator', 'staking', 'farming'],
   },
   {
+    name: 'Nyan Heroes',
+    image: 'nyanheroes.png',
+    url: 'https://nyanheroes.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/nyanheroes',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/nyanheroesgame',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/nyanheroes',
+      },
+      {
+        type: 'linktree',
+        url: 'https://linktr.ee/nyanheroes',
+      },
+    ],
+    tags: ['games', 'nft'],
+  },
+  {
     name: 'Orca',
     image: 'orca.jpg',
     url: 'https://www.orca.so/',
@@ -476,6 +562,46 @@ export const directory: Project[] = [
     tags: ['airdrops', 'farming'],
   },
   {
+    name: 'Parcl',
+    image: 'parcl.jpg',
+    url: 'https://app.parcl.co/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/Parcl',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/parcl',
+      },
+    ],
+    tags: ['defi', 'marketplace'],
+  },
+  {
+    name: 'Pet Legends',
+    image: 'petlegends.jpg',
+    url: 'https://petlegends.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/pet_legends',
+      },
+      {
+        type: 'linktree',
+        url: 'https://linktr.ee/petlegends',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/NbTu5FmQUN',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/pet_legends',
+      },
+    ],
+    tags: ['games', 'nft'],
+  },
+  {
     name: 'Phantom',
     image: 'phantom.jpg',
     url: 'https://phantom.app/',
@@ -490,6 +616,26 @@ export const directory: Project[] = [
       },
     ],
     tags: ['wallet', 'staking'],
+  },
+  {
+    name: 'Photo Finish™ LIVE',
+    image: 'photofinish.png',
+    url: 'https://photofinish.live/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/photofinishgame',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/AsEMTAnJaS',
+      },
+      {
+        type: 'linktree',
+        url: 'https://linktr.ee/photofinishlive',
+      },
+    ],
+    tags: ['games', 'nft'],
   },
   {
     name: 'Portal Bridge',
@@ -701,6 +847,26 @@ export const directory: Project[] = [
     tags: ['games', 'nft'],
   },
   {
+    name: 'SolChat',
+    image: 'solchat.jpg',
+    url: 'https://www.solchat.app/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/SolChatCoin',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/SolChatCoin',
+      },
+      {
+        type: 'website',
+        url: 'https://www.solchat.io/',
+      },
+    ],
+    tags: ['social'],
+  },
+  {
     name: 'Solflare',
     image: 'solflare.jpg',
     url: 'https://solflare.com/',
@@ -712,7 +878,18 @@ export const directory: Project[] = [
     ],
     tags: ['wallet', 'staking'],
   },
-
+  {
+    name: 'Sollinked',
+    image: 'sollinked.jpg',
+    url: 'https://sollinked.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/Sollinked_com',
+      },
+    ],
+    tags: ['social'],
+  },
   {
     name: 'Solscan',
     image: 'solscan.webp',
@@ -785,6 +962,22 @@ export const directory: Project[] = [
     tags: ['dao', 'social', 'staking', 'utility'],
   },
   {
+    name: 'Star Atlas',
+    image: 'staratlas.jpg',
+    url: 'https://play.staratlas.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/staratlas',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/staratlas',
+      },
+    ],
+    tags: ['games', 'nft'],
+  },
+  {
     name: 'Step',
     image: 'https://app.step.finance/favicon.ico',
     url: 'https://app.step.finance/',
@@ -823,6 +1016,26 @@ export const directory: Project[] = [
       },
     ],
     tags: ['oracle', 'analytics', 'crosschain'],
+  },
+  {
+    name: 'TipLink',
+    image: 'tiplink.jpg',
+    url: 'https://tiplink.io/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/TipLinkOfficial',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/tQxNatVuQT',
+      },
+      {
+        type: 'docs',
+        url: 'https://docs.tiplink.io/',
+      },
+    ],
+    tags: ['wallet', 'utility'],
   },
   {
     name: 'Tensor',
@@ -886,5 +1099,7 @@ export const directory: Project[] = [
 ]
 
 // todo:
-// star atlas, aurory,
-// teleport, helium, hive mapper, code, parcl,
+// teleport, helium, hive mapper,
+
+// todo rpc:
+// helius, quicknode, triton, hellomoon
