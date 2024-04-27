@@ -16,6 +16,7 @@ export const projectTagsArray = [
   'aggregator',
   'airdrops',
   'ai|ml',
+  'amm',
   'analytics',
   'art',
   'bridge',
@@ -107,6 +108,19 @@ export const directory: Project[] = [
       },
     ],
     tags: ['defi', 'analytics'],
+    memberProject: true,
+  },
+  {
+    name: 'Paldo.io',
+    image: 'paldoio.png',
+    url: 'https://paldo.io/',
+    links: [
+      {
+        type: 'telegram',
+        url: 'https://t.me/paldo_io',
+      },
+    ],
+    tags: ['airdrops', 'farming'],
     memberProject: true,
   },
   {
@@ -270,7 +284,7 @@ export const directory: Project[] = [
         url: 'https://medium.com/birdeye-so',
       },
     ],
-    tags: ['defi', 'dex', 'crosschain', 'aggregator'],
+    tags: ['defi', 'dex', 'crosschain'],
   },
   {
     name: 'Bonk Rewards',
@@ -468,7 +482,7 @@ export const directory: Project[] = [
         url: 'https://docs.kamino.finance/',
       },
     ],
-    tags: ['defi', 'dex', 'aggregator', 'staking', 'lending'],
+    tags: ['defi', 'dex', 'staking', 'lending'],
   },
   {
     name: 'Magic Eden',
@@ -528,7 +542,7 @@ export const directory: Project[] = [
         url: 'https://github.com/mrgnlabs',
       },
     ],
-    tags: ['defi', 'dex', 'aggregator', 'staking', 'lending'],
+    tags: ['defi', 'dex', 'staking', 'lending'],
   },
   {
     name: 'Meteora',
@@ -552,7 +566,7 @@ export const directory: Project[] = [
         url: 'https://meteoraag.medium.com/',
       },
     ],
-    tags: ['defi', 'aggregator', 'staking', 'farming'],
+    tags: ['defi', 'staking', 'farming'],
   },
   {
     name: 'Nyan Heroes',
@@ -608,19 +622,7 @@ export const directory: Project[] = [
         url: 'https://linktr.ee/orca_so',
       },
     ],
-    tags: ['defi', 'aggregator', 'staking', 'farming'],
-  },
-  {
-    name: 'Paldo.io',
-    image: 'paldoio.png',
-    url: 'https://paldo.io/',
-    links: [
-      {
-        type: 'telegram',
-        url: 'https://t.me/paldo_io',
-      },
-    ],
-    tags: ['airdrops', 'farming'],
+    tags: ['defi', 'amm', 'staking', 'farming'],
   },
   {
     name: 'Parcl',
@@ -753,7 +755,7 @@ export const directory: Project[] = [
         url: 'https://learn.sanctum.so/guides',
       },
     ],
-    tags: ['defi', 'dex', 'aggregator', 'staking'],
+    tags: ['defi', 'dex', 'amm', 'staking'],
   },
   {
     name: 'ShdwDrive',
@@ -837,16 +839,7 @@ export const directory: Project[] = [
         url: 'https://blog.solanahub.app/',
       },
     ],
-    tags: [
-      'defi',
-      'dex',
-      'aggregator',
-      'staking',
-      'lending',
-      'analytics',
-      'airdrops',
-      'dao',
-    ],
+    tags: ['defi', 'staking', 'lending', 'analytics', 'airdrops', 'dao'],
   },
   {
     name: 'Solarplex',
@@ -962,7 +955,7 @@ export const directory: Project[] = [
         url: 'https://docs.sonar.watch/',
       },
     ],
-    tags: ['defi', 'utility', 'analytics', 'aggregator', 'crosschain'],
+    tags: ['defi', 'utility', 'analytics', 'crosschain'],
   },
 
   {
@@ -1019,7 +1012,7 @@ export const directory: Project[] = [
         url: 'https://discord.com/invite/Pab8wcH5Yt',
       },
     ],
-    tags: ['defi', 'utility', 'analytics', 'aggregator'],
+    tags: ['defi', 'utility', 'analytics'],
   },
   {
     name: 'Switchboard',
