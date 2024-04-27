@@ -134,7 +134,9 @@ export default function FilterDirectory({
                     tags?.includes(tag)
                       ? 'bg-blue-500 hover:bg-blue-600'
                       : 'bg-gray-500 hover:bg-gray-600'
-                  } text-gray-100 text-xs rounded-lg hover:text-white px-3 py-1 transition-colors duration-300 pointer-events-auto`}
+                  } ${
+                    tag.includes('🎖️') ? 'pl-2 pr-3' : 'px-3'
+                  } text-gray-100 text-xs rounded-lg hover:text-white py-1 transition-colors duration-300 pointer-events-auto`}
                 >
                   {tag}
                 </button>

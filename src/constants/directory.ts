@@ -13,7 +13,7 @@ export type ProjectLinkType =
   | 'website'
 
 export const projectTagsArray = [
-  'member-project',
+  '🎖️ member-project',
   'aggregator',
   'airdrops',
   'ai-ml',
@@ -25,6 +25,7 @@ export const projectTagsArray = [
   'dao',
   'defi',
   'depin',
+  'devnet',
   'dex',
   'explorer',
   'farming',
@@ -70,7 +71,7 @@ export const directory: Project[] = [
         url: 'https://twitter.com/TheArmadaDAO',
       },
     ],
-    tags: ['member-project', 'dao', 'social', 'nft'],
+    tags: ['🎖️ member-project', 'dao', 'social', 'nft'],
   },
   {
     name: 'DeezQuest Beta',
@@ -86,7 +87,7 @@ export const directory: Project[] = [
         url: 'https://www.xnft.gg/app/J15EFLZCaUNaVN57Yvp4JjU6mGi3M3m24jgR6Vm46aLd',
       },
     ],
-    tags: ['member-project', 'games', 'nft'],
+    tags: ['🎖️ member-project', 'games', 'nft', 'devnet'],
   },
   {
     name: 'Hawksight',
@@ -106,7 +107,7 @@ export const directory: Project[] = [
         url: 'https://hawksight.gitbook.io/whitepaper',
       },
     ],
-    tags: ['member-project', 'defi', 'analytics'],
+    tags: ['🎖️ member-project', 'defi', 'analytics'],
   },
   {
     name: 'Paldo.io',
@@ -118,7 +119,7 @@ export const directory: Project[] = [
         url: 'https://t.me/paldo_io',
       },
     ],
-    tags: ['member-project', 'airdrops', 'farming'],
+    tags: ['🎖️ member-project', 'airdrops', 'farming'],
   },
   {
     name: 'Pet Legends',
@@ -142,7 +143,7 @@ export const directory: Project[] = [
         url: 'https://t.me/pet_legends',
       },
     ],
-    tags: ['member-project', 'games', 'nft'],
+    tags: ['🎖️ member-project', 'games', 'nft'],
   },
   {
     name: 'Splitr Tool',
@@ -153,7 +154,7 @@ export const directory: Project[] = [
         url: 'https://github.com/val-samonte/splitr',
       },
     ],
-    tags: ['member-project', 'utility'],
+    tags: ['🎖️ member-project', 'utility'],
   },
   {
     name: 'Zed Wars Beta',
@@ -169,7 +170,7 @@ export const directory: Project[] = [
         url: 'https://discord.com/invite/zedwars',
       },
     ],
-    tags: ['member-project', 'games', 'nft'],
+    tags: ['🎖️ member-project', 'games', 'nft', 'devnet'],
   },
   {
     name: 'Airdrop Checker',
