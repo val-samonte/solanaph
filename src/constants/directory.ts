@@ -775,7 +775,7 @@ export const directory: Project[] = [
         url: 'https://learn.sanctum.so/guides',
       },
     ],
-    tags: ['defi', 'dex', 'amm', 'staking'],
+    tags: ['defi', 'dex', 'staking'],
   },
   {
     name: 'ShdwDrive',
