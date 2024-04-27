@@ -120,7 +120,7 @@ export const directory: Project[] = [
         url: 'https://t.me/paldo_io',
       },
     ],
-    tags: ['🎖️ member-project', 'airdrops', 'farming'],
+    tags: ['🎖️ member-project', 'airdrops', 'farming', 'agnostic'],
   },
   {
     name: 'Pet Legends',
