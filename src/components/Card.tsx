@@ -16,16 +16,10 @@ interface CardProps {
     type: ProjectLinkType
     url: string
   }[]
-  memberProject?: boolean
+  tags: string[]
 }
 
-export default function Card({
-  name,
-  image,
-  url,
-  links,
-  memberProject,
-}: CardProps) {
+export default function Card({ name, image, url, links, tags }: CardProps) {
   const [bookmarked, setBookmarked] = useAtom(bookmarkedProjectsAtom)
   const [showCopied, setShowCopied] = useState(false)
   const timeoutId = useRef(0)
@@ -85,7 +79,7 @@ export default function Card({
           </div>
           <div className='flex flex-col flex-auto'>
             <h2 className='text-xl text-gray-800 flex items-center gap-2'>
-              {memberProject && <span>🎖️</span>}
+              {tags.includes('member-project') && <span>🎖️</span>}
               <span>{name}</span>
             </h2>
             <div className='text-gray-500 text-sm'>{url}</div>

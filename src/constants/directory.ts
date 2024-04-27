@@ -13,9 +13,10 @@ export type ProjectLinkType =
   | 'website'
 
 export const projectTagsArray = [
+  'member-project',
   'aggregator',
   'airdrops',
-  'ai|ml',
+  'ai-ml',
   'amm',
   'analytics',
   'art',
@@ -69,8 +70,7 @@ export const directory: Project[] = [
         url: 'https://twitter.com/TheArmadaDAO',
       },
     ],
-    tags: ['dao', 'social', 'nft'],
-    memberProject: true,
+    tags: ['member-project', 'dao', 'social', 'nft'],
   },
   {
     name: 'DeezQuest Beta',
@@ -86,8 +86,7 @@ export const directory: Project[] = [
         url: 'https://www.xnft.gg/app/J15EFLZCaUNaVN57Yvp4JjU6mGi3M3m24jgR6Vm46aLd',
       },
     ],
-    tags: ['games', 'nft'],
-    memberProject: true,
+    tags: ['member-project', 'games', 'nft'],
   },
   {
     name: 'Hawksight',
@@ -107,8 +106,7 @@ export const directory: Project[] = [
         url: 'https://hawksight.gitbook.io/whitepaper',
       },
     ],
-    tags: ['defi', 'analytics'],
-    memberProject: true,
+    tags: ['member-project', 'defi', 'analytics'],
   },
   {
     name: 'Paldo.io',
@@ -120,8 +118,7 @@ export const directory: Project[] = [
         url: 'https://t.me/paldo_io',
       },
     ],
-    tags: ['airdrops', 'farming'],
-    memberProject: true,
+    tags: ['member-project', 'airdrops', 'farming'],
   },
   {
     name: 'Pet Legends',
@@ -145,8 +142,7 @@ export const directory: Project[] = [
         url: 'https://t.me/pet_legends',
       },
     ],
-    tags: ['games', 'nft'],
-    memberProject: true,
+    tags: ['member-project', 'games', 'nft'],
   },
   {
     name: 'Splitr Tool',
@@ -157,8 +153,7 @@ export const directory: Project[] = [
         url: 'https://github.com/val-samonte/splitr',
       },
     ],
-    tags: ['utility'],
-    memberProject: true,
+    tags: ['member-project', 'utility'],
   },
   {
     name: 'Zed Wars Beta',
@@ -174,8 +169,7 @@ export const directory: Project[] = [
         url: 'https://discord.com/invite/zedwars',
       },
     ],
-    tags: ['games', 'nft'],
-    memberProject: true,
+    tags: ['member-project', 'games', 'nft'],
   },
   {
     name: 'Airdrop Checker',
@@ -441,7 +435,7 @@ export const directory: Project[] = [
         url: 'https://www.getgrass.io/blog',
       },
     ],
-    tags: ['ai|ml', 'depin', 'farming'],
+    tags: ['ai-ml', 'depin', 'farming'],
   },
 
   {
