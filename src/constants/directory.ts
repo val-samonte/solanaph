@@ -304,7 +304,7 @@ export const directory: Project[] = [
         url: 'https://medium.com/birdeye-so',
       },
     ],
-    tags: ['defi', 'dex', 'agnostic'],
+    tags: ['defi', 'agnostic', 'aggregator', 'analytics', 'utility'],
   },
   {
     name: 'Bonk Rewards',
