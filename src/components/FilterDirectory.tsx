@@ -7,18 +7,26 @@ import { Dialog as UiDialog } from '@headlessui/react'
 import Dialog from './Dialog'
 
 export const tagsFilterAtom = atom<string[] | null>(null)
+export const searchAtom = atom<string>('')
 
 export default function FilterDirectory({
   initialFilters,
+  initialSearch,
 }: {
   initialFilters: string[]
+  initialSearch: string
 }) {
   const [filterOpen, setFilterOpen] = useState(false)
   const [tags, setTags] = useAtom(tagsFilterAtom)
+  const [search, setSearch] = useAtom(searchAtom)
 
   useEffect(() => {
     setTags(initialFilters)
   }, [setTags, initialFilters])
+
+  useEffect(() => {
+    setSearch(initialSearch)
+  }, [setSearch, initialSearch])
 
   useEffect(() => {
     if (tags === null) return
@@ -28,12 +36,19 @@ export default function FilterDirectory({
     } else {
       params.set('tags', tags.join(','))
     }
+
+    if (search) {
+      params.set('search', search)
+    } else {
+      params.delete('search')
+    }
+
     window.history.replaceState(
       {},
       '',
       `${window.location.pathname}${params.size > 0 ? `?${params}` : ''}`
     )
-  }, [tags])
+  }, [tags, search])
 
   return (
     <>
@@ -53,11 +68,11 @@ export default function FilterDirectory({
             <path
               strokeLinecap='round'
               strokeLinejoin='round'
-              d='M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z'
+              d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'
             />
           </svg>
         </button>
-        {tags && tags.length > 0 && (
+        {((tags && tags.length > 0) || !!search) && (
           <div className='bg-red-600 w-3 h-3 absolute top-0 right-0 rounded-full' />
         )}
       </div>
@@ -90,6 +105,16 @@ export default function FilterDirectory({
             </div>
           </UiDialog.Title>
           <div className='flex p-4 flex-col gap-4'>
+            <div>
+              <input
+                autoFocus
+                type='search'
+                placeholder='Search'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className='w-full px-3 py-2 border-gray-100 border'
+              />
+            </div>
             <div className='flex flex-wrap gap-2'>
               {projectTagsArray.map((tag) => (
                 <button
@@ -115,7 +140,10 @@ export default function FilterDirectory({
             </div>
             <div>
               <button
-                onClick={() => setTags([])}
+                onClick={() => {
+                  setTags([])
+                  setSearch('')
+                }}
                 className='w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
               >
                 Clear Filter

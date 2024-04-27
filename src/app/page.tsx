@@ -5,12 +5,20 @@ import { filterDirectory } from '@/utils/filterDirectory'
 
 export default function Home({ searchParams }: { searchParams: any }) {
   const initialFilters = searchParams.tags?.split(',') ?? []
-  const initialDirectory = filterDirectory(directory, initialFilters)
+  const initialSearch = searchParams.search ?? ''
+  const initialDirectory = filterDirectory(
+    directory,
+    initialFilters,
+    initialSearch
+  )
 
   return (
     <>
       <Directory initialDirectory={initialDirectory} />
-      <FilterDirectory initialFilters={initialFilters} />
+      <FilterDirectory
+        initialFilters={initialFilters}
+        initialSearch={initialSearch}
+      />
     </>
   )
 }

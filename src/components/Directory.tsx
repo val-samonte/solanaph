@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { directory, Project } from '@/constants/directory'
 import { filterDirectory } from '@/utils/filterDirectory'
 import Card from './Card'
-import { tagsFilterAtom } from './FilterDirectory'
+import { searchAtom, tagsFilterAtom } from './FilterDirectory'
 
 export const bookmarkedProjectsAtom = atomWithStorage<string[]>(
   'bookmarkedProjects',
@@ -20,12 +20,13 @@ export default function Directory({
 }) {
   const bookmarked = useAtomValue(bookmarkedProjectsAtom)
   const [tags, setTags] = useAtom(tagsFilterAtom)
+  const [search, setSearch] = useAtom(searchAtom)
   const [filteredDirectory, setFilteredDirectory] = useState(initialDirectory)
 
   useEffect(() => {
     if (!tags) return
 
-    const filtered = filterDirectory(directory, tags)
+    const filtered = filterDirectory(directory, tags, search)
     const bookmarkedProjects = filtered.filter((project) =>
       bookmarked.includes(project.url)
     )
@@ -34,7 +35,7 @@ export default function Directory({
     )
 
     setFilteredDirectory([...bookmarkedProjects, ...notBookmarkedProjects])
-  }, [tags, bookmarked, setFilteredDirectory])
+  }, [tags, bookmarked, search, setFilteredDirectory])
 
   return (
     <>
@@ -46,7 +47,10 @@ export default function Directory({
       <div className='mx-auto h-60  flex-col items-center justify-center gap-4'>
         <p>Nothing Found</p>
         <button
-          onClick={() => setTags([])}
+          onClick={() => {
+            setTags([])
+            setSearch('')
+          }}
           className='min-w-40 text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
         >
           Clear Filter
