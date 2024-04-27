@@ -15,13 +15,14 @@ export type ProjectLinkType =
 export const projectTagsArray = [
   '🎖️ member-project',
   'aggregator',
+  'agnostic',
   'airdrops',
   'ai-ml',
   'amm',
   'analytics',
   'art',
   'bridge',
-  'crosschain',
+  'cex',
   'dao',
   'defi',
   'depin',
@@ -254,6 +255,30 @@ export const directory: Project[] = [
     tags: ['wallet', 'staking'],
   },
   {
+    name: 'Backpack Exchange',
+    image: 'backpack.jpg',
+    url: 'https://backpack.exchange/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/Backpack',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/backpack',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/BackpackExchangeSupport',
+      },
+      {
+        type: 'docs',
+        url: 'https://support.backpack.exchange/en/categories/305537-backpack-exchange',
+      },
+    ],
+    tags: ['cex'],
+  },
+  {
     name: 'Birdeye',
     url: 'https://birdeye.so/?chain=solana',
     image: 'birdeye.jpg',
@@ -279,7 +304,7 @@ export const directory: Project[] = [
         url: 'https://medium.com/birdeye-so',
       },
     ],
-    tags: ['defi', 'dex', 'crosschain'],
+    tags: ['defi', 'dex', 'agnostic'],
   },
   {
     name: 'Bonk Rewards',
@@ -339,7 +364,7 @@ export const directory: Project[] = [
         url: 'https://github.com/debridge-finance/',
       },
     ],
-    tags: ['bridge', 'crosschain'],
+    tags: ['bridge', 'agnostic'],
   },
 
   {
@@ -686,7 +711,7 @@ export const directory: Project[] = [
         url: 'https://github.com/XLabs/portal-bridge-ui',
       },
     ],
-    tags: ['bridge', 'crosschain'],
+    tags: ['bridge', 'agnostic'],
   },
   {
     name: 'Pyth Network',
@@ -710,7 +735,7 @@ export const directory: Project[] = [
         url: 'https://t.me/Pyth_Network',
       },
     ],
-    tags: ['oracle', 'crosschain', 'analytics'],
+    tags: ['oracle', 'agnostic', 'analytics'],
   },
   {
     name: 'Realms',
@@ -779,6 +804,22 @@ export const directory: Project[] = [
       },
     ],
     tags: ['storage', 'depin', 'utility'],
+  },
+  {
+    name: 'SideShift.ai',
+    image: 'sideshiftai.jpg',
+    url: 'https://sideshift.ai/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/sideshiftai',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/sideshift',
+      },
+    ],
+    tags: ['cex', 'agnostic'],
   },
   {
     name: 'Sol-Incinerator',
@@ -950,7 +991,7 @@ export const directory: Project[] = [
         url: 'https://docs.sonar.watch/',
       },
     ],
-    tags: ['defi', 'utility', 'analytics', 'crosschain'],
+    tags: ['defi', 'utility', 'analytics', 'agnostic'],
   },
 
   {
@@ -1031,7 +1072,7 @@ export const directory: Project[] = [
         url: 'https://github.com/switchboard-xyz',
       },
     ],
-    tags: ['oracle', 'analytics', 'crosschain'],
+    tags: ['oracle', 'analytics', 'agnostic'],
   },
   {
     name: 'TipLink',
