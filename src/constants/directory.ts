@@ -13,34 +13,34 @@ export type ProjectLinkType =
   | 'website'
 
 export const projectTagsArray = [
-  'games',
-  'nft',
-  'marketplace',
-  'defi',
-  'dex',
-  'art',
-  'utility',
-  'wallet',
-  'explorer',
-  'dao',
-  'bridge',
-  'oracle',
-  'analytics',
-  'lending',
-  'staking',
-  'launchpad',
-  'crosschain',
-  'identity',
-  'social',
-  'prediction',
-  'insurance',
   'aggregator',
   'airdrops',
-  'farming',
-  'rpc',
-  'depin',
-  'storage',
   'ai|ml',
+  'analytics',
+  'art',
+  'bridge',
+  'crosschain',
+  'dao',
+  'defi',
+  'depin',
+  'dex',
+  'explorer',
+  'farming',
+  'games',
+  'identity',
+  'insurance',
+  'launchpad',
+  'lending',
+  'marketplace',
+  'nft',
+  'oracle',
+  'prediction',
+  'rpc',
+  'social',
+  'staking',
+  'storage',
+  'utility',
+  'wallet',
 ] as const
 
 export type ProjectTags = (typeof projectTagsArray)[number]
@@ -54,9 +54,115 @@ export interface Project {
     url: string
   }[]
   tags: ProjectTags[]
+  memberProject?: boolean
 }
 
 export const directory: Project[] = [
+  {
+    name: 'Armada DAO',
+    image: 'https://www.thearmadadao.xyz/logo.png',
+    url: 'https://www.thearmadadao.xyz/',
+    links: [
+      {
+        type: 'twitter',
+        url: 'https://twitter.com/TheArmadaDAO',
+      },
+    ],
+    tags: ['dao', 'social', 'nft'],
+    memberProject: true,
+  },
+  {
+    name: 'DeezQuest Beta',
+    image: 'deezquest.png',
+    url: 'https://deezquest.vercel.app/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/deezquest',
+      },
+      {
+        type: 'xnft',
+        url: 'https://www.xnft.gg/app/J15EFLZCaUNaVN57Yvp4JjU6mGi3M3m24jgR6Vm46aLd',
+      },
+    ],
+    tags: ['games', 'nft'],
+    memberProject: true,
+  },
+  {
+    name: 'Hawksight',
+    image: 'https://www.hawksight.co/logo192.png',
+    url: 'https://www.hawksight.co/',
+    links: [
+      {
+        type: 'twitter',
+        url: 'https://twitter.com/hawksightco',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.gg/hawksight',
+      },
+      {
+        type: 'docs',
+        url: 'https://hawksight.gitbook.io/whitepaper',
+      },
+    ],
+    tags: ['defi', 'analytics'],
+    memberProject: true,
+  },
+  {
+    name: 'Pet Legends',
+    image: 'petlegends.jpg',
+    url: 'https://petlegends.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/pet_legends',
+      },
+      {
+        type: 'linktree',
+        url: 'https://linktr.ee/petlegends',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/NbTu5FmQUN',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/pet_legends',
+      },
+    ],
+    tags: ['games', 'nft'],
+    memberProject: true,
+  },
+  {
+    name: 'Splitr Tool',
+    url: 'https://splitr-tool.vercel.app/',
+    links: [
+      {
+        type: 'github',
+        url: 'https://github.com/val-samonte/splitr',
+      },
+    ],
+    tags: ['utility'],
+    memberProject: true,
+  },
+  {
+    name: 'Zed Wars Beta',
+    image: 'https://beta.zedwars.com/logo.webp',
+    url: 'https://beta.zedwars.com/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/ZedWarsSOL',
+      },
+      {
+        type: 'discord',
+        url: 'https://discord.com/invite/zedwars',
+      },
+    ],
+    tags: ['games', 'nft'],
+    memberProject: true,
+  },
   {
     name: 'Airdrop Checker',
     image: 'airdropchecker.webp',
@@ -97,18 +203,7 @@ export const directory: Project[] = [
     ],
     tags: ['staking', 'farming'],
   },
-  {
-    name: 'Armada DAO',
-    image: 'https://www.thearmadadao.xyz/logo.png',
-    url: 'https://www.thearmadadao.xyz/',
-    links: [
-      {
-        type: 'twitter',
-        url: 'https://twitter.com/TheArmadaDAO',
-      },
-    ],
-    tags: ['dao', 'social', 'nft'],
-  },
+
   {
     name: 'Aurory',
     image: 'aurory.jpg',
@@ -237,22 +332,7 @@ export const directory: Project[] = [
     ],
     tags: ['bridge', 'crosschain'],
   },
-  {
-    name: 'DeezQuest Beta',
-    image: 'deezquest.png',
-    url: 'https://deezquest.vercel.app/',
-    links: [
-      {
-        type: 'x',
-        url: 'https://twitter.com/deezquest',
-      },
-      {
-        type: 'xnft',
-        url: 'https://www.xnft.gg/app/J15EFLZCaUNaVN57Yvp4JjU6mGi3M3m24jgR6Vm46aLd',
-      },
-    ],
-    tags: ['games', 'nft'],
-  },
+
   {
     name: 'DFlow',
     image: 'dflow.jpg',
@@ -349,26 +429,7 @@ export const directory: Project[] = [
     ],
     tags: ['ai|ml', 'depin', 'farming'],
   },
-  {
-    name: 'Hawksight',
-    image: 'https://www.hawksight.co/logo192.png',
-    url: 'https://www.hawksight.co/',
-    links: [
-      {
-        type: 'twitter',
-        url: 'https://twitter.com/hawksightco',
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.gg/hawksight',
-      },
-      {
-        type: 'docs',
-        url: 'https://hawksight.gitbook.io/whitepaper',
-      },
-    ],
-    tags: ['defi', 'analytics'],
-  },
+
   {
     name: 'Jupiter',
     url: 'https://jup.ag/swap',
@@ -577,30 +638,7 @@ export const directory: Project[] = [
     ],
     tags: ['defi', 'marketplace'],
   },
-  {
-    name: 'Pet Legends',
-    image: 'petlegends.jpg',
-    url: 'https://petlegends.com/',
-    links: [
-      {
-        type: 'x',
-        url: 'https://twitter.com/pet_legends',
-      },
-      {
-        type: 'linktree',
-        url: 'https://linktr.ee/petlegends',
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com/invite/NbTu5FmQUN',
-      },
-      {
-        type: 'telegram',
-        url: 'https://t.me/pet_legends',
-      },
-    ],
-    tags: ['games', 'nft'],
-  },
+
   {
     name: 'Phantom',
     image: 'phantom.jpg',
@@ -926,17 +964,7 @@ export const directory: Project[] = [
     ],
     tags: ['defi', 'utility', 'analytics', 'aggregator', 'crosschain'],
   },
-  {
-    name: 'Splitr Tool',
-    url: 'https://splitr-tool.vercel.app/',
-    links: [
-      {
-        type: 'github',
-        url: 'https://github.com/val-samonte/splitr',
-      },
-    ],
-    tags: ['utility'],
-  },
+
   {
     name: 'Squads',
     image: 'squads.jpg',
@@ -1073,22 +1101,7 @@ export const directory: Project[] = [
     ],
     tags: ['explorer'],
   },
-  {
-    name: 'Zed Wars Beta',
-    image: 'https://beta.zedwars.com/logo.webp',
-    url: 'https://beta.zedwars.com/',
-    links: [
-      {
-        type: 'x',
-        url: 'https://twitter.com/ZedWarsSOL',
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com/invite/zedwars',
-      },
-    ],
-    tags: ['games', 'nft'],
-  },
+
   // {
   //   name: '',
   //   image: '',

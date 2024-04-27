@@ -39,7 +39,7 @@ export default function RootLayout({
       <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
       <meta name='msapplication-TileColor' content='#da532c' />
       <meta name='theme-color' content='#ffffff' />
-      <body className={inter.className}>
+      <body className={inter.className + 'overflow-x-hidden'}>
         <main className='relative flex min-h-screen flex-col px-4 pb-4 xl:p-16 gap-4 xl:gap-12 items-center'>
           <nav className='sticky top-0 flex min-h-16 w-full bg-white/75 backdrop-blur z-20'>
             <div className='flex items-center justify-between w-full max-w-7xl mx-auto'>

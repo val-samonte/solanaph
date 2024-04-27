@@ -54,6 +54,7 @@ export default function FilterDirectory({
     <>
       <div className='fixed bottom-4 right-4 xl:bottom-16 xl:right-16 z-10'>
         <button
+          autoFocus
           onClick={() => setFilterOpen(true)}
           className='h-12 w-12 bg-gradient-to-bl from-emerald-400 to-purple-500 active:from-purple-500 active:to-emerald-400 active:translate-y-px text-white rounded-full z-10 shadow-xl flex items-center justify-center'
         >
@@ -107,6 +108,7 @@ export default function FilterDirectory({
           <div className='flex p-4 flex-col gap-4'>
             <div>
               <input
+                tabIndex={1}
                 autoFocus
                 type='search'
                 placeholder='Search'
