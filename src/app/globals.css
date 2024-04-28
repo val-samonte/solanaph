@@ -44,3 +44,7 @@ body {
 .show-next-when-empty:empty + * {
   display: flex;
 }
+
+.indent {
+  text-indent: 1.5em;
+}

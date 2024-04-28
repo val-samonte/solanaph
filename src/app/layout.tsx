@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
+import DirectoryHelp from '@/components/DirectoryHelp'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -58,9 +59,7 @@ export default function RootLayout({
                 />
                 <h1 className='text-gray-600'>Solana Philippines</h1>
               </Link>
-              <ul className='flex items-center gap-6 xl:gap-12 flex-auto justify-end'>
-                <li>Directory</li>
-              </ul>
+              <DirectoryHelp />
             </div>
           </nav>
           {children}

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { projectTagsArray } from '@/constants/directory'
 import { Dialog as UiDialog } from '@headlessui/react'
 import Dialog from './Dialog'
+import SearchIcon from './SearchIcon'
 
 export const tagsFilterAtom = atom<string[] | null>(null)
 export const searchAtom = atom<string>('')
@@ -58,27 +59,15 @@ export default function FilterDirectory({
           onClick={() => setFilterOpen(true)}
           className='h-12 w-12 bg-gradient-to-bl from-emerald-400 to-purple-500 active:from-purple-500 active:to-emerald-400 active:translate-y-px text-white rounded-full z-10 shadow-xl flex items-center justify-center'
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth={1.5}
-            stroke='currentColor'
-            className='w-6 h-6'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'
-            />
-          </svg>
+          <SearchIcon />
         </button>
         {((tags && tags.length > 0) || !!search) && (
           <div className='bg-red-600 w-3 h-3 absolute top-0 right-0 rounded-full' />
         )}
       </div>
       <Dialog show={filterOpen} onClose={() => setFilterOpen(false)}>
-        <UiDialog.Panel className='flex flex-col relative bg-white rounded-2xl max-w-sm w-full '>
+        <UiDialog.Panel className='flex flex-col relative bg-white rounded-2xl max-w-sm w-full h-auto max-h-full'>
+          {/* h-screen md:h-auto */}
           <UiDialog.Title>
             <div className='flex p-4 border-b border-gray-100 justify-between text-gray-800'>
               <span>Filter</span>
@@ -105,54 +94,60 @@ export default function FilterDirectory({
               </button>
             </div>
           </UiDialog.Title>
-          <div className='flex p-4 flex-col gap-4'>
-            <div>
-              <input
-                tabIndex={1}
-                autoFocus
-                type='search'
-                placeholder='Search'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className='w-full px-3 py-2 border-gray-100 border'
-              />
+          <div
+            className={
+              'flex-auto w-full h-full relative overflow-x-hidden overflow-y-auto'
+            }
+          >
+            <div className='flex p-4 flex-col gap-4'>
+              <div>
+                <input
+                  tabIndex={1}
+                  autoFocus
+                  type='search'
+                  placeholder='Search'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className='w-full px-3 py-2 border-gray-100 border'
+                />
+              </div>
+              <div className='flex flex-wrap gap-2'>
+                {projectTagsArray.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => {
+                      setTags((prev) => {
+                        if (!prev) return null
+                        if (prev.includes(tag)) {
+                          return prev.filter((t) => t !== tag)
+                        }
+                        return [...prev, tag]
+                      })
+                    }}
+                    className={`${
+                      tags?.includes(tag)
+                        ? 'bg-blue-500 hover:bg-blue-600'
+                        : 'bg-gray-500 hover:bg-gray-600'
+                    } ${
+                      tag.includes('🎖️') ? 'pl-2 pr-3' : 'px-3'
+                    } text-gray-100 text-xs rounded-lg hover:text-white py-1 transition-colors duration-300 pointer-events-auto`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className='flex flex-wrap gap-2'>
-              {projectTagsArray.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => {
-                    setTags((prev) => {
-                      if (!prev) return null
-                      if (prev.includes(tag)) {
-                        return prev.filter((t) => t !== tag)
-                      }
-                      return [...prev, tag]
-                    })
-                  }}
-                  className={`${
-                    tags?.includes(tag)
-                      ? 'bg-blue-500 hover:bg-blue-600'
-                      : 'bg-gray-500 hover:bg-gray-600'
-                  } ${
-                    tag.includes('🎖️') ? 'pl-2 pr-3' : 'px-3'
-                  } text-gray-100 text-xs rounded-lg hover:text-white py-1 transition-colors duration-300 pointer-events-auto`}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-            <div>
-              <button
-                onClick={() => {
-                  setTags([])
-                  setSearch('')
-                }}
-                className='w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
-              >
-                Clear Filter
-              </button>
-            </div>
+          </div>
+          <div className='flex-none p-4'>
+            <button
+              onClick={() => {
+                setTags([])
+                setSearch('')
+              }}
+              className='w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
+            >
+              Clear Filter
+            </button>
           </div>
         </UiDialog.Panel>
       </Dialog>
