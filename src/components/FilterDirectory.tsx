@@ -1,9 +1,10 @@
 'use client'
 
 import { atom, useAtom } from 'jotai'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { projectTagsArray } from '@/constants/directory'
 import { Dialog as UiDialog } from '@headlessui/react'
+import { Broom, ClipboardText } from '@phosphor-icons/react'
 import Dialog from './Dialog'
 import SearchIcon from './SearchIcon'
 
@@ -20,6 +21,26 @@ export default function FilterDirectory({
   const [filterOpen, setFilterOpen] = useState(false)
   const [tags, setTags] = useAtom(tagsFilterAtom)
   const [search, setSearch] = useAtom(searchAtom)
+  const [showCopied, setShowCopied] = useState(false)
+  const timeoutId = useRef(0)
+
+  useEffect(() => {
+    if (!showCopied) return
+
+    if (timeoutId.current) {
+      window.clearTimeout(timeoutId.current)
+    }
+
+    timeoutId.current = window.setTimeout(() => {
+      setShowCopied(false)
+    }, 1000)
+
+    const id = timeoutId.current
+
+    return () => {
+      window.clearTimeout(id)
+    }
+  }, [showCopied, setShowCopied])
 
   useEffect(() => {
     setTags(initialFilters)
@@ -138,15 +159,34 @@ export default function FilterDirectory({
               </div>
             </div>
           </div>
-          <div className='flex-none p-4'>
+          <div className='flex-none p-4 flex gap-4 items-center'>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href)
+                setShowCopied(true)
+              }}
+              className='flex items-center justify-center gap-2 w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
+            >
+              <ClipboardText size={18} />
+              {showCopied ? (
+                <span>Copied!</span>
+              ) : (
+                <span>
+                  Copy <span className='hidden sm:inline'>Filtered </span>Link
+                </span>
+              )}
+            </button>
             <button
               onClick={() => {
                 setTags([])
                 setSearch('')
               }}
-              className='w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
+              className='flex items-center justify-center gap-2 w-full text-gray-100 rounded-full bg-gray-500 hover:bg-gray-600 hover:text-white px-3 py-2 transition-colors duration-300 text-sm'
             >
-              Clear Filter
+              <Broom size={18} />
+              <span>
+                Clear <span className='hidden sm:inline'>Filter</span>
+              </span>
             </button>
           </div>
         </UiDialog.Panel>
