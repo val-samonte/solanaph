@@ -1,5 +1,6 @@
 import { ProjectLinkType } from '@/constants/directory'
 import {
+  AppWindow,
   DiscordLogo,
   FacebookLogo,
   GithubLogo,
@@ -39,6 +40,7 @@ const Icon = ({ icon }: IIcon) => {
     case 'blog':
       return <ReadCvLogo size={18} />
     case 'xnft':
+      return <AppWindow size={18} />
     default:
       return <Link size={18} />
   }

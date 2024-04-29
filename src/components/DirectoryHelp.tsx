@@ -104,8 +104,8 @@ export default function DirectoryHelp() {
                 <Image
                   alt={'Card Structure'}
                   src='/cardstructure.png'
-                  width={436}
-                  height={255}
+                  width={852}
+                  height={466}
                   className='object-contain h-64 w-full'
                 />
               </div>
@@ -129,7 +129,7 @@ export default function DirectoryHelp() {
               <h2 className='text-xl'>Filters</h2>
               <div className='flex'>
                 <div className='flex-none px-5'>
-                  <div className='h-12 w-12 bg-gradient-to-bl from-emerald-400 to-purple-500 text-white rounded-full z-10 shadow-xl flex items-center justify-center'>
+                  <div className='h-16 w-16 bg-gradient-to-bl from-emerald-400 to-purple-500 text-white rounded-full z-10 shadow-xl flex items-center justify-center'>
                     <SearchIcon />
                   </div>
                 </div>
