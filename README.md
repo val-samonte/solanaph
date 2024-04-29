@@ -1,3 +1,13 @@
+## About
+
+The Solana PH Directory serves as a centralized hub for Solana ecosystem projects. It provides a curated list of dApps and projects, complete with easy-to-access links for each. Users can copy project URLs, filter by tags like games or DeFi, and share filtered directories, empowering them to navigate the Solana landscape securely. By combating phishing scams and promoting community projects, our initiative fosters a safer and more inclusive environment for newcomers and veterans alike.
+
+## Contributing / Modifications / Corrections
+
+The Directory is expected to contain only those projects that our community members have used and should only include legitimate projects. If you would like to contribute or make corrections to the directory, please join us and reach out to the [Solana PH community](https://www.facebook.com/groups/solanaphilippines) on Facebook. You can also submit tickets or pull requests, and we will review your changes.
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
