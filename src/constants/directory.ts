@@ -758,6 +758,18 @@ export const directory: Project[] = [
     tags: ['dao', 'utility', 'social'],
   },
   {
+    name: 'Rugcheck',
+    image: 'rugcheck.jpg',
+    url: 'https://rugcheck.xyz/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/Rugcheckxyz',
+      },
+    ],
+    tags: ['utility'],
+  },
+  {
     name: 'Sanctum',
     url: 'https://app.sanctum.so/trade',
     image: 'sanctum.jpg',
