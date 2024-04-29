@@ -22,6 +22,7 @@ export const projectTagsArray = [
   'analytics',
   'art',
   'bridge',
+  'bot',
   'cex',
   'dao',
   'defi',
@@ -438,6 +439,22 @@ export const directory: Project[] = [
       },
     ],
     tags: ['nft', 'marketplace', 'art'],
+  },
+  {
+    name: 'FluxBeam',
+    image: 'fluxbeam.jpg',
+    url: 'https://fluxbeam.xyz/',
+    links: [
+      {
+        type: 'x',
+        url: 'https://twitter.com/FluxBeamDEX',
+      },
+      {
+        type: 'telegram',
+        url: 'https://t.me/fluxbeam_bot',
+      },
+    ],
+    tags: ['defi', 'dex', 'bot', 'utility'],
   },
   {
     name: 'Grass',
