@@ -450,11 +450,15 @@ export const directory: Project[] = [
         url: 'https://twitter.com/FluxBeamDEX',
       },
       {
+        type: 'discord',
+        url: 'https://discord.com/invite/DtyqTx97kz',
+      },
+      {
         type: 'telegram',
-        url: 'https://t.me/fluxbeam_bot',
+        url: 'https://t.me/fluxbeam',
       },
     ],
-    tags: ['defi', 'dex', 'bot', 'utility'],
+    tags: ['defi', 'dex', 'utility'],
   },
   {
     name: 'Grass',
