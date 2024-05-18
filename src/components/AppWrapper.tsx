@@ -1,22 +1,22 @@
+'use client'
+
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import Directory from '@/components/Directory'
-import DirectoryHelp from '@/components/DirectoryHelp'
-import FilterDirectory from '@/components/FilterDirectory'
-import { directory } from '@/constants/directory'
-import { filterDirectory } from '@/utils/filterDirectory'
+import { ReactNode } from 'react'
+import ConnectPrompt from './ConnectPrompt'
+import WalletAdapterWrapper from './WalletAdapterWrapper'
 
-export default function Home({ searchParams }: { searchParams: any }) {
-  const initialFilters = searchParams.tags?.split(',') ?? []
-  const initialSearch = searchParams.search ?? ''
-  const initialDirectory = filterDirectory(
-    directory,
-    initialFilters,
-    initialSearch
-  )
+const ConnectButton = dynamic(() => import('./ConnectButton'), {
+  ssr: false,
+})
 
+export default function AppWrapper({
+  children,
+  sessionHash,
+}: Readonly<{ children: ReactNode; sessionHash: string }>) {
   return (
-    <>
+    <WalletAdapterWrapper>
       <main className='relative flex min-h-screen flex-col px-4 pb-4 xl:p-16 gap-4 xl:gap-12 items-center'>
         <nav className='sticky top-0 flex min-h-16 w-full bg-white/75 backdrop-blur z-20'>
           <div className='flex items-center justify-between w-full max-w-7xl mx-auto'>
@@ -33,16 +33,14 @@ export default function Home({ searchParams }: { searchParams: any }) {
                 height={200}
                 className='h-14 w-14'
               />
-              <h1 className='text-gray-600'>Solana Philippines</h1>
+              <h1 className='text-gray-600 portrait:hidden'>
+                Solana Philippines
+              </h1>
             </Link>
-            <DirectoryHelp />
+            <ConnectButton />
           </div>
         </nav>
-        <Directory initialDirectory={initialDirectory} />
-        <FilterDirectory
-          initialFilters={initialFilters}
-          initialSearch={initialSearch}
-        />
+        <ConnectPrompt sessionHash={sessionHash} children={children} />
       </main>
       <footer className='max-w-xl xl:max-w-4xl p-4 pb-20 xl:p-16 xl:pt-0 mx-auto text-center text-xs text-gray-400'>
         Disclaimer: This is a community project and is not affiliated with
@@ -50,6 +48,6 @@ export default function Home({ searchParams }: { searchParams: any }) {
         loss of funds or any other damages that may occur from using the
         information provided on this website.
       </footer>
-    </>
+    </WalletAdapterWrapper>
   )
 }

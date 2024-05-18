@@ -911,6 +911,7 @@ export const directory: Project[] = [
     tags: ['defi', 'staking', 'lending', 'analytics', 'airdrops', 'dao'],
   },
   {
+    // shutting down: https://x.com/solarplex_xyz/status/1791543293853208583
     name: 'Solarplex',
     image: 'solarplex.jpg',
     url: 'https://www.solarplex.xyz/',
@@ -1173,13 +1174,16 @@ export const directory: Project[] = [
   // },
 ]
 
+// https://scarletsynth.github.io/ASREstimator/
+
 // NEED HELP!
 // If you are a member of Solana PH community, please submit PRs so that
 // we can correct some of the information and
 // add more known projects used by the community.
 
 // todo:
-// teleport, helium, hive mapper,
+// https://twitter.com/0xMert_/status/1786596569455743198
+// teleport, helium, hive mapper, https://tiplink.io/
 
 // todo rpc:
 // helius, quicknode, triton, hellomoon
