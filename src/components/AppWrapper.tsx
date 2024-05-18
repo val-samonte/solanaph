@@ -4,10 +4,13 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
-import ConnectPrompt from './ConnectPrompt'
 import WalletAdapterWrapper from './WalletAdapterWrapper'
 
 const ConnectButton = dynamic(() => import('./ConnectButton'), {
+  ssr: false,
+})
+
+const ConnectPrompt = dynamic(() => import('./ConnectPrompt'), {
   ssr: false,
 })
 

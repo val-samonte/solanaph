@@ -4,15 +4,6 @@ import AppWrapper from '@/components/AppWrapper'
 import { decrypt } from '@/utils/encrypt'
 import { hashv } from '@/utils/hashv'
 
-// import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-
-// const WalletAdapterWrapper = dynamic(
-//   () => import('@/components/WalletAdapterWrapper'),
-//   {
-//     ssr: false,
-//   }
-// )
-
 export default function Layout({
   children,
 }: Readonly<{

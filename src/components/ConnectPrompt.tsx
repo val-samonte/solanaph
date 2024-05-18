@@ -12,9 +12,8 @@ export default function ConnectPrompt({
   sessionHash,
 }: Readonly<{ children: ReactNode; sessionHash: string }>) {
   const { setVisible } = useWalletModal()
-  const { connecting, connected, publicKey, disconnecting, signMessage } =
-    useWallet()
-  const [busy, setBusy] = useState(false)
+  const { connecting, publicKey, disconnecting, signMessage } = useWallet()
+  const [session, setSession] = useState<string>(sessionHash)
 
   const publicKeyHash = useMemo(() => {
     if (!publicKey) return null
@@ -36,7 +35,7 @@ export default function ConnectPrompt({
       signature,
     })
 
-    setBusy(true)
+    setSession('-')
 
     try {
       const response = await fetch('/api/authenticate', {
@@ -48,45 +47,40 @@ export default function ConnectPrompt({
       })
 
       if (response.ok) {
-        // Redirect to the original URL
         window.location.reload()
       } else {
-        alert('Authentication failed')
+        throw new Error('Authentication failed')
       }
-    } finally {
-      setBusy(false)
+    } catch (e: any) {
+      alert(e.message)
     }
-  }, [publicKey, signMessage, setBusy])
+  }, [publicKey, signMessage])
 
   const signOut = useCallback(async () => {
-    setBusy(true)
-    try {
-      await fetch('/api/signout')
-    } finally {
-      setBusy(false)
-    }
-  }, [setBusy])
+    await fetch('/api/signout')
+    window.location.reload()
+  }, [])
 
   useEffect(() => {
-    // only signout if and only if both the publicKeyHash and sessionHash are present but not equal
     if (!publicKeyHash) return
-    if (!sessionHash) return
+    if (!session) return
+    if (session === '-') return
 
-    if (publicKeyHash !== sessionHash) {
-      // sign out
-      signOut().then(() => {
-        window.location.reload()
-      })
+    if (publicKeyHash !== session) {
+      setSession('-')
+      signOut()
     }
-  }, [publicKeyHash, sessionHash])
+  }, [publicKeyHash, session, signOut])
 
-  if (busy || connecting || disconnecting) return null
+  if (connecting) return null // <>Connecting</>
+  if (disconnecting) return null // <>Disconnecting</>
+  if (session === '-') return null // <>Refresh page</>
 
-  if (publicKeyHash === sessionHash) {
+  if (publicKeyHash === session) {
     return <>{children}</>
   }
 
-  if (connected && publicKey) {
+  if (publicKey) {
     return (
       <div className='flex flex-col items-center justify-center h-full gap-4'>
         <h1 className='text-3xl font-bold'>
@@ -97,17 +91,11 @@ export default function ConnectPrompt({
     )
   }
 
-  if (!publicKey) {
-    return (
-      <div className='flex flex-col items-center justify-center h-full gap-4'>
-        <h1 className='text-3xl font-bold'>Connect your wallet</h1>
-        <p className='text-gray-600'>
-          To continue, please connect your wallet.
-        </p>
-        <button onClick={() => setVisible(true)}>Connect</button>
-      </div>
-    )
-  }
-
-  return null
+  return (
+    <div className='flex flex-col items-center justify-center h-full gap-4'>
+      <h1 className='text-3xl font-bold'>Connect your wallet</h1>
+      <p className='text-gray-600'>To continue, please connect your wallet.</p>
+      <button onClick={() => setVisible(true)}>Connect</button>
+    </div>
+  )
 }
