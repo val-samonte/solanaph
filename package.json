@@ -16,6 +16,7 @@
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.91.7",
+    "@vercel/postgres": "^0.8.0",
     "bs58": "^5.0.0",
     "classnames": "^2.5.1",
     "jotai": "^2.8.0",
