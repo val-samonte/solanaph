@@ -1,11 +1,9 @@
 CREATE TABLE user_sessions (
-    password_hash TEXT NOT NULL,
     owner_publickey TEXT NOT NULL,
     session_publickey TEXT NOT NULL,
-    soft_deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (owner_publickey, session_publickey)
+    PRIMARY KEY (owner_publickey)
 );
 
 -- Create an index on owner_publickey for faster lookups

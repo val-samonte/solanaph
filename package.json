@@ -19,7 +19,7 @@
     "@vercel/postgres": "^0.8.0",
     "bs58": "^5.0.0",
     "classnames": "^2.5.1",
-    "jotai": "^2.8.0",
+    "jotai": "^2.8.1",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

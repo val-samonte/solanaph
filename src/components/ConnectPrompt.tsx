@@ -1,83 +1,161 @@
 'use client'
 
 import bs58 from 'bs58'
-import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
-import { hashv } from '@/utils/hashv'
+import { useAtom } from 'jotai'
+import { atomFamily, atomWithStorage } from 'jotai/utils'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { sign } from 'tweetnacl'
 import { trimAddress } from '@/utils/trimAddress'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
+import { Keypair } from '@solana/web3.js'
+
+export const sessionKeypairAtom = atomFamily((publicKey: string) =>
+  atomWithStorage<string | null>(`session_${publicKey}`, null)
+)
 
 export default function ConnectPrompt({
   children,
-  sessionHash,
-}: Readonly<{ children: ReactNode; sessionHash: string }>) {
+}: Readonly<{ children: ReactNode }>) {
   const { setVisible } = useWalletModal()
-  const { connecting, publicKey, disconnecting, signMessage } = useWallet()
-  const [session, setSession] = useState<string>(sessionHash)
+  const { connecting, publicKey, disconnecting, disconnect, signMessage } =
+    useWallet()
+  const [session, setSession] = useAtom(
+    sessionKeypairAtom(publicKey?.toBase58() || '')
+  )
+  const [authorized, setAuthorized] = useState(false)
 
-  const publicKeyHash = useMemo(() => {
-    if (!publicKey) return null
-    return bs58.encode(hashv([publicKey.toBuffer()]))
-  }, [publicKey])
+  useEffect(() => {
+    const isAuthorized = async () => {
+      if (!publicKey) return false
+      if (!session) return false
+
+      const storedSession = JSON.parse(
+        window.localStorage.getItem(`session_${publicKey}`) ?? 'null'
+      )
+      if (!storedSession) return false
+
+      try {
+        const response = await fetch(
+          `/api/user/${publicKey.toBase58()}/session`,
+          { cache: 'no-store' }
+        )
+
+        if (!response.ok) {
+          throw new Error('Unauthorized')
+        }
+
+        const sessionRegistered = await response.text()
+        const sessionKeypair = Keypair.fromSecretKey(bs58.decode(storedSession))
+
+        if (sessionRegistered !== sessionKeypair.publicKey.toBase58()) {
+          setSession(null)
+          window.localStorage.removeItem(`session_${publicKey}`)
+          throw new Error('Unauthorized')
+        }
+
+        return true
+      } catch (e) {
+        console.error(e)
+      }
+      return false
+    }
+    isAuthorized().then((authorized) => setAuthorized(authorized))
+  }, [publicKey, session, setSession, setAuthorized])
 
   const signIn = useCallback(async () => {
     if (!publicKey) return
     if (!signMessage) return
 
-    const message = `Please sign this message to continue. ${Date.now().toString(
-      16
-    )}`
+    const sessionKeypair = Keypair.generate()
+    const sessionPublicKey = sessionKeypair.publicKey.toBase58()
+    const timestamp = Date.now().toString(16)
+
+    const message = `Solana Philippines would like you to sign this message to continue. ${sessionPublicKey} ${timestamp}`
+
     const signature = bs58.encode(await signMessage(Buffer.from(message)))
 
-    const payload = JSON.stringify({
-      publicKey: publicKey.toBase58(),
-      message,
-      signature,
-    })
-
-    setSession('-')
-
     try {
-      const response = await fetch('/api/authenticate', {
+      const response = await fetch('/api/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: payload,
+        body: JSON.stringify({
+          message,
+          signature,
+          owner_publickey: publicKey.toBase58(),
+        }),
       })
 
-      if (response.ok) {
-        window.location.reload()
-      } else {
+      if (!response.ok) {
         throw new Error('Authentication failed')
       }
-    } catch (e: any) {
-      alert(e.message)
+
+      // NOTE: session_keypair is only used to do "read" operations from the backend
+      // or for calling signout API
+
+      // Any "write" operations should be signed by the user's wallet
+
+      setSession(bs58.encode(sessionKeypair.secretKey))
+    } catch (e) {
+      console.error(e)
     }
-  }, [publicKey, signMessage])
+  }, [publicKey, setSession, signMessage])
 
   const signOut = useCallback(async () => {
-    await fetch('/api/signout')
-    window.location.reload()
-  }, [])
+    await (async () => {
+      if (!publicKey) return
 
-  useEffect(() => {
-    if (!publicKeyHash) return
-    if (!session) return
-    if (session === '-') return
+      const storedSession = JSON.parse(
+        window.localStorage.getItem(`session_${publicKey}`) ?? 'null'
+      )
+      if (!storedSession) return
 
-    if (publicKeyHash !== session) {
-      setSession('-')
-      signOut()
-    }
-  }, [publicKeyHash, session, signOut])
+      const sessionKeypair = Keypair.fromSecretKey(bs58.decode(storedSession))
+
+      const message = `Signout ${publicKey.toBase58()}`
+      const signature = sign.detached(
+        Buffer.from(message),
+        sessionKeypair.secretKey
+      )
+
+      try {
+        const response = await fetch('/api/signout', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message,
+            signature: bs58.encode(signature),
+            session_publickey: sessionKeypair.publicKey.toBase58(),
+          }),
+        })
+
+        if (!response.ok) {
+          throw new Error('Signout failed')
+        }
+
+        setSession(null)
+        window.localStorage.removeItem(`session_${publicKey}`)
+      } catch (e) {
+        console.error(e)
+      }
+    })()
+    disconnect()
+  }, [publicKey, setSession])
 
   if (connecting) return null // <>Connecting</>
   if (disconnecting) return null // <>Disconnecting</>
-  if (session === '-') return null // <>Refresh page</>
 
-  if (publicKeyHash === session) {
-    return <>{children}</>
+  if (authorized) {
+    // return <>{children}</>
+    return (
+      <>
+        <button onClick={() => signOut()}>Sign Out</button>
+      </>
+    )
   }
 
   if (publicKey) {

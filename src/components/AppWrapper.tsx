@@ -1,23 +1,15 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import ConnectButton from './ConnectButton'
+import ConnectPrompt from './ConnectPrompt'
 import WalletAdapterWrapper from './WalletAdapterWrapper'
-
-const ConnectButton = dynamic(() => import('./ConnectButton'), {
-  ssr: false,
-})
-
-const ConnectPrompt = dynamic(() => import('./ConnectPrompt'), {
-  ssr: false,
-})
 
 export default function AppWrapper({
   children,
-  sessionHash,
-}: Readonly<{ children: ReactNode; sessionHash: string }>) {
+}: Readonly<{ children: ReactNode }>) {
   return (
     <WalletAdapterWrapper>
       <main className='relative flex min-h-screen flex-col px-4 pb-4 xl:p-16 gap-4 xl:gap-12 items-center'>
@@ -43,7 +35,7 @@ export default function AppWrapper({
             <ConnectButton />
           </div>
         </nav>
-        <ConnectPrompt sessionHash={sessionHash} children={children} />
+        <ConnectPrompt>{children}</ConnectPrompt>
       </main>
       <footer className='max-w-xl xl:max-w-4xl p-4 pb-20 xl:p-16 xl:pt-0 mx-auto text-center text-xs text-gray-400'>
         Disclaimer: This is a community project and is not affiliated with
