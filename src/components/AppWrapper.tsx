@@ -1,48 +1,115 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { ReactNode } from 'react'
-import ConnectButton from './ConnectButton'
-import ConnectPrompt from './ConnectPrompt'
+import cs from 'classnames'
+import { ReactNode, useState } from 'react'
 import WalletAdapterWrapper from './WalletAdapterWrapper'
+
+const currencies = ['USDC', 'SOL']
 
 export default function AppWrapper({
   children,
 }: Readonly<{ children: ReactNode }>) {
+  const [mode, setMode] = useState('buy')
+  const [selectedCurrency, selectCurrency] = useState('USDC')
+
   return (
     <WalletAdapterWrapper>
-      <main className='relative flex min-h-screen flex-col px-4 pb-4 xl:p-16 gap-4 xl:gap-12 items-center'>
-        <nav className='sticky top-0 flex min-h-16 w-full bg-white/75 backdrop-blur z-20'>
-          <div className='flex items-center justify-between w-full max-w-7xl mx-auto'>
-            <Link
-              href='https://www.facebook.com/groups/solanaphilippines'
-              target='_blank'
-              rel='noreferrer noopener'
-              className='flex items-center gap-4'
-            >
-              <Image
-                src={'logo.svg'}
-                alt='Solana PH'
-                width={200}
-                height={200}
-                className='h-14 w-14'
-              />
-              <h1 className='text-gray-600 portrait:hidden'>
-                Solana Philippines
-              </h1>
-            </Link>
-            <ConnectButton />
+      <main className='fixed inset-0 p-4 gap-4 flex'>
+        <nav className='h-full w-12'></nav>
+        {/* stage */}
+        <div className='h-full flex-auto'>
+          <div className='dark:bg-gray-800 rounded-xl w-full h-full max-w-7xl mx-auto drop-shadow-lg flex flex-col'>
+            <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-stretch px-2'>
+              <div
+                className={cs(
+                  mode === 'buy' ? 'border-green-500' : 'border-red-500',
+                  'flex my-2 transition-colors duration-300 border-2 p-1 rounded-lg items-center'
+                )}
+              >
+                <button
+                  onClick={() => setMode('buy')}
+                  className={cs(
+                    'transition-colors duration-300',
+                    mode === 'buy'
+                      ? 'bg-green-500 text-gray-800 '
+                      : 'bg-transparent dark:text-gray-100/50',
+                    'px-2 h-full rounded '
+                  )}
+                >
+                  Buy
+                </button>
+                <button
+                  onClick={() => setMode('sell')}
+                  className={cs(
+                    'transition-colors duration-300',
+                    mode === 'sell'
+                      ? 'bg-red-500 text-gray-800 '
+                      : 'bg-transparent dark:text-gray-100/50',
+                    'px-2 h-full rounded'
+                  )}
+                >
+                  Sell
+                </button>
+              </div>
+              <div className='flex gap-4 items-center mr-auto'>
+                {currencies.map((currency) => (
+                  <button
+                    onClick={() => selectCurrency(currency)}
+                    key={currency}
+                    className={cs(
+                      'transition-colors duration-300',
+                      selectedCurrency === currency
+                        ? mode === 'buy'
+                          ? 'text-green-500'
+                          : 'text-red-500'
+                        : 'dark:text-gray-100/50'
+                    )}
+                  >
+                    {currency}
+                  </button>
+                ))}
+              </div>
+              <div className='relative flex'>
+                <input
+                  placeholder='Amount'
+                  inputMode='numeric'
+                  className={cs(
+                    mode === 'buy' ? 'border-green-500' : 'border-red-500',
+                    'bg-transparent pl-2 pr-14 w-64',
+                    'flex my-2 transition-colors duration-300 border-2 p-1 rounded-lg items-center'
+                  )}
+                />
+                <div className='absolute right-3 top-4 pl-2 border-l dark:border-gray-100/50 dark:text-gray-100/50'>
+                  PHP
+                </div>
+              </div>
+            </div>
+            <div className='flex-auto'></div>
+            <div className='flex-none flex gap-4 h-14 w-full border-t dark:border-gray-900/50 items-stretch px-2'>
+              <div className='text-sm dark:text-gray-100/25 flex items-center px-4 gap-1'>
+                <button className='dark:text-gray-100/50'>Terms of Use</button>
+                <span>and</span>
+                <button className='dark:text-gray-100/50'>
+                  Privacy Policy
+                </button>
+              </div>
+              <div className='group flex ml-auto my-2 rounded-lg overflow-hidden relative items-center justify-center'>
+                <div
+                  className={cs(
+                    'absolute aspect-square w-36 h-36',
+                    'transition-all duration-300',
+                    '-rotate-45 group-hover:rotate-0',
+                    'from-fuchsia-400 via-violet-700 to-teal-400 bg-gradient-to-r'
+                  )}
+                ></div>
+                <button className={cs('relative px-4 h-full')}>
+                  Post an Order
+                </button>
+              </div>
+            </div>
           </div>
-        </nav>
-        <ConnectPrompt>{children}</ConnectPrompt>
+        </div>
       </main>
-      <footer className='max-w-xl xl:max-w-4xl p-4 pb-20 xl:p-16 xl:pt-0 mx-auto text-center text-xs text-gray-400'>
-        Disclaimer: This is a community project and is not affiliated with
-        Solana Labs. The team behind this project is not responsible for any
-        loss of funds or any other damages that may occur from using the
-        information provided on this website.
-      </footer>
     </WalletAdapterWrapper>
   )
 }

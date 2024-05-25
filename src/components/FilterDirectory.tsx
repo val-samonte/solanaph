@@ -78,7 +78,7 @@ export default function FilterDirectory({
         <button
           autoFocus
           onClick={() => setFilterOpen(true)}
-          className='h-16 w-16 bg-gradient-to-bl from-emerald-400 to-purple-500 active:from-purple-500 active:to-emerald-400 active:translate-y-px text-white rounded-full z-10 shadow-xl flex items-center justify-center'
+          className='h-16 w-16 from-fuchsia-400 via-violet-700 to-teal-400 bg-gradient-to-tr active:bg-gradient-to-r transition-all duration-300 active:translate-y-px text-white rounded-full z-10 shadow-xl flex items-center justify-center'
         >
           <SearchIcon />
         </button>

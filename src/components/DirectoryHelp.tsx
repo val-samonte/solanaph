@@ -129,7 +129,7 @@ export default function DirectoryHelp() {
               <h2 className='text-xl'>Filters</h2>
               <div className='flex'>
                 <div className='flex-none px-5'>
-                  <div className='h-16 w-16 bg-gradient-to-bl from-emerald-400 to-purple-500 text-white rounded-full z-10 shadow-xl flex items-center justify-center'>
+                  <div className='h-16 w-16 from-fuchsia-400 via-violet-700 to-teal-400 bg-gradient-to-tr text-white rounded-full z-10 shadow-xl flex items-center justify-center'>
                     <SearchIcon />
                   </div>
                 </div>
