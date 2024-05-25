@@ -78,7 +78,7 @@ export default function FilterDirectory({
         <button
           autoFocus
           onClick={() => setFilterOpen(true)}
-          className='h-16 w-16 bg-gradient-to-bl from-emerald-400 to-purple-500 active:from-purple-500 active:to-emerald-400 active:translate-y-px text-white rounded-full z-10 shadow-xl flex items-center justify-center'
+          className='h-16 w-16 from-fuchsia-400 via-violet-700 to-teal-400 bg-gradient-to-tr active:bg-gradient-to-r transition-all duration-300 active:translate-y-px text-white rounded-full z-10 shadow-xl flex items-center justify-center'
         >
           <SearchIcon />
         </button>
@@ -87,10 +87,10 @@ export default function FilterDirectory({
         )}
       </div>
       <Dialog show={filterOpen} onClose={() => setFilterOpen(false)}>
-        <UiDialog.Panel className='flex flex-col relative bg-white rounded-2xl max-w-sm w-full h-auto max-h-full'>
+        <UiDialog.Panel className='flex flex-col relative bg-white dark:bg-gray-900 rounded-2xl max-w-sm w-full h-auto max-h-full'>
           {/* h-screen md:h-auto */}
           <UiDialog.Title>
-            <div className='flex p-4 border-b border-gray-100 justify-between text-gray-800'>
+            <div className='flex p-4 border-b border-gray-100 dark:border-gray-800 justify-between text-gray-800 dark:text-gray-200'>
               <span>Filter</span>
               <button
                 className='hover:text-gray-600'
@@ -129,7 +129,7 @@ export default function FilterDirectory({
                   placeholder='Search'
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className='w-full px-3 py-2 border-gray-100 border'
+                  className='w-full px-3 py-2 border-gray-100 dark:border-gray-800 border bg-transparent'
                 />
               </div>
               <div className='flex flex-wrap gap-2'>

@@ -78,7 +78,7 @@ export default function Card({ name, image, url, links, tags }: CardProps) {
             )}
           </div>
           <div className='flex flex-col flex-auto'>
-            <h2 className='text-xl text-gray-800 flex items-center gap-2'>
+            <h2 className='text-xl text-gray-800 dark:text-gray-200 flex items-center gap-2'>
               {tags.includes('🎖️ member-project') && <span>🎖️</span>}
               <span>{name}</span>
             </h2>
@@ -92,7 +92,7 @@ export default function Card({ name, image, url, links, tags }: CardProps) {
               setShowCopied(true)
             } catch (e) {}
           }}
-          className='relative flex-none p-4 text-gray-500 bg-transparent hover:bg-black/5 hover:text-gray-800 transition-colors duration-300 rounded-lg pointer-events-auto'
+          className='relative flex-none p-4 text-gray-500 bg-transparent hover:bg-black/5 hover:text-gray-800 dark:hover:bg-white/5 dark:hover:text-gray-200 transition-colors duration-300 rounded-lg pointer-events-auto'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
