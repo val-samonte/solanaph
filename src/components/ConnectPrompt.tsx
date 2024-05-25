@@ -10,9 +10,14 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 import { Keypair } from '@solana/web3.js'
 
-export const sessionKeypairAtom = atomFamily((publicKey: string) =>
+export const storedSessionKeypairAtom = atomFamily((publicKey: string) =>
   atomWithStorage<string | null>(`session_${publicKey}`, null)
 )
+// export const sessionKeypairAtom = atomFamily((_: string) =>
+//   atom<string | null>(null)
+// )
+// TODO: use pin-code (from the user) to encrypt session keypair
+// export const userPinCodeAtom = atom<string | null>(null)
 
 export default function ConnectPrompt({
   children,
@@ -20,20 +25,21 @@ export default function ConnectPrompt({
   const { setVisible } = useWalletModal()
   const { connecting, publicKey, disconnecting, disconnect, signMessage } =
     useWallet()
-  const [session, setSession] = useAtom(
-    sessionKeypairAtom(publicKey?.toBase58() || '')
+  const [storedSession, setStoredSession] = useAtom(
+    storedSessionKeypairAtom(publicKey?.toBase58() || '')
   )
   const [authorized, setAuthorized] = useState(false)
+  // const [pinCode, setPinCode] = useAtom(userPinCodeAtom)
 
   useEffect(() => {
     const isAuthorized = async () => {
       if (!publicKey) return false
-      if (!session) return false
+      if (!storedSession) return false
 
-      const storedSession = JSON.parse(
+      const storedSessionJSON = JSON.parse(
         window.localStorage.getItem(`session_${publicKey}`) ?? 'null'
       )
-      if (!storedSession) return false
+      if (!storedSessionJSON) return false
 
       try {
         const response = await fetch(
@@ -46,10 +52,12 @@ export default function ConnectPrompt({
         }
 
         const sessionRegistered = await response.text()
-        const sessionKeypair = Keypair.fromSecretKey(bs58.decode(storedSession))
+        const sessionKeypair = Keypair.fromSecretKey(
+          bs58.decode(storedSessionJSON)
+        )
 
         if (sessionRegistered !== sessionKeypair.publicKey.toBase58()) {
-          setSession(null)
+          setStoredSession(null)
           window.localStorage.removeItem(`session_${publicKey}`)
           throw new Error('Unauthorized')
         }
@@ -61,17 +69,23 @@ export default function ConnectPrompt({
       return false
     }
     isAuthorized().then((authorized) => setAuthorized(authorized))
-  }, [publicKey, session, setSession, setAuthorized])
+  }, [publicKey, storedSession, setStoredSession, setAuthorized])
 
   const signIn = useCallback(async () => {
     if (!publicKey) return
     if (!signMessage) return
 
+    // on sign in, try to decrypt the stored session keypair
+    // if it succeed, reuse the same session keypair
+    // and check to see if we have valid session keypair
+    // in db
+    // if it fails, continue with the sign in process
+
     const sessionKeypair = Keypair.generate()
     const sessionPublicKey = sessionKeypair.publicKey.toBase58()
     const timestamp = Date.now().toString(16)
 
-    const message = `Solana Philippines would like you to sign this message to continue. ${sessionPublicKey} ${timestamp}`
+    const message = `Solana Philippines would like you to sign this message to continue\n ${sessionPublicKey} ${timestamp}`
 
     const signature = bs58.encode(await signMessage(Buffer.from(message)))
 
@@ -97,11 +111,11 @@ export default function ConnectPrompt({
 
       // Any "write" operations should be signed by the user's wallet
 
-      setSession(bs58.encode(sessionKeypair.secretKey))
+      setStoredSession(bs58.encode(sessionKeypair.secretKey))
     } catch (e) {
       console.error(e)
     }
-  }, [publicKey, setSession, signMessage])
+  }, [publicKey, setStoredSession, signMessage])
 
   const signOut = useCallback(async () => {
     await (async () => {
@@ -137,14 +151,14 @@ export default function ConnectPrompt({
           throw new Error('Signout failed')
         }
 
-        setSession(null)
+        setStoredSession(null)
         window.localStorage.removeItem(`session_${publicKey}`)
       } catch (e) {
         console.error(e)
       }
     })()
     disconnect()
-  }, [publicKey, setSession])
+  }, [publicKey, setStoredSession])
 
   if (connecting) return null // <>Connecting</>
   if (disconnecting) return null // <>Disconnecting</>
@@ -164,7 +178,13 @@ export default function ConnectPrompt({
         <h1 className='text-3xl font-bold'>
           Hello {trimAddress(publicKey.toBase58())} Please sign in
         </h1>
-        <button onClick={() => signIn()}>Sign In</button>
+        {/* <PinInput length={6} onChange={(pin) => setPinCode(pin)} /> */}
+        <button
+          // disabled={pinCode?.length !== 6}
+          onClick={() => signIn()}
+        >
+          Sign In
+        </button>
       </div>
     )
   }
