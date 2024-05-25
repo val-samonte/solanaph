@@ -18,7 +18,7 @@ export default function Home({ searchParams }: { searchParams: any }) {
   return (
     <>
       <main className='relative flex min-h-screen flex-col px-4 pb-4 xl:p-16 gap-4 xl:gap-12 items-center'>
-        <nav className='sticky top-0 flex min-h-16 w-full bg-white/75 backdrop-blur z-20'>
+        <nav className='sticky top-0 flex min-h-16 w-full bg-white/75 dark:bg-gray-900/75 backdrop-blur z-20'>
           <div className='flex items-center justify-between w-full max-w-7xl mx-auto'>
             <Link
               href='https://www.facebook.com/groups/solanaphilippines'
@@ -33,7 +33,9 @@ export default function Home({ searchParams }: { searchParams: any }) {
                 height={200}
                 className='h-14 w-14'
               />
-              <h1 className='text-gray-600'>Solana Philippines</h1>
+              <h1 className='text-gray-600 dark:text-gray-400'>
+                Solana Philippines
+              </h1>
             </Link>
             <DirectoryHelp />
           </div>

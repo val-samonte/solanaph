@@ -53,12 +53,12 @@ export default function DirectoryHelp() {
         </li>
       </ul>
       <Dialog show={open} onClose={() => setOpen(false)}>
-        <UiDialog.Panel className='flex flex-col relative bg-white rounded-2xl max-w-3xl w-full h-screen max-h-[85vh]'>
+        <UiDialog.Panel className='flex flex-col relative bg-white dark:bg-gray-900 rounded-2xl max-w-3xl w-full h-screen max-h-[85vh]'>
           <UiDialog.Title>
-            <div className='flex p-4 border-b border-gray-100 justify-between text-gray-800'>
+            <div className='flex p-4 border-b border-gray-100 dark:border-gray-800 justify-between text-gray-800 dark:text-gray-200'>
               <span>Help</span>
               <button
-                className='hover:text-gray-600'
+                className='hover:text-gray-600 dark:hover:text-gray-400'
                 onClick={() => {
                   setOpen(false)
                 }}
@@ -87,7 +87,7 @@ export default function DirectoryHelp() {
           >
             <section className='flex flex-col gap-4'>
               <h2 className='text-xl'>About</h2>
-              <p className='text-gray-800 px-1 indent text-sm'>
+              <p className='text-gray-800 dark:text-gray-200 px-1 indent text-sm'>
                 The Solana PH Directory serves as a centralized hub for Solana
                 ecosystem projects. It provides a curated list of dApps and
                 projects, complete with easy-to-access links for each. Users can
@@ -118,7 +118,7 @@ export default function DirectoryHelp() {
                         <Icon icon={name as ProjectLinkType} />
                       </div>
                     </div>
-                    <span className='col-span-2 capitalize text-gray-800 text-sm py-1'>
+                    <span className='col-span-2 capitalize text-gray-800 dark:text-gray-200 text-sm py-1'>
                       {name}
                     </span>
                   </Fragment>
@@ -133,7 +133,7 @@ export default function DirectoryHelp() {
                     <SearchIcon />
                   </div>
                 </div>
-                <p className='text-gray-800 px-1 text-sm'>
+                <p className='text-gray-800 dark:text-gray-200 px-1 text-sm'>
                   Found at the bottom right corner of the page is the Search /
                   Filter button. Click this button to open up the filter dialog
                   panel which can help you to narrow down your directory search.
@@ -144,7 +144,7 @@ export default function DirectoryHelp() {
             </section>
             <section className='flex flex-col gap-4'>
               <h2 className='text-xl'>Contributing / Corrections</h2>
-              <p className='text-gray-800 px-1 text-sm indent'>
+              <p className='text-gray-800 dark:text-gray-200 px-1 text-sm indent'>
                 If you would like to contribute or make corrections to the
                 directory, please join us and reach out to the Solana PH
                 community on Facebook. You can also submit a pull request on the
