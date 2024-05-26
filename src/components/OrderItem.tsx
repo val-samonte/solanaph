@@ -34,13 +34,16 @@ export default function OrderItem({
           'grid grid-cols-12 text-left py-2 transition-all duration-300'
         )}
       >
+        <div className='col-span-2 px-4 font-bold'>57.50 PHP</div>
         <div className='col-span-2 px-4'>
           {trimAddress('53vUyd7iFntjgcwtmAZAhtyrWmssiRvs3AvWiUJfoXw5')}
         </div>
-        <div className='col-span-2 px-4 font-bold'>57.50 PHP</div>
-        <div className='col-span-2 px-4'>900 {selectedCurrency}</div>
-        <div className='col-span-2 px-4'>500-1000 PHP</div>
-        <div className='col-span-4 px-4 flex gap-4 flex-wrap'>
+
+        <div className='col-span-3 px-4'>
+          900 {selectedCurrency} <span className='dark:text-gray-600'>/</span>{' '}
+          500-1000 PHP
+        </div>
+        <div className='col-span-5 px-4 flex gap-4 flex-wrap'>
           <span>
             896 <span className='text-xs dark:text-gray-600'>orders</span>
           </span>
