@@ -65,12 +65,12 @@ export default function OrderItem({
       </button>
       <div
         className={cs(
-          selected ? 'h-54' : 'h-0',
+          selected ? 'h-52' : 'h-0',
           'overflow-hidden transition-all duration-300 bg-gray-800 px-2'
         )}
       >
-        <div className='grid grid-cols-12 h-54'>
-          <div className='col-span-6 flex flex-col p-4 gap-2 h-full'>
+        <div className='grid grid-cols-12 h-52'>
+          <div className='col-span-6 flex flex-col p-4 gap-2 h-full '>
             <div className='text-xs text-gray-500'>
               {mode === 'buy' ? "Seller's" : "Buyer's"} terms (Please read
               carefully)
