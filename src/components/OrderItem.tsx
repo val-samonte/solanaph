@@ -138,7 +138,8 @@ export default function OrderItem({
             </div>
             <div className='mt-auto flex gap-4'>
               <div className='flex items-center text-xs text-gray-500 gap-2'>
-                <BellSimpleRinging size={16} /> Contacting Seller
+                <BellSimpleRinging size={16} /> Contacting{' '}
+                {mode === 'buy' ? 'Seller' : 'Buyer'}
               </div>
               <button
                 className={cs(
