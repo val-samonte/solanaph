@@ -1,5 +1,6 @@
 import cs from 'classnames'
 import { useAtomValue } from 'jotai'
+import { useEffect, useRef, useState } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
 import {
   BellSimpleRinging,
@@ -19,6 +20,20 @@ export default function OrderItem({
 }) {
   const selectedCurrency = useAtomValue(selectedCurrencyAtom)
   const mode = useAtomValue(modeAtom)
+  const [readMore, setReadMore] = useState(false)
+  const makerTerms = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!readMore && makerTerms.current) {
+      makerTerms.current.scrollTop = 0
+    }
+  }, [readMore])
+
+  useEffect(() => {
+    if (!selected) {
+      setReadMore(false)
+    }
+  }, [selected, setReadMore])
 
   return (
     <div
@@ -68,23 +83,55 @@ export default function OrderItem({
       </button>
       <div
         className={cs(
-          selected ? 'h-52' : 'h-0',
+          selected ? (readMore ? 'h-80' : 'h-40') : 'h-0',
           'overflow-hidden transition-all duration-300 bg-gray-800 px-2'
         )}
       >
-        <div className='grid grid-cols-12 h-52'>
+        <div
+          className={cs(
+            'grid grid-cols-12',
+            'transition-all duration-300',
+            readMore ? 'h-80' : 'h-40'
+          )}
+        >
           <div className='col-span-6 flex flex-col p-4 gap-2 h-full '>
             <div className='text-xs text-gray-500'>
               {mode === 'buy' ? "Seller's" : "Buyer's"} terms (Please read
               carefully)
             </div>
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-              nihil fugiat repudiandae provident libero, blanditiis vitae ipsam
-              praesentium officiis perspiciatis explicabo iusto suscipit id
-              molestiae tenetur ab debitis facere similique?
+            <div className='relative'>
+              <div
+                ref={makerTerms}
+                className={cs(
+                  'flex-auto flex flex-col',
+                  'transition-all duration-300',
+                  readMore ? 'h-52 overflow-auto' : 'h-12 overflow-hidden'
+                )}
+              >
+                Wallet should be the same used in this app
+                {/* Maker's terms here */}
+              </div>
+              {!readMore && (
+                <div
+                  className={cs(
+                    'pointer-events-none',
+                    'absolute bottom-0 bg-gradient-to-b from-transparent to-gray-800 inset-x-0 h-4'
+                  )}
+                />
+              )}
             </div>
-            <div className='mt-auto flex gap-4 h-10 items-center'>
+
+            <button
+              onClick={() => setReadMore((r) => !r)}
+              className={cs(
+                'w-full flex flex-col justify-end text-xs uppercase py-1',
+                'text-gray-400 hover:text-gray-100 transition-colors duration-500'
+              )}
+            >
+              {readMore ? 'Read Less' : 'Read More'}
+            </button>
+
+            <div className='mt-auto flex gap-4 items-center'>
               <div className='flex items-center gap-4'>
                 <span className='flex items-center gap-2 text-xs text-gray-500'>
                   <FacebookLogo size={16} />
@@ -97,10 +144,10 @@ export default function OrderItem({
               </div>
             </div>
           </div>
-          <div className='col-span-6 flex flex-col p-4 gap-4 h-full'>
+          <div className='mb-auto col-span-6 flex flex-col p-2 gap-2 rounded-lg bg-white/10'>
             <div className='flex items-center gap-4'>
-              <div className='w-28 text-gray-200'>
-                I will {mode === 'buy' ? 'pay' : 'sell'}
+              <div className='w-20 text-gray-200 pl-2'>
+                {mode === 'buy' ? 'Pay' : 'Sell'}
               </div>
               <div className='relative flex-auto'>
                 <input
@@ -119,7 +166,7 @@ export default function OrderItem({
               </div>
             </div>
             <div className='flex items-center gap-4'>
-              <div className='w-28 text-gray-200'>I will receive</div>
+              <div className='w-20 text-gray-200 pl-2'>Receive</div>
               <div className='relative flex-auto'>
                 <input
                   type='text'
@@ -137,13 +184,12 @@ export default function OrderItem({
               </div>
             </div>
             <div className='mt-auto flex gap-4'>
-              <div className='flex items-center text-xs text-gray-500 gap-2'>
+              <div className='ml-auto flex items-center text-xs text-gray-500 gap-2'>
                 <BellSimpleRinging size={16} /> Contacting{' '}
                 {mode === 'buy' ? 'Seller' : 'Buyer'}
               </div>
               <button
                 className={cs(
-                  'ml-auto',
                   mode === 'buy' ? 'bg-green-500' : 'bg-red-500',
                   'relative px-4 h-10 rounded-lg dark:text-gray-800 transition-colors duration-300'
                 )}

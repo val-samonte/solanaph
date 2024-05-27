@@ -54,7 +54,8 @@ function ChatCard({ active }: { active?: boolean }) {
     <div className='flex flex-col p-2 gap-1'>
       <div
         className={cs(
-          active && 'bg-white/10',
+          'transition-all duration-300',
+          active ? 'bg-white/10' : 'bg-transparent hover:bg-white/10',
           'rounded-lg flex flex-col p-2 gap-2'
         )}
       >
