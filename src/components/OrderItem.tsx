@@ -22,6 +22,7 @@ export default function OrderItem({
   const mode = useAtomValue(modeAtom)
   const [readMore, setReadMore] = useState(false)
   const makerTerms = useRef<HTMLDivElement>(null)
+  const payField = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!readMore && makerTerms.current) {
@@ -34,6 +35,14 @@ export default function OrderItem({
       setReadMore(false)
     }
   }, [selected, setReadMore])
+
+  useEffect(() => {
+    if (selected && payField.current) {
+      setTimeout(() => {
+        payField.current?.focus()
+      })
+    }
+  }, [selected])
 
   return (
     <div
@@ -94,7 +103,7 @@ export default function OrderItem({
             readMore ? 'h-80' : 'h-40'
           )}
         >
-          <div className='col-span-6 flex flex-col p-4 gap-2 h-full '>
+          <div className='col-span-7 flex flex-col p-4 gap-2 h-full '>
             <div className='text-xs text-gray-500'>
               {mode === 'buy' ? "Seller's" : "Buyer's"} terms (Please read
               carefully)
@@ -144,13 +153,14 @@ export default function OrderItem({
               </div>
             </div>
           </div>
-          <div className='mb-auto col-span-6 flex flex-col p-2 gap-2 rounded-lg bg-white/10'>
+          <div className='mb-auto col-span-5 flex flex-col p-2 gap-2 rounded-lg bg-white/10'>
             <div className='flex items-center gap-4'>
               <div className='w-20 text-gray-200 pl-2'>
                 {mode === 'buy' ? 'Pay' : 'Sell'}
               </div>
               <div className='relative flex-auto'>
                 <input
+                  ref={payField}
                   type='text'
                   inputMode='numeric'
                   placeholder={'1000'}
@@ -185,12 +195,12 @@ export default function OrderItem({
             </div>
             <div className='mt-auto flex gap-4'>
               <div className='ml-auto flex items-center text-xs text-gray-500 gap-2'>
-                <BellSimpleRinging size={16} /> Contacting{' '}
+                <BellSimpleRinging size={16} /> Contacting the{' '}
                 {mode === 'buy' ? 'Seller' : 'Buyer'}
               </div>
               <button
                 className={cs(
-                  mode === 'buy' ? 'bg-green-500' : 'bg-red-500',
+                  mode === 'buy' ? 'bg-teal-400' : 'bg-fuchsia-400',
                   'relative px-4 h-10 rounded-lg dark:text-gray-800 transition-colors duration-300'
                 )}
               >

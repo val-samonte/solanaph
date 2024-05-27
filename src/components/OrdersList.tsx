@@ -22,7 +22,7 @@ export default function OrdersList() {
         <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-stretch px-2'>
           <div
             className={cs(
-              mode === 'buy' ? 'border-green-500' : 'border-red-500',
+              mode === 'buy' ? 'border-teal-400' : 'border-fuchsia-400',
               'flex my-2 transition-colors duration-300 border-2 p-1 rounded-lg items-center'
             )}
           >
@@ -31,7 +31,7 @@ export default function OrdersList() {
               className={cs(
                 'transition-colors duration-300',
                 mode === 'buy'
-                  ? 'bg-green-500 text-gray-800 '
+                  ? 'bg-teal-400 text-gray-800 '
                   : 'bg-transparent dark:text-gray-100/50',
                 'px-2 h-full rounded '
               )}
@@ -43,7 +43,7 @@ export default function OrdersList() {
               className={cs(
                 'transition-colors duration-300',
                 mode === 'sell'
-                  ? 'bg-red-500 text-gray-800 '
+                  ? 'bg-fuchsia-400 text-gray-800 '
                   : 'bg-transparent dark:text-gray-100/50',
                 'px-2 h-full rounded'
               )}
@@ -60,8 +60,8 @@ export default function OrdersList() {
                   'transition-colors duration-300',
                   selectedCurrency === currency
                     ? mode === 'buy'
-                      ? 'text-green-500'
-                      : 'text-red-500'
+                      ? 'text-teal-400'
+                      : 'text-fuchsia-400'
                     : 'dark:text-gray-100/50'
                 )}
               >
@@ -76,7 +76,7 @@ export default function OrdersList() {
                 placeholder='Amount'
                 inputMode='numeric'
                 className={cs(
-                  mode === 'buy' ? 'border-green-500' : 'border-red-500',
+                  mode === 'buy' ? 'border-teal-400' : 'border-fuchsia-400',
                   'bg-transparent pl-2 pr-14 w-64',
                   'flex my-2 transition-colors duration-300 border-2 p-1 rounded-lg items-center'
                 )}

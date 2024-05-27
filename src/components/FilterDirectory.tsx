@@ -83,7 +83,7 @@ export default function FilterDirectory({
           <SearchIcon />
         </button>
         {((tags && tags.length > 0) || !!search) && (
-          <div className='bg-red-600 w-3 h-3 absolute top-0 right-0 rounded-full' />
+          <div className='bg-fuchsia-400 w-3 h-3 absolute top-0 right-0 rounded-full' />
         )}
       </div>
       <Dialog show={filterOpen} onClose={() => setFilterOpen(false)}>
