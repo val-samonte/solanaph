@@ -12,7 +12,7 @@ export default function OrdersList() {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
-    <div className='h-full flex-auto flex gap-4 overflow-hidden'>
+    <div className='h-full flex-auto flex gap-4 overflow-hidden relative'>
       <div
         className={cs(
           mode === 'buy' ? 'from-teal-400/10' : 'from-fuchsia-400/10',
@@ -79,6 +79,7 @@ export default function OrdersList() {
                 placeholder='Amount'
                 inputMode='numeric'
                 className={cs(
+                  'focus:outline-none',
                   mode === 'buy'
                     ? 'border-teal-600 outline-teal-600 dark:border-teal-400 dark:outline-teal-400'
                     : 'border-fuchsia-600 outline-fuchsia-600 dark:border-fuchsia-400 dark:outline-fuchsia-400',
@@ -181,11 +182,33 @@ export default function OrdersList() {
             // showFilter ? 'w-80 opacity-100' : 'w-0 opacity-0',
             // 'transition-all duration-300',
             'overflow-hidden',
-            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'
+            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
+            'absolute 2xl:relative right-0'
           )}
         >
-          <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
+          <div className='drop-shadow-xl 2xl:drop-shadow-none flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
             <h2>Filters</h2>
+            <button
+              className='block 2xl:hidden ml-auto hover:text-gray-600 dark:hover:text-gray-400'
+              onClick={() => {
+                setShowFilter(false)
+              }}
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='w-6 h-6'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M6 18 18 6M6 6l12 12'
+                />
+              </svg>
+            </button>
           </div>
           <div className='bg-black/20 text-sm py-1 dark:text-gray-500 px-4'>
             Sort By

@@ -16,13 +16,16 @@ export default function AppWrapper({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <WalletAdapterWrapper>
-      <main className='fixed inset-0 p-4 gap-4 flex'>
+      <main className='fixed inset-0 p-4 gap-4 xl:flex hidden'>
         <ConnectPrompt>
           <AppNav />
           <ContactsPanel />
           {children}
         </ConnectPrompt>
       </main>
+      <div className='fixed inset-0 xl:hidden flex items-center justify-center text-center'>
+        We do not support small devices yet! 😁
+      </div>
     </WalletAdapterWrapper>
   )
 }
