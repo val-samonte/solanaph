@@ -3,8 +3,8 @@
 import { atom } from 'jotai'
 import { ReactNode } from 'react'
 import AppNav from './AppNav'
-import ChatPanel from './ChatPanel'
-import OrdersList from './OrdersList'
+import ConnectPrompt from './ConnectPrompt'
+import ContactsPanel from './ContactsPanel'
 import WalletAdapterWrapper from './WalletAdapterWrapper'
 
 export const currencies = ['USDC', 'SOL']
@@ -16,11 +16,16 @@ export default function AppWrapper({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <WalletAdapterWrapper>
-      <main className='fixed inset-0 p-4 gap-4 flex'>
-        <AppNav />
-        <ChatPanel />
-        <OrdersList />
+      <main className='fixed inset-0 p-4 gap-4 xl:flex hidden'>
+        <ConnectPrompt>
+          <AppNav />
+          <ContactsPanel />
+          {children}
+        </ConnectPrompt>
       </main>
+      <div className='fixed inset-0 xl:hidden flex items-center justify-center text-center'>
+        We do not support small devices yet! 😁
+      </div>
     </WalletAdapterWrapper>
   )
 }

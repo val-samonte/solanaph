@@ -4,11 +4,12 @@ import bs58 from 'bs58'
 import { useAtom } from 'jotai'
 import { atomFamily, atomWithStorage } from 'jotai/utils'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
-import { sign } from 'tweetnacl'
+import { useSignOut } from '@/hooks/useSignOut'
 import { trimAddress } from '@/utils/trimAddress'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 import { Keypair } from '@solana/web3.js'
+import { FancyButton } from './FancyButton'
 
 export const storedSessionKeypairAtom = atomFamily((publicKey: string) =>
   atomWithStorage<string | null>(`session_${publicKey}`, null)
@@ -29,6 +30,7 @@ export default function ConnectPrompt({
     storedSessionKeypairAtom(publicKey?.toBase58() || '')
   )
   const [authorized, setAuthorized] = useState(false)
+  const signOut = useSignOut()
   // const [pinCode, setPinCode] = useAtom(userPinCodeAtom)
 
   useEffect(() => {
@@ -117,83 +119,42 @@ export default function ConnectPrompt({
     }
   }, [publicKey, setStoredSession, signMessage])
 
-  const signOut = useCallback(async () => {
-    await (async () => {
-      if (!publicKey) return
-
-      const storedSession = JSON.parse(
-        window.localStorage.getItem(`session_${publicKey}`) ?? 'null'
-      )
-      if (!storedSession) return
-
-      const sessionKeypair = Keypair.fromSecretKey(bs58.decode(storedSession))
-
-      const message = `Signout ${publicKey.toBase58()}`
-      const signature = sign.detached(
-        Buffer.from(message),
-        sessionKeypair.secretKey
-      )
-
-      try {
-        const response = await fetch('/api/signout', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            message,
-            signature: bs58.encode(signature),
-            session_publickey: sessionKeypair.publicKey.toBase58(),
-          }),
-        })
-
-        if (!response.ok) {
-          throw new Error('Signout failed')
-        }
-
-        setStoredSession(null)
-        window.localStorage.removeItem(`session_${publicKey}`)
-      } catch (e) {
-        console.error(e)
-      }
-    })()
-    disconnect()
-  }, [publicKey, setStoredSession])
-
   if (connecting) return null // <>Connecting</>
   if (disconnecting) return null // <>Disconnecting</>
 
   if (authorized) {
-    // return <>{children}</>
-    return (
-      <>
-        <button onClick={() => signOut()}>Sign Out</button>
-      </>
-    )
+    return <>{children}</>
   }
 
   if (publicKey) {
     return (
-      <div className='flex flex-col items-center justify-center h-full gap-4'>
+      <div className='flex flex-col items-center justify-center w-full h-full gap-4'>
         <h1 className='text-3xl font-bold'>
-          Hello {trimAddress(publicKey.toBase58())} Please sign in
+          Hello {trimAddress(publicKey.toBase58())} Please Sign In
         </h1>
         {/* <PinInput length={6} onChange={(pin) => setPinCode(pin)} /> */}
-        <button
+        <FancyButton
           // disabled={pinCode?.length !== 6}
           onClick={() => signIn()}
         >
           Sign In
-        </button>
+        </FancyButton>
+        <div>
+          <button
+            className='text-gray-500 hover:text-gray-800 dark:hover:text-gray-100 transition-all duration-300'
+            onClick={() => signOut()}
+          >
+            Or you can disconnect
+          </button>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className='flex flex-col items-center justify-center h-full gap-4'>
-      <h1 className='text-3xl font-bold'>Connect your wallet</h1>
-      <p className='text-gray-600'>To continue, please connect your wallet.</p>
-      <button onClick={() => setVisible(true)}>Connect</button>
+    <div className='flex flex-col items-center justify-center w-full h-full gap-4'>
+      <h1 className='text-3xl font-bold'>Connect Your Wallet</h1>
+      <FancyButton onClick={() => setVisible(true)}>Connect</FancyButton>
     </div>
   )
 }
