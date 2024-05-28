@@ -4,6 +4,7 @@ import bs58 from 'bs58'
 import { useAtom } from 'jotai'
 import { atomFamily, atomWithStorage } from 'jotai/utils'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { useSignOut } from '@/hooks/useSignOut'
 import { trimAddress } from '@/utils/trimAddress'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
@@ -29,6 +30,7 @@ export default function ConnectPrompt({
     storedSessionKeypairAtom(publicKey?.toBase58() || '')
   )
   const [authorized, setAuthorized] = useState(false)
+  const signOut = useSignOut()
   // const [pinCode, setPinCode] = useAtom(userPinCodeAtom)
 
   useEffect(() => {
@@ -137,6 +139,14 @@ export default function ConnectPrompt({
         >
           Sign In
         </FancyButton>
+        <div>
+          <button
+            className='text-gray-500 hover:text-gray-100 transition-all duration-300'
+            onClick={() => signOut()}
+          >
+            Or you can disconnect
+          </button>
+        </div>
       </div>
     )
   }
