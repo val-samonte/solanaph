@@ -165,6 +165,7 @@ export default function OrderItem({
                   inputMode='numeric'
                   placeholder={'1000'}
                   className={cs(
+                    mode === 'buy' ? 'outline-teal-400' : 'outline-fuchsia-400',
                     'border-gray-500 h-10 w-full',
                     'bg-transparent pl-2 pr-16 w-64',
                     'flex transition-colors duration-300 border-2 p-1 rounded-lg items-center'
@@ -183,6 +184,7 @@ export default function OrderItem({
                   inputMode='numeric'
                   placeholder='17.39'
                   className={cs(
+                    mode === 'buy' ? 'outline-teal-400' : 'outline-fuchsia-400',
                     'border-gray-500 h-10 w-full',
                     'bg-transparent pl-2 pr-16 w-64',
                     'flex transition-colors duration-300 border-2 p-1 rounded-lg items-center'

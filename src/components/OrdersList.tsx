@@ -76,7 +76,9 @@ export default function OrdersList() {
                 placeholder='Amount'
                 inputMode='numeric'
                 className={cs(
-                  mode === 'buy' ? 'border-teal-400' : 'border-fuchsia-400',
+                  mode === 'buy'
+                    ? 'border-teal-400 outline-teal-400'
+                    : 'border-fuchsia-400 outline-fuchsia-400',
                   'bg-transparent pl-2 pr-14 w-64',
                   'flex my-2 transition-colors duration-300 border-2 p-1 rounded-lg items-center'
                 )}
