@@ -58,7 +58,15 @@ export default function OrderItem({
           'grid grid-cols-12 text-left py-2 transition-all duration-300'
         )}
       >
-        <div className='col-span-2 px-4 font-bold'>57.50 PHP</div>
+        <div
+          className={cs(
+            'transition-all duration-300',
+            selected && (mode === 'buy' ? 'text-teal-400' : 'text-fuchsia-400'),
+            'col-span-2 px-4 font-bold'
+          )}
+        >
+          57.50 PHP
+        </div>
         <div className='col-span-2 px-4'>
           {trimAddress('53vUyd7iFntjgcwtmAZAhtyrWmssiRvs3AvWiUJfoXw5')}
         </div>
