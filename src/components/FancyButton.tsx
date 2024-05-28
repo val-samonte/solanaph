@@ -16,7 +16,7 @@ export const FancyButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (
       ></div>
       <button
         {...props}
-        className={cs('relative px-4 h-full whitespace-nowrap')}
+        className={cs('relative px-4 h-full whitespace-nowrap text-white')}
       />
     </div>
   )

@@ -12,17 +12,19 @@ export default function OrdersList() {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
-    <div className='h-full flex-auto flex gap-4'>
+    <div className='h-full flex-auto flex gap-4 overflow-hidden'>
       <div
         className={cs(
           mode === 'buy' ? 'from-teal-400/10' : 'from-fuchsia-400/10',
-          'bg-gradient-to-br to-violet-700/10 rounded-xl flex-auto h-full mx-auto drop-shadow-lg flex flex-col'
+          'bg-gradient-to-br to-violet-700/10 rounded-xl flex-auto h-full mx-auto flex flex-col'
         )}
       >
         <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-stretch px-2'>
           <div
             className={cs(
-              mode === 'buy' ? 'border-teal-400' : 'border-fuchsia-400',
+              mode === 'buy'
+                ? 'border-teal-600 dark:border-teal-400'
+                : 'border-fuchsia-600 dark:border-fuchsia-400',
               'flex my-2 transition-colors duration-300 border-2 p-1 rounded-lg items-center'
             )}
           >
@@ -31,7 +33,7 @@ export default function OrdersList() {
               className={cs(
                 'transition-colors duration-300',
                 mode === 'buy'
-                  ? 'bg-teal-400 text-gray-800 '
+                  ? 'bg-teal-600 dark:bg-teal-400 text-white dark:text-gray-800'
                   : 'bg-transparent dark:text-gray-100/50',
                 'px-2 h-full rounded '
               )}
@@ -43,7 +45,7 @@ export default function OrdersList() {
               className={cs(
                 'transition-colors duration-300',
                 mode === 'sell'
-                  ? 'bg-fuchsia-400 text-gray-800 '
+                  ? 'bg-fuchsia-600 dark:bg-fuchsia-400 text-white dark:text-gray-800'
                   : 'bg-transparent dark:text-gray-100/50',
                 'px-2 h-full rounded'
               )}
@@ -58,10 +60,11 @@ export default function OrdersList() {
                 key={currency}
                 className={cs(
                   'transition-colors duration-300',
+                  'font-bold',
                   selectedCurrency === currency
                     ? mode === 'buy'
-                      ? 'text-teal-400'
-                      : 'text-fuchsia-400'
+                      ? 'text-teal-600 dark:text-teal-400'
+                      : 'text-fuchsia-600 dark:text-fuchsia-400'
                     : 'dark:text-gray-100/50'
                 )}
               >
@@ -77,8 +80,8 @@ export default function OrdersList() {
                 inputMode='numeric'
                 className={cs(
                   mode === 'buy'
-                    ? 'border-teal-400 outline-teal-400'
-                    : 'border-fuchsia-400 outline-fuchsia-400',
+                    ? 'border-teal-600 outline-teal-600 dark:border-teal-400 dark:outline-teal-400'
+                    : 'border-fuchsia-600 outline-fuchsia-600 dark:border-fuchsia-400 dark:outline-fuchsia-400',
                   'bg-transparent pl-2 pr-14 w-64',
                   'flex my-2 transition-colors duration-300 border-2 p-1 rounded-lg items-center'
                 )}
@@ -89,8 +92,10 @@ export default function OrdersList() {
               <button
                 onClick={() => setShowFilter((prev) => !prev)}
                 className={cs(
-                  showFilter ? 'bg-gray-800' : 'bg-transparent',
-                  'transition-all duration-300 hover:bg-white/10',
+                  showFilter
+                    ? 'bg-gray-200 dark:bg-gray-800'
+                    : 'bg-transparent',
+                  'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10',
                   'w-9 h-9 rounded-full flex items-center justify-center'
                 )}
               >
@@ -159,7 +164,11 @@ export default function OrdersList() {
                 'from-fuchsia-400 via-violet-700 to-teal-400 bg-gradient-to-r'
               )}
             ></div>
-            <button className={cs('relative px-4 h-full whitespace-nowrap')}>
+            <button
+              className={cs(
+                'relative px-4 h-full whitespace-nowrap text-white'
+              )}
+            >
               Post a Trade
             </button>
           </div>
@@ -172,7 +181,7 @@ export default function OrdersList() {
             // showFilter ? 'w-80 opacity-100' : 'w-0 opacity-0',
             // 'transition-all duration-300',
             'overflow-hidden',
-            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-800 rounded-xl'
+            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'
           )}
         >
           <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>

@@ -54,14 +54,19 @@ export default function OrderItem({
       <button
         onClick={onSelect}
         className={cs(
-          selected ? 'bg-gray-800' : ' bg-transparent hover:bg-gray-100/10',
+          selected
+            ? 'bg-gray-200 dark:bg-gray-800'
+            : ' bg-transparent dark:hover:bg-white/10 hover:bg-black/5',
           'grid grid-cols-12 text-left py-2 transition-all duration-300'
         )}
       >
         <div
           className={cs(
             'transition-all duration-300',
-            selected && (mode === 'buy' ? 'text-teal-400' : 'text-fuchsia-400'),
+            selected &&
+              (mode === 'buy'
+                ? 'text-teal-600 dark:text-teal-400'
+                : 'text-fuchsia-600 dark:text-fuchsia-400'),
             'col-span-2 px-4 font-bold'
           )}
         >
@@ -101,7 +106,8 @@ export default function OrderItem({
       <div
         className={cs(
           selected ? (readMore ? 'h-80' : 'h-40') : 'h-0',
-          'overflow-hidden transition-all duration-300 bg-gray-800 px-2'
+          'shadow-lg',
+          'overflow-hidden transition-all duration-300 bg-gray-200 dark:bg-gray-800 px-2'
         )}
       >
         <div
@@ -132,7 +138,7 @@ export default function OrderItem({
                 <div
                   className={cs(
                     'pointer-events-none',
-                    'absolute bottom-0 bg-gradient-to-b from-transparent to-gray-800 inset-x-0 h-4'
+                    'absolute bottom-0 bg-gradient-to-b from-transparent to-gray-200 dark:to-gray-800 inset-x-0 h-4'
                   )}
                 />
               )}
@@ -142,7 +148,9 @@ export default function OrderItem({
               onClick={() => setReadMore((r) => !r)}
               className={cs(
                 'w-full flex flex-col justify-end text-xs uppercase py-1',
-                'text-gray-400 hover:text-gray-100 transition-colors duration-500'
+                'transition-colors duration-300',
+                'text-gray-500 hover:text-gray-800',
+                'dark:hover:text-gray-100'
               )}
             >
               {readMore ? 'Read Less' : 'Read More'}
@@ -161,9 +169,9 @@ export default function OrderItem({
               </div>
             </div>
           </div>
-          <div className='mb-auto col-span-5 flex flex-col p-2 gap-2 rounded-lg bg-white/10'>
+          <div className='mb-auto col-span-5 flex flex-col p-2 gap-2 rounded-lg bg-black/5 dark:bg-white/10'>
             <div className='flex items-center gap-4'>
-              <div className='w-20 text-gray-200 pl-2'>
+              <div className='w-20 text-gray-800 dark:text-gray-200 pl-2'>
                 {mode === 'buy' ? 'Pay' : 'Sell'}
               </div>
               <div className='relative flex-auto'>
@@ -173,7 +181,9 @@ export default function OrderItem({
                   inputMode='numeric'
                   placeholder={'1000'}
                   className={cs(
-                    mode === 'buy' ? 'outline-teal-400' : 'outline-fuchsia-400',
+                    mode === 'buy'
+                      ? 'outline-teal-600 dark:outline-teal-400'
+                      : 'outline-fuchsia-400 dark:outline-fuchsia-600',
                     'border-gray-500 h-10 w-full',
                     'bg-transparent pl-2 pr-16 w-64',
                     'flex transition-colors duration-300 border-2 p-1 rounded-lg items-center'
@@ -185,14 +195,18 @@ export default function OrderItem({
               </div>
             </div>
             <div className='flex items-center gap-4'>
-              <div className='w-20 text-gray-200 pl-2'>Receive</div>
+              <div className='w-20 text-gray-800 dark:text-gray-200 pl-2'>
+                Receive
+              </div>
               <div className='relative flex-auto'>
                 <input
                   type='text'
                   inputMode='numeric'
                   placeholder='17.39'
                   className={cs(
-                    mode === 'buy' ? 'outline-teal-400' : 'outline-fuchsia-400',
+                    mode === 'buy'
+                      ? 'outline-teal-600 dark:outline-teal-400'
+                      : 'outline-fuchsia-400 dark:outline-fuchsia-600',
                     'border-gray-500 h-10 w-full',
                     'bg-transparent pl-2 pr-16 w-64',
                     'flex transition-colors duration-300 border-2 p-1 rounded-lg items-center'
@@ -210,7 +224,10 @@ export default function OrderItem({
               </div>
               <button
                 className={cs(
-                  mode === 'buy' ? 'bg-teal-400' : 'bg-fuchsia-400',
+                  'text-white',
+                  mode === 'buy'
+                    ? 'bg-teal-600 hover:bg-teal-700 dark:bg-teal-400 dark:hover:bg-teal-300'
+                    : 'bg-fuchsia-600 hover:bg-fuchsia-700 dark:bg-fuchsia-400 dark:hover:bg-fuchsia-300',
                   'relative px-4 h-10 rounded-lg dark:text-gray-800 transition-colors duration-300'
                 )}
               >

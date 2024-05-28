@@ -141,7 +141,7 @@ export default function ConnectPrompt({
         </FancyButton>
         <div>
           <button
-            className='text-gray-500 hover:text-gray-100 transition-all duration-300'
+            className='text-gray-500 hover:text-gray-800 dark:hover:text-gray-100 transition-all duration-300'
             onClick={() => signOut()}
           >
             Or you can disconnect

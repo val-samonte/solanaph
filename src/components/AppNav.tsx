@@ -23,9 +23,11 @@ export default function AppNav() {
         <Link
           href='/app/p2p/trade'
           className={cs(
-            path.includes('/app/p2p/trade') ? 'bg-gray-800' : 'bg-transparent',
+            path.includes('/app/p2p/trade')
+              ? 'bg-gray-200 dark:bg-gray-800'
+              : 'bg-transparent',
             'w-11 h-11 flex items-center justify-center rounded-lg',
-            'transition-all duration-300 hover:bg-white/10'
+            'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10'
           )}
         >
           <Swap size={30} />
@@ -34,10 +36,10 @@ export default function AppNav() {
           href='/app/p2p/dashboard'
           className={cs(
             path.includes('/app/p2p/dashboard')
-              ? 'bg-gray-800'
+              ? 'bg-gray-200 dark:bg-gray-800'
               : 'bg-transparent',
             'w-11 h-11 flex items-center justify-center rounded-lg',
-            'transition-all duration-300 hover:bg-white/10'
+            'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10'
           )}
         >
           <Monitor size={30} />
@@ -45,9 +47,11 @@ export default function AppNav() {
         <Link
           href='/app/p2p/chat'
           className={cs(
-            path.includes('/app/p2p/chat') ? 'bg-gray-800' : 'bg-transparent',
+            path.includes('/app/p2p/chat')
+              ? 'bg-gray-200 dark:bg-gray-800'
+              : 'bg-transparent',
             'w-11 h-11 flex items-center justify-center rounded-lg',
-            'transition-all duration-300 hover:bg-white/10'
+            'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10'
           )}
         >
           <ChatCircle size={30} />
@@ -55,7 +59,7 @@ export default function AppNav() {
         <button
           className={cs(
             'w-11 h-11 flex items-center justify-center rounded-lg',
-            'bg-transparent hover:bg-white/10',
+            'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
             'transition-all duration-300'
           )}
         >
@@ -66,7 +70,7 @@ export default function AppNav() {
         <button
           className={cs(
             'w-11 h-11 flex items-center justify-center rounded-lg',
-            'bg-transparent hover:bg-white/10',
+            'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
             'transition-all duration-300'
           )}
         >
@@ -76,7 +80,7 @@ export default function AppNav() {
           onClick={() => signOut()}
           className={cs(
             'w-11 h-11 flex items-center justify-center rounded-lg',
-            'bg-transparent hover:bg-white/10',
+            'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
             'transition-all duration-300'
           )}
         >

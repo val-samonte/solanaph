@@ -4,7 +4,7 @@ import { BellSimpleRinging } from '@phosphor-icons/react'
 
 export default function ContactsPanel() {
   return (
-    <div className='w-[22.5rem] h-full flex-none flex flex-col bg-gray-800 rounded-xl'>
+    <div className='w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'>
       <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
         <h2>Contacts</h2>
         <div className='flex items-center ml-auto gap-2'>
@@ -55,7 +55,9 @@ function ContactCard({ active }: { active?: boolean }) {
       <div
         className={cs(
           'transition-all duration-300',
-          active ? 'bg-white/10' : 'bg-transparent hover:bg-white/10',
+          active
+            ? 'bg-black/5 dark:bg-white/10'
+            : 'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
           'rounded-lg flex flex-col p-2 gap-2'
         )}
       >
@@ -77,7 +79,7 @@ function ContactCard({ active }: { active?: boolean }) {
             <button
               className={cs(
                 'flex-auto',
-                'bg-green-500',
+                'text-white bg-green-500 hover:bg-green-600 dark:hover:bg-green-400',
                 'relative px-4 h-10 rounded-lg dark:text-gray-800 transition-colors duration-300'
               )}
             >
@@ -86,7 +88,7 @@ function ContactCard({ active }: { active?: boolean }) {
             <button
               className={cs(
                 'flex-auto',
-                'bg-gray-500',
+                'text-white bg-gray-500 hover:bg-gray-600 dark:hover:bg-gray-400',
                 'relative px-4 h-10 rounded-lg dark:text-gray-800 transition-colors duration-300'
               )}
             >
