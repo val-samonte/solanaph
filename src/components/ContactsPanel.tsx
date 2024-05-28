@@ -2,7 +2,7 @@ import cs from 'classnames'
 import { trimAddress } from '@/utils/trimAddress'
 import { BellSimpleRinging } from '@phosphor-icons/react'
 
-export default function ChatPanel() {
+export default function ContactsPanel() {
   return (
     <div className='w-[22.5rem] h-full flex-none flex flex-col bg-gray-800 rounded-xl'>
       <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
@@ -25,13 +25,13 @@ export default function ChatPanel() {
         <div className='bg-black/20 text-sm py-1 dark:text-gray-500 px-4'>
           Takers
         </div>
-        <ChatCard active />
-        <ChatCard />
+        <ContactCard active />
+        <ContactCard />
         <div className='bg-black/20 text-sm py-1 dark:text-gray-500 px-4'>
           Makers
         </div>
-        <ChatCard />
-        <ChatCard />
+        <ContactCard />
+        <ContactCard />
       </div>
       <div className='flex-none flex gap-4 h-14 w-full border-t dark:border-gray-900/50 items-center px-4'>
         <div className='flex gap-4 items-center'>
@@ -49,7 +49,7 @@ export default function ChatPanel() {
   )
 }
 
-function ChatCard({ active }: { active?: boolean }) {
+function ContactCard({ active }: { active?: boolean }) {
   return (
     <div className='flex flex-col p-2 gap-1'>
       <div
