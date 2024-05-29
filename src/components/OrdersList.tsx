@@ -94,7 +94,7 @@ export default function OrdersList() {
                 onClick={() => setShowFilter((prev) => !prev)}
                 className={cs(
                   showFilter
-                    ? 'bg-gray-200 dark:bg-gray-800'
+                    ? 'bg-gray-200 dark:bg-gray-700'
                     : 'bg-transparent',
                   'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10',
                   'w-9 h-9 rounded-full flex items-center justify-center'

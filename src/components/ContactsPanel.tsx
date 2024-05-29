@@ -1,8 +1,17 @@
 import cs from 'classnames'
+import { useMemo } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
 import { BellSimpleRinging } from '@phosphor-icons/react'
+import { useWallet } from '@solana/wallet-adapter-react'
 
 export default function ContactsPanel() {
+  const { publicKey } = useWallet()
+
+  const walletAddress = useMemo(
+    () => (publicKey ? trimAddress(publicKey.toBase58()) : null),
+    [publicKey]
+  )
+
   return (
     <div className='w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'>
       <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
@@ -38,12 +47,12 @@ export default function ContactsPanel() {
           <span className='w-3 h-3 rounded-full bg-green-500' />
           <span>Online</span>
         </div>
-        <div className='flex items-center ml-auto gap-1'>
-          <span className='text-xs dark:text-gray-600'>Connected as</span>
-          <span>
-            {trimAddress('53vUyd7iFntjgcwtmAZAhtyrWmssiRvs3AvWiUJfoXw5')}
-          </span>
-        </div>
+        {walletAddress && (
+          <div className='flex items-center ml-auto gap-1'>
+            <span className='text-xs dark:text-gray-600'>Connected as</span>
+            <span>{walletAddress}</span>
+          </div>
+        )}
       </div>
     </div>
   )
