@@ -1,6 +1,6 @@
 import cs from 'classnames'
 import { useAtom, useAtomValue } from 'jotai'
-import { ReactNode, useMemo, useState } from 'react'
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
 import { DotsThreeOutline } from '@phosphor-icons/react'
 import { useWallet } from '@solana/wallet-adapter-react'
@@ -13,6 +13,23 @@ export default function ChatPanel() {
   const participants = useAtomValue(ParticipantsAtom)
   const [messages, sendMessage] = useAtom(MessagesAtom)
   const [chatText, setChatText] = useState('')
+  const chatContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // todo:
+    // if chatContainerRef scroll position is at the bottom
+    // automatically smooth scroll if there are new messages
+    if (chatContainerRef.current) {
+      const { scrollHeight, scrollTop, clientHeight } = chatContainerRef.current
+      // const atBottom = scrollHeight - scrollTop === clientHeight
+      // if (atBottom) {
+      chatContainerRef.current.scrollTo({
+        top: scrollHeight,
+        behavior: 'smooth',
+      })
+      // }
+    }
+  }, [messages])
 
   const walletAddress = useMemo(
     () => publicKey?.toBase58() ?? null,
@@ -46,7 +63,10 @@ export default function ChatPanel() {
           </div>
         </div>
         {/* chat body */}
-        <div className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative '>
+        <div
+          ref={chatContainerRef}
+          className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative'
+        >
           <div className='mt-auto pl-4 pr-2 pb-4 flex flex-col gap-2'>
             {messages.map((message, i) => (
               <ChatMessageBubble
