@@ -6,7 +6,7 @@ import PartyKitManager from './PartyKitManager'
 export default function ContactsPanel() {
   return (
     <div className='w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'>
-      <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
+      <div className='flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
         <h2>Contacts</h2>
         <div className='flex items-center ml-auto gap-2'>
           <span className='dark:text-gray-600'>SOL&nbsp;</span>
@@ -34,7 +34,7 @@ export default function ContactsPanel() {
         <ContactCard />
         <ContactCard />
       </div>
-      <div className='flex-none flex gap-4 h-14 w-full border-t dark:border-gray-900/50 items-center px-4'>
+      <div className='flex-none flex gap-4 h-14 w-full border-t border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
         <PartyKitManager />
       </div>
     </div>
