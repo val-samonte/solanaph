@@ -24,7 +24,7 @@ export default function AppNav() {
           href='/app/p2p/trade'
           className={cs(
             path.includes('/app/p2p/trade')
-              ? 'bg-gray-200 dark:bg-gray-800'
+              ? 'bg-gray-200 dark:bg-gray-700'
               : 'bg-transparent',
             'w-11 h-11 flex items-center justify-center rounded-lg',
             'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10'
@@ -36,7 +36,7 @@ export default function AppNav() {
           href='/app/p2p/dashboard'
           className={cs(
             path.includes('/app/p2p/dashboard')
-              ? 'bg-gray-200 dark:bg-gray-800'
+              ? 'bg-gray-200 dark:bg-gray-700'
               : 'bg-transparent',
             'w-11 h-11 flex items-center justify-center rounded-lg',
             'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10'
@@ -48,7 +48,7 @@ export default function AppNav() {
           href='/app/p2p/chat'
           className={cs(
             path.includes('/app/p2p/chat')
-              ? 'bg-gray-200 dark:bg-gray-800'
+              ? 'bg-gray-200 dark:bg-gray-700'
               : 'bg-transparent',
             'w-11 h-11 flex items-center justify-center rounded-lg',
             'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10'

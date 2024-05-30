@@ -1,7 +1,7 @@
+'use client'
+
+import ChatPanel from '@/components/ChatPanel'
+
 export default function Chat() {
-  return (
-    <div>
-      <h1>Chat</h1>
-    </div>
-  )
+  return <ChatPanel />
 }

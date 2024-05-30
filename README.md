@@ -6,6 +6,10 @@ The Solana PH Directory serves as a centralized hub for Solana ecosystem project
 
 The Directory is expected to contain only those projects that our community members have used and should only include legitimate projects. If you would like to contribute or make corrections to the directory, please join us and reach out to the [Solana PH community](https://www.facebook.com/groups/solanaphilippines) on Facebook. You can also submit tickets or pull requests, and we will review your changes.
 
+## Notice
+
+THE PROJECT IS IN ACTIVE DEVELOPMENT AND IS UNAUDITED. THE AUTHORS AND CONTRIBUTORS OF THIS PROJECT ARE NOT LIABLE FOR ANY DAMAGE OR LOSS THAT MAY OCCUR FROM USING THIS WEBSITE OR APP. USE OR FORK AT YOUR OWN RISK.
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

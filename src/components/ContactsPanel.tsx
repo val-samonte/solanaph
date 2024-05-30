@@ -1,6 +1,7 @@
 import cs from 'classnames'
 import { trimAddress } from '@/utils/trimAddress'
 import { BellSimpleRinging } from '@phosphor-icons/react'
+import PartyKitManager from './PartyKitManager'
 
 export default function ContactsPanel() {
   return (
@@ -34,16 +35,7 @@ export default function ContactsPanel() {
         <ContactCard />
       </div>
       <div className='flex-none flex gap-4 h-14 w-full border-t dark:border-gray-900/50 items-center px-4'>
-        <div className='flex gap-4 items-center'>
-          <span className='w-3 h-3 rounded-full bg-green-500' />
-          <span>Online</span>
-        </div>
-        <div className='flex items-center ml-auto gap-1'>
-          <span className='text-xs dark:text-gray-600'>Connected as</span>
-          <span>
-            {trimAddress('53vUyd7iFntjgcwtmAZAhtyrWmssiRvs3AvWiUJfoXw5')}
-          </span>
-        </div>
+        <PartyKitManager />
       </div>
     </div>
   )
