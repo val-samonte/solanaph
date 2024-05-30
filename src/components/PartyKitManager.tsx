@@ -7,9 +7,47 @@ import { trimAddress } from '@/utils/trimAddress'
 import { useWallet } from '@solana/wallet-adapter-react'
 
 type PartyKitConnectionStatus = 'online' | 'connecting' | 'offline'
+
+type ChatMessage = {
+  type: 'chat'
+  owner: string
+  data: string
+  timestamp: number
+}
+
+type SystemMessage = {
+  type: 'system'
+  participants?: string[]
+  messages?: ChatMessage[]
+}
+
+type Message = ChatMessage | SystemMessage
+
 export const PartyKitConnectionStatusAtom =
   atom<PartyKitConnectionStatus>('connecting')
 export const PartyKitWebsocketAtom = atom<PartySocket | null>(null)
+
+export const ParticipantsAtom = atom<string[]>([])
+const MessagesBaseAtom = atom<ChatMessage[]>([])
+
+export const MessagesAtom = atom(
+  (get) => get(MessagesBaseAtom),
+  (get, set, text) => {
+    const ws = get(PartyKitWebsocketAtom)
+
+    if (ws) {
+      const messages = get(MessagesBaseAtom)
+      const newMessage = {
+        type: 'chat',
+        owner: ws.id,
+        data: text,
+        timestamp: Date.now(),
+      } as ChatMessage
+      set(MessagesBaseAtom, [...messages, newMessage])
+      ws.send(JSON.stringify(newMessage))
+    }
+  }
+)
 
 export default function PartyKitManager() {
   const { publicKey } = useWallet()
@@ -51,6 +89,8 @@ export default function PartyKitManager() {
 function PartyKitWebsocket({ id }: { id: string }) {
   const setConnectionStatus = useSetAtom(PartyKitConnectionStatusAtom)
   const setPartySocket = useSetAtom(PartyKitWebsocketAtom)
+  const setMessages = useSetAtom(MessagesBaseAtom)
+  const setParticipants = useSetAtom(ParticipantsAtom)
 
   const ws = usePartySocket({
     host: process.env.NEXT_PUBLIC_PARTYKIT_SERVER, // or localhost:1999 in dev
@@ -61,7 +101,22 @@ function PartyKitWebsocket({ id }: { id: string }) {
       setConnectionStatus('online')
     },
     onMessage(e) {
-      console.log('message', e.data)
+      const message = JSON.parse(e.data) as Message
+      switch (message.type) {
+        case 'system': {
+          if (message.participants) {
+            setParticipants(message.participants)
+          }
+          if (message.messages) {
+            setMessages(message.messages)
+          }
+          break
+        }
+        case 'chat': {
+          setMessages((prev) => [...prev, message])
+          break
+        }
+      }
     },
     onClose() {
       console.log('closed')

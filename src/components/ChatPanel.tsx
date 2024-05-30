@@ -1,10 +1,31 @@
 import cs from 'classnames'
-import { ReactNode, useState } from 'react'
+import { useAtom, useAtomValue } from 'jotai'
+import { ReactNode, useMemo, useState } from 'react'
+import { trimAddress } from '@/utils/trimAddress'
 import { DotsThreeOutline } from '@phosphor-icons/react'
+import { useWallet } from '@solana/wallet-adapter-react'
 import { FancyButton } from './FancyButton'
+import { MessagesAtom, ParticipantsAtom } from './PartyKitManager'
 
 export default function ChatPanel() {
+  const { publicKey } = useWallet()
   const [showDetails, setShowDetails] = useState(true)
+  const participants = useAtomValue(ParticipantsAtom)
+  const [messages, sendMessage] = useAtom(MessagesAtom)
+  const [chatText, setChatText] = useState('')
+
+  const walletAddress = useMemo(
+    () => publicKey?.toBase58() ?? null,
+    [publicKey]
+  )
+  const trimmedParticipants = useMemo(
+    () =>
+      participants.map((participant) => ({
+        trim: trimAddress(participant),
+        address: participant,
+      })),
+    [participants]
+  )
 
   return (
     <div className='h-full flex-auto flex gap-4 overflow-hidden relative'>
@@ -26,18 +47,31 @@ export default function ChatPanel() {
         </div>
         {/* chat body */}
         <div className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative '>
-          <div className='mt-auto pl-4 pr-2 pb-4 flex flex-col gap-4'>
-            <ChatMessageBubble>
-              Hello, I'm looking to buy some SOL. Can you help me with that?
-            </ChatMessageBubble>
-            <ChatMessageBubble own>
-              Sure! How much are you looking to buy?
-            </ChatMessageBubble>
+          <div className='mt-auto pl-4 pr-2 pb-4 flex flex-col gap-2'>
+            {messages.map((message, i) => (
+              <ChatMessageBubble
+                name={trimAddress(message.owner)}
+                key={message.timestamp}
+                own={message.owner === walletAddress}
+                hideName={messages[i - 1]?.owner === message.owner}
+              >
+                {message.data}
+              </ChatMessageBubble>
+            ))}
           </div>
         </div>
-        <div className='flex-none flex gap-2 h-14 w-full border-t dark:border-gray-900/50 items-center p-2'>
+        <form
+          className='flex-none flex gap-2 h-14 w-full border-t dark:border-gray-900/50 items-center p-2'
+          onSubmit={(e) => {
+            e.preventDefault()
+            sendMessage(chatText)
+            setChatText('')
+          }}
+        >
           <input
             type='text'
+            value={chatText}
+            onChange={(e) => setChatText(e.target.value)}
             placeholder='Aa'
             className={cs(
               'flex-auto',
@@ -47,20 +81,26 @@ export default function ChatPanel() {
               'flex transition-colors duration-300 border-2 p-1 rounded-lg items-center'
             )}
           />
-          <FancyButton className='flex-none'>Send</FancyButton>
-        </div>
+          <FancyButton
+            type='submit'
+            disabled={chatText === ''}
+            className='flex-none'
+          >
+            Send
+          </FancyButton>
+        </form>
       </div>
       {showDetails && (
         <div
           className={cs(
             'overflow-hidden',
-            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
-            'absolute 2xl:relative right-0'
+            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'
+            // 'absolute 2xl:relative right-0'
           )}
         >
           <div className='drop-shadow-xl 2xl:drop-shadow-none flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
             <h2>Participants</h2>
-            <button
+            {/* <button
               className='block 2xl:hidden ml-auto hover:text-gray-600 dark:hover:text-gray-400'
               onClick={() => {
                 setShowDetails(false)
@@ -80,13 +120,22 @@ export default function ChatPanel() {
                   d='M6 18 18 6M6 6l12 12'
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
 
-          <div className='flex flex-auto overflow-y-scroll overflow-x-hidden relative'>
-            {/* <div className='bg-black/20 text-sm py-1 dark:text-gray-500 px-4'>
-            Sort By
-          </div> */}
+          <div className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative'>
+            {trimmedParticipants.map((participant) => (
+              <div
+                className={cs(
+                  participant.address === walletAddress && 'font-bold',
+                  'flex justify-between items-center py-2 px-4 gap-4 border-b dark:border-gray-900/50'
+                )}
+                key={participant.address}
+              >
+                <div>{participant.trim}</div>
+                {participant.address === walletAddress && <div>(You)</div>}
+              </div>
+            ))}
           </div>
           <div className='flex-none flex gap-4 h-14 w-full border-t dark:border-gray-900/50 items-center px-4'></div>
         </div>
@@ -96,10 +145,12 @@ export default function ChatPanel() {
 }
 
 function ChatMessageBubble({
+  name,
   children,
   own,
   hideName,
 }: {
+  name: string
   children: ReactNode
   own?: boolean
   hideName?: boolean
@@ -107,7 +158,7 @@ function ChatMessageBubble({
   return (
     <div className={cs('flex flex-col', own && 'items-end')}>
       {!hideName && !own && (
-        <div className='px-4 text-gray-500 text-sm'>Anon</div>
+        <div className='px-4 text-gray-500 text-sm mb-1'>{name}</div>
       )}
       {/* chat bubble row */}
       <div className={cs('flex', own && 'flex-row-reverse')}>
