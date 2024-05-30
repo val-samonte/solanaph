@@ -1,11 +1,45 @@
 import cs from 'classnames'
+import { atom, useAtom } from 'jotai'
+import usePartySocket from 'partysocket/react'
 import { useMemo } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
 import { BellSimpleRinging } from '@phosphor-icons/react'
 import { useWallet } from '@solana/wallet-adapter-react'
 
+type PartyKitConnectionStatus = 'online' | 'connecting' | 'offline'
+export const PartyKitConnectionStatusAtom =
+  atom<PartyKitConnectionStatus>('connecting')
+
 export default function ContactsPanel() {
   const { publicKey } = useWallet()
+  const [connectionStatus, setConnectionStatus] = useAtom(
+    PartyKitConnectionStatusAtom
+  )
+
+  console.log(process.env.NEXT_PUBLIC_PARTYKIT_SERVER)
+
+  const ws = usePartySocket({
+    // usePartySocket takes the same arguments as PartySocket.
+    host: process.env.NEXT_PUBLIC_PARTYKIT_SERVER, // or localhost:1999 in dev
+    room: 'my-room',
+
+    // in addition, you can provide socket lifecycle event handlers
+    // (equivalent to using ws.addEventListener in an effect hook)
+    onOpen() {
+      console.log('connected')
+      setConnectionStatus('online')
+    },
+    onMessage(e) {
+      console.log('message', e.data)
+    },
+    onClose() {
+      console.log('closed')
+      setConnectionStatus('offline')
+    },
+    onError(e) {
+      console.log('error', e)
+    },
+  })
 
   const walletAddress = useMemo(
     () => (publicKey ? trimAddress(publicKey.toBase58()) : null),
@@ -44,12 +78,25 @@ export default function ContactsPanel() {
       </div>
       <div className='flex-none flex gap-4 h-14 w-full border-t dark:border-gray-900/50 items-center px-4'>
         <div className='flex gap-4 items-center'>
-          <span className='w-3 h-3 rounded-full bg-green-500' />
-          <span>Online</span>
+          <span
+            className={cs(
+              'w-3 h-3 rounded-full',
+              connectionStatus === 'online' && 'bg-green-500',
+              connectionStatus === 'connecting' && 'bg-amber-500',
+              connectionStatus === 'offline' && 'bg-red-500'
+            )}
+          />
+          <span className='capitalize'>{connectionStatus}</span>
         </div>
         {walletAddress && (
           <div className='flex items-center ml-auto gap-1'>
-            <span className='text-xs dark:text-gray-600'>Connected as</span>
+            {connectionStatus !== 'offline' && (
+              <span className='text-xs dark:text-gray-600'>
+                {connectionStatus === 'online'
+                  ? 'Connected as'
+                  : 'Connecting as'}
+              </span>
+            )}
             <span>{walletAddress}</span>
           </div>
         )}
