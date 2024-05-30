@@ -48,7 +48,7 @@ export default function OrderItem({
     <div
       className={cs(
         selected && 'sticky top-0',
-        'flex flex-col border-b dark:border-gray-900/50'
+        'flex flex-col border-b border-gray-900/10 dark:border-gray-900/50'
       )}
     >
       <button

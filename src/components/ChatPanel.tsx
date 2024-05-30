@@ -1,6 +1,6 @@
 import cs from 'classnames'
 import { useAtom, useAtomValue } from 'jotai'
-import { ReactNode, useMemo, useState } from 'react'
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
 import { DotsThreeOutline } from '@phosphor-icons/react'
 import { useWallet } from '@solana/wallet-adapter-react'
@@ -13,6 +13,23 @@ export default function ChatPanel() {
   const participants = useAtomValue(ParticipantsAtom)
   const [messages, sendMessage] = useAtom(MessagesAtom)
   const [chatText, setChatText] = useState('')
+  const chatContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // todo:
+    // if chatContainerRef scroll position is at the bottom
+    // automatically smooth scroll if there are new messages
+    if (chatContainerRef.current) {
+      const { scrollHeight, scrollTop, clientHeight } = chatContainerRef.current
+      // const atBottom = scrollHeight - scrollTop === clientHeight
+      // if (atBottom) {
+      chatContainerRef.current.scrollTo({
+        top: scrollHeight,
+        behavior: 'smooth',
+      })
+      // }
+    }
+  }, [messages])
 
   const walletAddress = useMemo(
     () => publicKey?.toBase58() ?? null,
@@ -30,7 +47,7 @@ export default function ChatPanel() {
   return (
     <div className='h-full flex-auto flex gap-4 overflow-hidden relative'>
       <div className='h-full flex-auto flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'>
-        <div className='flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
+        <div className='flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
           <h2>Chat Lobby</h2>
           <div className='flex items-center ml-auto gap-2'>
             <button
@@ -46,7 +63,10 @@ export default function ChatPanel() {
           </div>
         </div>
         {/* chat body */}
-        <div className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative '>
+        <div
+          ref={chatContainerRef}
+          className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative'
+        >
           <div className='mt-auto pl-4 pr-2 pb-4 flex flex-col gap-2'>
             {messages.map((message, i) => (
               <ChatMessageBubble
@@ -61,7 +81,7 @@ export default function ChatPanel() {
           </div>
         </div>
         <form
-          className='flex-none flex gap-2 h-14 w-full border-t dark:border-gray-900/50 items-center p-2'
+          className='flex-none flex gap-2 h-14 w-full border-t border-gray-900/10 dark:border-gray-900/50 items-center p-2'
           onSubmit={(e) => {
             e.preventDefault()
             sendMessage(chatText)
@@ -98,7 +118,7 @@ export default function ChatPanel() {
             // 'absolute 2xl:relative right-0'
           )}
         >
-          <div className='drop-shadow-xl 2xl:drop-shadow-none flex-none flex gap-4 h-14 w-full border-b dark:border-gray-900/50 items-center px-4'>
+          <div className='drop-shadow-xl 2xl:drop-shadow-none flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
             <h2>Participants</h2>
             {/* <button
               className='block 2xl:hidden ml-auto hover:text-gray-600 dark:hover:text-gray-400'
@@ -128,7 +148,7 @@ export default function ChatPanel() {
               <div
                 className={cs(
                   participant.address === walletAddress && 'font-bold',
-                  'flex justify-between items-center py-2 px-4 gap-4 border-b dark:border-gray-900/50'
+                  'flex justify-between items-center py-2 px-4 gap-4 border-b border-gray-900/10 dark:border-gray-900/50'
                 )}
                 key={participant.address}
               >
@@ -137,7 +157,7 @@ export default function ChatPanel() {
               </div>
             ))}
           </div>
-          <div className='flex-none flex gap-4 h-14 w-full border-t dark:border-gray-900/50 items-center px-4'></div>
+          <div className='flex-none flex gap-4 h-14 w-full border-t border-gray-900/10 dark:border-gray-900/50 items-center px-4'></div>
         </div>
       )}
     </div>
@@ -165,7 +185,7 @@ function ChatMessageBubble({
         {/* text content */}
         <div
           className={cs(
-            own ? 'bg-teal-600' : 'bg-black/5 dark:bg-white/10 ',
+            own ? 'bg-teal-600 text-white' : 'bg-black/5 dark:bg-white/10 ',
             'py-2 px-4 rounded-lg',
             own ? 'rounded-br-none' : 'rounded-bl-none'
           )}
