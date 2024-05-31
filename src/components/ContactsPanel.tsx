@@ -5,7 +5,12 @@ import PartyKitManager from './PartyKitManager'
 
 export default function ContactsPanel() {
   return (
-    <div className='w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'>
+    <div
+      className={cs(
+        'hidden xl:flex',
+        'w-[22.5rem] h-full flex-none flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'
+      )}
+    >
       <div className='flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
         <h2>Contacts</h2>
         <div className='flex items-center ml-auto gap-2'>

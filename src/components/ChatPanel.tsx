@@ -91,7 +91,7 @@ export default function ChatPanel() {
           <input
             type='text'
             value={chatText}
-            onChange={(e) => setChatText(e.target.value)}
+            onChange={(e) => setChatText(e.target.value.substring(0, 255))}
             placeholder='Aa'
             className={cs(
               'flex-auto',

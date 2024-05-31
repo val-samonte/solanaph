@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 import { useSignOut } from '@/hooks/useSignOut'
 import {
   ChatCircle,
-  DotsNine,
   GearSix,
   Monitor,
   Swap,
@@ -56,7 +55,7 @@ export default function AppNav() {
         >
           <ChatCircle size={30} />
         </Link>
-        <button
+        {/* <button
           className={cs(
             'w-11 h-11 flex items-center justify-center rounded-lg',
             'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
@@ -64,7 +63,7 @@ export default function AppNav() {
           )}
         >
           <DotsNine size={30} />
-        </button>
+        </button> */}
       </div>
       <div className='mt-auto flex flex-col gap-2'>
         <button

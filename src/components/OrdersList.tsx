@@ -3,6 +3,7 @@ import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { FunnelSimple } from '@phosphor-icons/react'
 import { currencies, modeAtom, selectedCurrencyAtom } from './AppWrapper'
+import { FancyButton } from './FancyButton'
 import OrderItem from './OrderItem'
 
 export default function OrdersList() {
@@ -73,7 +74,7 @@ export default function OrdersList() {
             ))}
           </div>
           <div className='ml-auto flex items-stretch gap-2'>
-            <div className='relative flex'>
+            <div className='portrait:hidden relative flex'>
               <input
                 type='text'
                 placeholder='Amount'
@@ -105,7 +106,7 @@ export default function OrdersList() {
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-12 bg-black/20 text-sm py-1 dark:text-gray-500 pr-2'>
+        <div className='hidden lg:grid grid-cols-12 bg-black/20 text-sm py-1 dark:text-gray-500 pr-2'>
           <div className='col-span-2 px-4'>Price</div>
           <div className='col-span-2 px-4'>
             {mode === 'buy' ? 'Seller' : 'Buyer'}
@@ -130,7 +131,7 @@ export default function OrdersList() {
           ))}
         </div>
         <div className='flex-none flex gap-4 h-14 w-full border-t border-gray-900/10 dark:border-gray-900/50 items-stretch px-2'>
-          <div className='text-sm dark:text-gray-100/50 flex items-center px-4 gap-1'>
+          <div className='hidden sm:flex dark:text-gray-100/50 items-center gap-2'>
             <span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -147,31 +148,13 @@ export default function OrdersList() {
                 />
               </svg>
             </span>
-            <span>
+            <span className='text-xs xl:text-sm'>
               The developer is not liable for any losses incurred during p2p
               transactions. Use at your own risk.
             </span>
-            {/* <span className='dark:text-gray-100/80'>Terms of Use</span>
-            <span>and</span>
-            <span className='dark:text-gray-100/80'>Privacy Policy</span>
-            <span>.</span> */}
           </div>
-          <div className='group flex ml-auto my-2 rounded-lg overflow-hidden relative items-center justify-center'>
-            <div
-              className={cs(
-                'absolute aspect-square w-36 h-36',
-                'transition-all duration-300',
-                '-rotate-45 group-hover:rotate-0',
-                'from-fuchsia-400 via-violet-700 to-teal-400 bg-gradient-to-r'
-              )}
-            ></div>
-            <button
-              className={cs(
-                'relative px-4 h-full whitespace-nowrap text-white'
-              )}
-            >
-              Post a Trade
-            </button>
+          <div className='py-2 sm:ml-auto w-full sm:w-auto'>
+            <FancyButton>Post A Trade</FancyButton>
           </div>
         </div>
       </div>
