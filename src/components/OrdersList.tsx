@@ -13,7 +13,7 @@ export default function OrdersList() {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
-    <div className='h-full flex-auto flex gap-4 overflow-hidden relative'>
+    <div className='h-full flex-auto flex gap-4 overflow-hidden relative rounded-xl'>
       <div
         className={cn(
           mode === 'buy' ? 'from-teal-400/10' : 'from-fuchsia-400/10',
@@ -164,6 +164,7 @@ export default function OrdersList() {
           className={cn(
             // showFilter ? 'w-80 opacity-100' : 'w-0 opacity-0',
             // 'transition-all duration-300',
+            'panel-shadow',
             'overflow-hidden',
             'w-[22.5rem] portrait:w-full h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
             'absolute 2xl:relative right-0 z-20'

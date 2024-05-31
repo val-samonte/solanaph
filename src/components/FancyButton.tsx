@@ -5,7 +5,7 @@ export const FancyButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (
   props
 ) => {
   return (
-    <div className='group flex rounded-lg overflow-hidden relative items-center justify-center h-10 min-w-28'>
+    <div className='group flex rounded-lg overflow-hidden relative items-center justify-center h-10 lg:min-w-28 flex-none'>
       <div
         className={cn(
           'absolute aspect-square w-full scale-110',

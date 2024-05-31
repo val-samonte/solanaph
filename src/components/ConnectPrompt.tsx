@@ -130,7 +130,9 @@ export default function ConnectPrompt({
     return (
       <div className='flex flex-col items-center justify-center w-full h-full gap-4 text-center'>
         <h1 className='text-3xl font-bold'>
-          Hello {trimAddress(publicKey.toBase58())} Please Sign In
+          Hello {trimAddress(publicKey.toBase58())}
+          <br />
+          Please Sign In
         </h1>
         {/* <PinInput length={6} onChange={(pin) => setPinCode(pin)} /> */}
         <FancyButton

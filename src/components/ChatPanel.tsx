@@ -9,7 +9,7 @@ import { MessagesAtom, ParticipantsAtom } from './PartyKitManager'
 
 export default function ChatPanel() {
   const { publicKey } = useWallet()
-  const [showDetails, setShowDetails] = useState(true)
+  const [showDetails, setShowDetails] = useState(false)
   const participants = useAtomValue(ParticipantsAtom)
   const [messages, sendMessage] = useAtom(MessagesAtom)
   const [chatText, setChatText] = useState('')
@@ -45,7 +45,7 @@ export default function ChatPanel() {
   )
 
   return (
-    <div className='h-full flex-auto flex gap-4 overflow-hidden relative'>
+    <div className='h-full flex-auto flex gap-4 overflow-hidden relative rounded-xl'>
       <div className='h-full flex-auto flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'>
         <div className='flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
           <h2>Chat Lobby</h2>
@@ -67,7 +67,7 @@ export default function ChatPanel() {
           ref={chatContainerRef}
           className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative'
         >
-          <div className='mt-auto pl-4 pr-2 pb-4 flex flex-col gap-2'>
+          <div className='mt-auto pl-4 pr-2 py-4 flex flex-col gap-2'>
             {messages.map((message, i) => (
               <ChatMessageBubble
                 name={trimAddress(message.owner)}
@@ -96,16 +96,12 @@ export default function ChatPanel() {
             className={cn(
               'flex-auto',
               'focus:outline-none border-2',
-              'border-gray-500 h-10 w-full',
+              'border-gray-500 h-10',
               'bg-transparent pl-2',
               'flex transition-colors duration-300 border-2 p-1 rounded-lg items-center'
             )}
           />
-          <FancyButton
-            type='submit'
-            disabled={chatText === ''}
-            className='flex-none'
-          >
+          <FancyButton type='submit' disabled={chatText === ''}>
             Send
           </FancyButton>
         </form>
@@ -113,14 +109,17 @@ export default function ChatPanel() {
       {showDetails && (
         <div
           className={cn(
+            // showFilter ? 'w-80 opacity-100' : 'w-0 opacity-0',
+            // 'transition-all duration-300',
+            'panel-shadow',
             'overflow-hidden',
-            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'
-            // 'absolute 2xl:relative right-0'
+            'w-[22.5rem] portrait:w-full h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
+            'absolute 2xl:relative right-0 z-20'
           )}
         >
           <div className='drop-shadow-xl 2xl:drop-shadow-none flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
             <h2>Participants</h2>
-            {/* <button
+            <button
               className='block 2xl:hidden ml-auto hover:text-gray-600 dark:hover:text-gray-400'
               onClick={() => {
                 setShowDetails(false)
@@ -140,9 +139,8 @@ export default function ChatPanel() {
                   d='M6 18 18 6M6 6l12 12'
                 />
               </svg>
-            </button> */}
+            </button>
           </div>
-
           <div className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative'>
             {trimmedParticipants.map((participant) => (
               <div
@@ -193,7 +191,7 @@ function ChatMessageBubble({
           {children}
         </div>
         {/* hidden action buttons */}
-        <div className='w-64'></div>
+        <div className='lg:w-64'></div>
       </div>
     </div>
   )
