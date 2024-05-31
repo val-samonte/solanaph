@@ -1,11 +1,16 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { trimAddress } from '@/utils/trimAddress'
 import { BellSimpleRinging } from '@phosphor-icons/react'
 import PartyKitManager from './PartyKitManager'
 
 export default function ContactsPanel() {
   return (
-    <div className='w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'>
+    <div
+      className={cn(
+        'hidden xl:flex',
+        'w-[22.5rem] h-full flex-none flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'
+      )}
+    >
       <div className='flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
         <h2>Contacts</h2>
         <div className='flex items-center ml-auto gap-2'>
@@ -13,7 +18,7 @@ export default function ContactsPanel() {
           <span>₱9,535.17</span>
           <span className='flex items-center text-red-500 gap-1'>
             <div
-              className={cs(
+              className={cn(
                 'rotate-180',
                 'w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-t-0 border-b-red-500'
               )}
@@ -45,7 +50,7 @@ function ContactCard({ active }: { active?: boolean }) {
   return (
     <div className='flex flex-col p-2 gap-1'>
       <div
-        className={cs(
+        className={cn(
           'transition-all duration-300',
           active
             ? 'bg-black/5 dark:bg-white/10'
@@ -69,7 +74,7 @@ function ContactCard({ active }: { active?: boolean }) {
         {active && (
           <div className='flex gap-2'>
             <button
-              className={cs(
+              className={cn(
                 'flex-auto',
                 'text-white bg-green-500 hover:bg-green-600 dark:hover:bg-green-400',
                 'relative px-4 h-10 rounded-lg dark:text-gray-800 transition-colors duration-300'
@@ -78,7 +83,7 @@ function ContactCard({ active }: { active?: boolean }) {
               Accept
             </button>
             <button
-              className={cs(
+              className={cn(
                 'flex-auto',
                 'text-white bg-gray-500 hover:bg-gray-600 dark:hover:bg-gray-400',
                 'relative px-4 h-10 rounded-lg dark:text-gray-800 transition-colors duration-300'

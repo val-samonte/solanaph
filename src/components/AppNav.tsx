@@ -1,11 +1,10 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useSignOut } from '@/hooks/useSignOut'
 import {
   ChatCircle,
-  DotsNine,
   GearSix,
   Monitor,
   Swap,
@@ -17,12 +16,16 @@ export default function AppNav() {
   const path = usePathname()
 
   return (
-    <nav className='h-full w-11 flex flex-col gap-2'>
+    <nav
+      className={cn(
+        'flex-none h-11 w-full landscape:h-full landscape:w-11 flex landscape:flex-col gap-2'
+      )}
+    >
       <Image width={44} height={44} src='/logo.svg' alt='Solana Philippines' />
-      <div className='flex flex-col gap-2'>
+      <div className={cn('flex landscape:flex-col gap-2')}>
         <Link
           href='/app/p2p/trade'
-          className={cs(
+          className={cn(
             path.includes('/app/p2p/trade')
               ? 'bg-gray-200 dark:bg-gray-700'
               : 'bg-transparent',
@@ -34,7 +37,7 @@ export default function AppNav() {
         </Link>
         <Link
           href='/app/p2p/dashboard'
-          className={cs(
+          className={cn(
             path.includes('/app/p2p/dashboard')
               ? 'bg-gray-200 dark:bg-gray-700'
               : 'bg-transparent',
@@ -46,7 +49,7 @@ export default function AppNav() {
         </Link>
         <Link
           href='/app/p2p/chat'
-          className={cs(
+          className={cn(
             path.includes('/app/p2p/chat')
               ? 'bg-gray-200 dark:bg-gray-700'
               : 'bg-transparent',
@@ -56,19 +59,19 @@ export default function AppNav() {
         >
           <ChatCircle size={30} />
         </Link>
-        <button
-          className={cs(
+        {/* <button
+          className={cn(
             'w-11 h-11 flex items-center justify-center rounded-lg',
             'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
             'transition-all duration-300'
           )}
         >
           <DotsNine size={30} />
-        </button>
+        </button> */}
       </div>
-      <div className='mt-auto flex flex-col gap-2'>
+      <div className='portrait:ml-auto landscape:mt-auto flex landscape:flex-col gap-2'>
         <button
-          className={cs(
+          className={cn(
             'w-11 h-11 flex items-center justify-center rounded-lg',
             'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
             'transition-all duration-300'
@@ -78,7 +81,7 @@ export default function AppNav() {
         </button>
         <button
           onClick={() => signOut()}
-          className={cs(
+          className={cn(
             'w-11 h-11 flex items-center justify-center rounded-lg',
             'bg-transparent hover:bg-black/5 dark:hover:bg-white/10',
             'transition-all duration-300'

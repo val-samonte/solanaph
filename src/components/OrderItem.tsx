@@ -1,4 +1,4 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { useAtomValue } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
@@ -46,55 +46,79 @@ export default function OrderItem({
 
   return (
     <div
-      className={cs(
-        selected && 'sticky top-0',
+      className={cn(
+        selected && 'fixed inset-0 p-2 z-30',
+        selected && 'lg:sticky lg:inset-auto lg:top-0 lg:p-0 lg:z-10',
         'flex flex-col border-b border-gray-900/10 dark:border-gray-900/50'
       )}
     >
+      {selected && (
+        <div
+          onClick={onSelect}
+          className={cn(
+            'absolute inset-0',
+            'block lg:hidden',
+            'bg-black/50 backdrop-blur-sm'
+          )}
+        />
+      )}
       <button
         onClick={onSelect}
-        className={cs(
+        className={cn(
+          'relative',
           selected
             ? 'bg-gray-200 dark:bg-gray-800'
             : ' bg-transparent dark:hover:bg-white/10 hover:bg-black/5',
-          'grid grid-cols-12 text-left py-2 transition-all duration-300'
+          'grid grid-cols-12 text-left py-2 lg:transition-all duration-300',
+          'rounded-t-lg lg:rounded-none'
         )}
       >
         <div
-          className={cs(
+          className={cn(
             'transition-all duration-300',
             selected &&
               (mode === 'buy'
                 ? 'text-teal-600 dark:text-teal-400'
                 : 'text-fuchsia-600 dark:text-fuchsia-400'),
-            'col-span-2 px-4 font-bold'
+            'lg:col-span-2 px-4 font-bold',
+            'col-span-12 sm:col-span-5',
+            'text-lg sm:text-base'
           )}
         >
-          57.50 PHP
+          10057.50 PHP
         </div>
-        <div className='col-span-2 px-4'>
+        <div className={cn('lg:col-span-2 px-4', 'col-span-12 sm:col-span-7')}>
           {trimAddress('53vUyd7iFntjgcwtmAZAhtyrWmssiRvs3AvWiUJfoXw5')}
         </div>
 
-        <div className='col-span-3 px-4'>
+        <div className={cn('lg:col-span-3 px-4', 'col-span-12 sm:col-span-5')}>
           900 {selectedCurrency} <span className='dark:text-gray-600'>/</span>{' '}
           500-1000 PHP
         </div>
-        <div className='col-span-5 px-4 flex gap-4 flex-wrap'>
+        <div
+          className={cn(
+            'lg:col-span-5 px-4 flex gap-x-4 flex-wrap',
+            'col-span-12 sm:col-span-7'
+          )}
+        >
           <span>
             896 <span className='text-xs dark:text-gray-600'>orders</span>
           </span>
           <span>
             98% <span className='text-xs dark:text-gray-600'>completion</span>
           </span>
-          <span className='flex items-center'>
+          <span className='flex items-center mr-auto'>
             <Timer size={16} />
             &nbsp;
             <span>
               15 <span className='text-xs dark:text-gray-600'>min</span>
             </span>
           </span>
-          <span className='ml-auto flex items-center'>
+          <span className={cn('items-center gap-1', 'flex 2xl:hidden')}>
+            5
+            <Star size={16} />
+          </span>
+          <span className={cn('items-center', 'hidden 2xl:flex')}>
             <Star size={16} />
             <Star size={16} />
             <Star size={16} />
@@ -104,20 +128,23 @@ export default function OrderItem({
         </div>
       </button>
       <div
-        className={cs(
-          selected ? (readMore ? 'h-80' : 'h-40') : 'h-0',
+        className={cn(
+          'relative',
+          selected ? (readMore ? 'lg:h-80' : 'lg:h-40') : 'h-0',
+          'overflow-y-auto lg:overflow-hidden',
           'shadow-lg',
-          'overflow-hidden transition-all duration-300 bg-gray-200 dark:bg-gray-800 px-2'
+          'transition-all duration-300 bg-gray-200 dark:bg-gray-800 px-2',
+          'rounded-b-lg lg:rounded-none'
         )}
       >
         <div
-          className={cs(
+          className={cn(
             'grid grid-cols-12',
             'transition-all duration-300',
-            readMore ? 'h-80' : 'h-40'
+            readMore ? 'lg:h-80' : 'lg:h-40'
           )}
         >
-          <div className='col-span-7 flex flex-col p-4 gap-2 h-full '>
+          <div className='col-span-12 lg:col-span-7 flex flex-col px-2 lg:px-4 py-4 gap-2 h-full '>
             <div className='text-xs text-gray-500'>
               {mode === 'buy' ? "Seller's" : "Buyer's"} terms (Please read
               carefully)
@@ -125,10 +152,12 @@ export default function OrderItem({
             <div className='relative'>
               <div
                 ref={makerTerms}
-                className={cs(
+                className={cn(
                   'flex-auto flex flex-col',
                   'transition-all duration-300',
-                  readMore ? 'h-52 overflow-auto' : 'h-12 overflow-hidden'
+                  readMore
+                    ? 'lg:h-52 lg:overflow-auto'
+                    : 'lg:h-12 lg:overflow-hidden'
                 )}
               >
                 Wallet should be the same used in this app
@@ -136,17 +165,18 @@ export default function OrderItem({
               </div>
               {!readMore && (
                 <div
-                  className={cs(
+                  className={cn(
+                    'hidden lg:block',
                     'pointer-events-none',
                     'absolute bottom-0 bg-gradient-to-b from-transparent to-gray-200 dark:to-gray-800 inset-x-0 h-4'
                   )}
                 />
               )}
             </div>
-
             <button
               onClick={() => setReadMore((r) => !r)}
-              className={cs(
+              className={cn(
+                'hidden lg:flex',
                 'w-full flex flex-col justify-end text-xs uppercase py-1',
                 'transition-colors duration-300',
                 'text-gray-500 hover:text-gray-800',
@@ -155,9 +185,8 @@ export default function OrderItem({
             >
               {readMore ? 'Read Less' : 'Read More'}
             </button>
-
             <div className='mt-auto flex gap-4 items-center'>
-              <div className='flex items-center gap-4'>
+              <div className='flex items-center flex-wrap gap-x-4 gap-y-2'>
                 <span className='flex items-center gap-2 text-xs text-gray-500'>
                   <FacebookLogo size={16} />
                   Member
@@ -169,7 +198,7 @@ export default function OrderItem({
               </div>
             </div>
           </div>
-          <div className='mb-auto col-span-5 flex flex-col p-2 gap-2 rounded-lg bg-black/5 dark:bg-white/10'>
+          <div className='mb-2 lg:mb-auto col-span-12 lg:col-span-5 flex flex-col p-2 gap-2 rounded-lg bg-black/5 dark:bg-white/10'>
             <div className='flex items-center gap-4'>
               <div className='w-20 text-gray-800 dark:text-gray-200 pl-2'>
                 {mode === 'buy' ? 'Pay' : 'Sell'}
@@ -180,7 +209,7 @@ export default function OrderItem({
                   type='text'
                   inputMode='numeric'
                   placeholder={'1000'}
-                  className={cs(
+                  className={cn(
                     'focus:outline-none border-2',
                     mode === 'buy'
                       ? 'focus:border-teal-600 dark:focus:border-teal-400'
@@ -204,7 +233,7 @@ export default function OrderItem({
                   type='text'
                   inputMode='numeric'
                   placeholder='17.39'
-                  className={cs(
+                  className={cn(
                     'focus:outline-none border-2',
                     mode === 'buy'
                       ? 'focus:border-teal-600 dark:focus:border-teal-400'
@@ -225,7 +254,7 @@ export default function OrderItem({
                 {mode === 'buy' ? 'Seller' : 'Buyer'}
               </div>
               <button
-                className={cs(
+                className={cn(
                   'text-white',
                   mode === 'buy'
                     ? 'bg-teal-600 hover:bg-teal-700 dark:bg-teal-400 dark:hover:bg-teal-300'

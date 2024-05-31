@@ -1,8 +1,9 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { FunnelSimple } from '@phosphor-icons/react'
 import { currencies, modeAtom, selectedCurrencyAtom } from './AppWrapper'
+import { FancyButton } from './FancyButton'
 import OrderItem from './OrderItem'
 
 export default function OrdersList() {
@@ -12,16 +13,16 @@ export default function OrdersList() {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
-    <div className='h-full flex-auto flex gap-4 overflow-hidden relative'>
+    <div className='h-full flex-auto flex gap-4 overflow-hidden relative rounded-xl'>
       <div
-        className={cs(
+        className={cn(
           mode === 'buy' ? 'from-teal-400/10' : 'from-fuchsia-400/10',
           'bg-gradient-to-br to-violet-700/10 rounded-xl flex-auto h-full mx-auto flex flex-col'
         )}
       >
         <div className='flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-stretch px-2'>
           <div
-            className={cs(
+            className={cn(
               mode === 'buy'
                 ? 'border-teal-600 dark:border-teal-400'
                 : 'border-fuchsia-600 dark:border-fuchsia-400',
@@ -30,7 +31,7 @@ export default function OrdersList() {
           >
             <button
               onClick={() => setMode('buy')}
-              className={cs(
+              className={cn(
                 'transition-colors duration-300',
                 mode === 'buy'
                   ? 'bg-teal-600 dark:bg-teal-400 text-white dark:text-gray-800'
@@ -42,7 +43,7 @@ export default function OrdersList() {
             </button>
             <button
               onClick={() => setMode('sell')}
-              className={cs(
+              className={cn(
                 'transition-colors duration-300',
                 mode === 'sell'
                   ? 'bg-fuchsia-600 dark:bg-fuchsia-400 text-white dark:text-gray-800'
@@ -58,7 +59,7 @@ export default function OrdersList() {
               <button
                 onClick={() => selectCurrency(currency)}
                 key={currency}
-                className={cs(
+                className={cn(
                   'transition-colors duration-300',
                   'font-bold',
                   selectedCurrency === currency
@@ -73,12 +74,12 @@ export default function OrdersList() {
             ))}
           </div>
           <div className='ml-auto flex items-stretch gap-2'>
-            <div className='relative flex'>
+            <div className='portrait:hidden relative flex'>
               <input
                 type='text'
                 placeholder='Amount'
                 inputMode='numeric'
-                className={cs(
+                className={cn(
                   'focus:outline-none',
                   mode === 'buy'
                     ? 'border-teal-600 outline-teal-600 dark:border-teal-400 dark:outline-teal-400'
@@ -92,7 +93,7 @@ export default function OrdersList() {
             <div className='flex items-center'>
               <button
                 onClick={() => setShowFilter((prev) => !prev)}
-                className={cs(
+                className={cn(
                   showFilter
                     ? 'bg-gray-200 dark:bg-gray-700'
                     : 'bg-transparent',
@@ -105,7 +106,7 @@ export default function OrdersList() {
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-12 bg-black/20 text-sm py-1 dark:text-gray-500 pr-2'>
+        <div className='hidden lg:grid grid-cols-12 bg-black/20 text-sm py-1 dark:text-gray-500 pr-2'>
           <div className='col-span-2 px-4'>Price</div>
           <div className='col-span-2 px-4'>
             {mode === 'buy' ? 'Seller' : 'Buyer'}
@@ -130,7 +131,7 @@ export default function OrdersList() {
           ))}
         </div>
         <div className='flex-none flex gap-4 h-14 w-full border-t border-gray-900/10 dark:border-gray-900/50 items-stretch px-2'>
-          <div className='text-sm dark:text-gray-100/50 flex items-center px-4 gap-1'>
+          <div className='hidden sm:flex dark:text-gray-100/50 items-center gap-2'>
             <span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -147,43 +148,26 @@ export default function OrdersList() {
                 />
               </svg>
             </span>
-            <span>
+            <span className='text-xs xl:text-sm'>
               The developer is not liable for any losses incurred during p2p
               transactions. Use at your own risk.
             </span>
-            {/* <span className='dark:text-gray-100/80'>Terms of Use</span>
-            <span>and</span>
-            <span className='dark:text-gray-100/80'>Privacy Policy</span>
-            <span>.</span> */}
           </div>
-          <div className='group flex ml-auto my-2 rounded-lg overflow-hidden relative items-center justify-center'>
-            <div
-              className={cs(
-                'absolute aspect-square w-36 h-36',
-                'transition-all duration-300',
-                '-rotate-45 group-hover:rotate-0',
-                'from-fuchsia-400 via-violet-700 to-teal-400 bg-gradient-to-r'
-              )}
-            ></div>
-            <button
-              className={cs(
-                'relative px-4 h-full whitespace-nowrap text-white'
-              )}
-            >
-              Post a Trade
-            </button>
+          <div className='py-2 sm:ml-auto w-full sm:w-auto'>
+            <FancyButton>Post A Trade</FancyButton>
           </div>
         </div>
       </div>
       {/* show filter as sidebar */}
       {showFilter && (
         <div
-          className={cs(
+          className={cn(
             // showFilter ? 'w-80 opacity-100' : 'w-0 opacity-0',
             // 'transition-all duration-300',
+            'panel-shadow',
             'overflow-hidden',
-            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
-            'absolute 2xl:relative right-0'
+            'w-[22.5rem] portrait:w-full h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
+            'absolute 2xl:relative right-0 z-20'
           )}
         >
           <div className='drop-shadow-xl 2xl:drop-shadow-none flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>

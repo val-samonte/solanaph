@@ -18,6 +18,16 @@
   text-indent: 1.5em;
 }
 
+.panel-shadow {
+  box-shadow: -5px 0px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 1536px) {
+  .panel-shadow {
+    box-shadow: none;
+  }
+}
+
 *::-webkit-scrollbar {
   width: 0.5em;
 }
