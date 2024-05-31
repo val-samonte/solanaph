@@ -1,4 +1,4 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { useAtom, useAtomValue } from 'jotai'
 import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
@@ -52,7 +52,7 @@ export default function ChatPanel() {
           <div className='flex items-center ml-auto gap-2'>
             <button
               onClick={() => setShowDetails((prev) => !prev)}
-              className={cs(
+              className={cn(
                 showDetails ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent',
                 'transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10',
                 'w-9 h-9 rounded-full flex items-center justify-center'
@@ -93,7 +93,7 @@ export default function ChatPanel() {
             value={chatText}
             onChange={(e) => setChatText(e.target.value.substring(0, 255))}
             placeholder='Aa'
-            className={cs(
+            className={cn(
               'flex-auto',
               'focus:outline-none border-2',
               'border-gray-500 h-10 w-full',
@@ -112,7 +112,7 @@ export default function ChatPanel() {
       </div>
       {showDetails && (
         <div
-          className={cs(
+          className={cn(
             'overflow-hidden',
             'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl'
             // 'absolute 2xl:relative right-0'
@@ -146,7 +146,7 @@ export default function ChatPanel() {
           <div className='flex flex-col flex-auto overflow-y-scroll overflow-x-hidden relative'>
             {trimmedParticipants.map((participant) => (
               <div
-                className={cs(
+                className={cn(
                   participant.address === walletAddress && 'font-bold',
                   'flex justify-between items-center py-2 px-4 gap-4 border-b border-gray-900/10 dark:border-gray-900/50'
                 )}
@@ -176,15 +176,15 @@ function ChatMessageBubble({
   hideName?: boolean
 }) {
   return (
-    <div className={cs('flex flex-col', own && 'items-end')}>
+    <div className={cn('flex flex-col', own && 'items-end')}>
       {!hideName && !own && (
         <div className='px-4 text-gray-500 text-sm mb-1'>{name}</div>
       )}
       {/* chat bubble row */}
-      <div className={cs('flex', own && 'flex-row-reverse')}>
+      <div className={cn('flex', own && 'flex-row-reverse')}>
         {/* text content */}
         <div
-          className={cs(
+          className={cn(
             own ? 'bg-teal-600 text-white' : 'bg-black/5 dark:bg-white/10 ',
             'py-2 px-4 rounded-lg',
             own ? 'rounded-br-none' : 'rounded-bl-none'

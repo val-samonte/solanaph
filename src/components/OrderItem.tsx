@@ -1,4 +1,4 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { useAtomValue } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { trimAddress } from '@/utils/trimAddress'
@@ -46,16 +46,16 @@ export default function OrderItem({
 
   return (
     <div
-      className={cs(
-        selected && 'fixed inset-0 p-2 z-10',
-        selected && 'lg:sticky lg:inset-auto lg:top-0 lg:p-0 lg:z-0',
+      className={cn(
+        selected && 'fixed inset-0 p-2 z-30',
+        selected && 'lg:sticky lg:inset-auto lg:top-0 lg:p-0 lg:z-10',
         'flex flex-col border-b border-gray-900/10 dark:border-gray-900/50'
       )}
     >
       {selected && (
         <div
           onClick={onSelect}
-          className={cs(
+          className={cn(
             'absolute inset-0',
             'block lg:hidden',
             'bg-black/50 backdrop-blur-sm'
@@ -64,7 +64,7 @@ export default function OrderItem({
       )}
       <button
         onClick={onSelect}
-        className={cs(
+        className={cn(
           'relative',
           selected
             ? 'bg-gray-200 dark:bg-gray-800'
@@ -74,7 +74,7 @@ export default function OrderItem({
         )}
       >
         <div
-          className={cs(
+          className={cn(
             'transition-all duration-300',
             selected &&
               (mode === 'buy'
@@ -87,16 +87,16 @@ export default function OrderItem({
         >
           10057.50 PHP
         </div>
-        <div className={cs('lg:col-span-2 px-4', 'col-span-12 sm:col-span-7')}>
+        <div className={cn('lg:col-span-2 px-4', 'col-span-12 sm:col-span-7')}>
           {trimAddress('53vUyd7iFntjgcwtmAZAhtyrWmssiRvs3AvWiUJfoXw5')}
         </div>
 
-        <div className={cs('lg:col-span-3 px-4', 'col-span-12 sm:col-span-5')}>
+        <div className={cn('lg:col-span-3 px-4', 'col-span-12 sm:col-span-5')}>
           900 {selectedCurrency} <span className='dark:text-gray-600'>/</span>{' '}
           500-1000 PHP
         </div>
         <div
-          className={cs(
+          className={cn(
             'lg:col-span-5 px-4 flex gap-x-4 flex-wrap',
             'col-span-12 sm:col-span-7'
           )}
@@ -114,11 +114,11 @@ export default function OrderItem({
               15 <span className='text-xs dark:text-gray-600'>min</span>
             </span>
           </span>
-          <span className={cs('items-center gap-1', 'flex 2xl:hidden')}>
+          <span className={cn('items-center gap-1', 'flex 2xl:hidden')}>
             5
             <Star size={16} />
           </span>
-          <span className={cs('items-center', 'hidden 2xl:flex')}>
+          <span className={cn('items-center', 'hidden 2xl:flex')}>
             <Star size={16} />
             <Star size={16} />
             <Star size={16} />
@@ -128,7 +128,7 @@ export default function OrderItem({
         </div>
       </button>
       <div
-        className={cs(
+        className={cn(
           'relative',
           selected ? (readMore ? 'lg:h-80' : 'lg:h-40') : 'h-0',
           'overflow-y-auto lg:overflow-hidden',
@@ -138,7 +138,7 @@ export default function OrderItem({
         )}
       >
         <div
-          className={cs(
+          className={cn(
             'grid grid-cols-12',
             'transition-all duration-300',
             readMore ? 'lg:h-80' : 'lg:h-40'
@@ -152,7 +152,7 @@ export default function OrderItem({
             <div className='relative'>
               <div
                 ref={makerTerms}
-                className={cs(
+                className={cn(
                   'flex-auto flex flex-col',
                   'transition-all duration-300',
                   readMore
@@ -165,7 +165,7 @@ export default function OrderItem({
               </div>
               {!readMore && (
                 <div
-                  className={cs(
+                  className={cn(
                     'hidden lg:block',
                     'pointer-events-none',
                     'absolute bottom-0 bg-gradient-to-b from-transparent to-gray-200 dark:to-gray-800 inset-x-0 h-4'
@@ -175,7 +175,7 @@ export default function OrderItem({
             </div>
             <button
               onClick={() => setReadMore((r) => !r)}
-              className={cs(
+              className={cn(
                 'hidden lg:flex',
                 'w-full flex flex-col justify-end text-xs uppercase py-1',
                 'transition-colors duration-300',
@@ -209,7 +209,7 @@ export default function OrderItem({
                   type='text'
                   inputMode='numeric'
                   placeholder={'1000'}
-                  className={cs(
+                  className={cn(
                     'focus:outline-none border-2',
                     mode === 'buy'
                       ? 'focus:border-teal-600 dark:focus:border-teal-400'
@@ -233,7 +233,7 @@ export default function OrderItem({
                   type='text'
                   inputMode='numeric'
                   placeholder='17.39'
-                  className={cs(
+                  className={cn(
                     'focus:outline-none border-2',
                     mode === 'buy'
                       ? 'focus:border-teal-600 dark:focus:border-teal-400'
@@ -254,7 +254,7 @@ export default function OrderItem({
                 {mode === 'buy' ? 'Seller' : 'Buyer'}
               </div>
               <button
-                className={cs(
+                className={cn(
                   'text-white',
                   mode === 'buy'
                     ? 'bg-teal-600 hover:bg-teal-700 dark:bg-teal-400 dark:hover:bg-teal-300'

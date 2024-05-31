@@ -1,4 +1,4 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { ButtonHTMLAttributes, FC } from 'react'
 
 export const FancyButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (
@@ -7,7 +7,7 @@ export const FancyButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (
   return (
     <div className='group flex rounded-lg overflow-hidden relative items-center justify-center h-10 min-w-28'>
       <div
-        className={cs(
+        className={cn(
           'absolute aspect-square w-full scale-110',
           'transition-all duration-300',
           '-rotate-45 group-hover:rotate-0',
@@ -16,7 +16,7 @@ export const FancyButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (
       ></div>
       <button
         {...props}
-        className={cs(
+        className={cn(
           'relative px-4 h-full whitespace-nowrap text-white cursor-pointer w-full'
         )}
       />

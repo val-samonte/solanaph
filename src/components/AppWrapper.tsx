@@ -1,5 +1,6 @@
 'use client'
 
+import cn from 'classnames'
 import { atom } from 'jotai'
 import { ReactNode } from 'react'
 import AppNav from './AppNav'
@@ -16,16 +17,23 @@ export default function AppWrapper({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <WalletAdapterWrapper>
-      <main className='fixed inset-0 p-4 gap-4 flex'>
+      <main className='fixed inset-0'>
         <ConnectPrompt>
-          <AppNav />
-          <ContactsPanel />
-          {children}
+          <div
+            className={cn(
+              'h-full p-2 gap-2 lg:p-4 lg:gap-4 flex portrait:flex-col-reverse'
+            )}
+          >
+            <AppNav />
+            <div className='flex-auto relative'>
+              <div className='absolute inset-0 lg:gap-4 flex'>
+                <ContactsPanel />
+                {children}
+              </div>
+            </div>
+          </div>
         </ConnectPrompt>
       </main>
-      {/* <div className='fixed inset-0 xl:hidden flex items-center justify-center text-center'>
-        We do not support small devices yet! 😁
-      </div> */}
     </WalletAdapterWrapper>
   )
 }

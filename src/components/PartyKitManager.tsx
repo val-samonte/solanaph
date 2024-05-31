@@ -1,4 +1,4 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { atom, useAtomValue, useSetAtom } from 'jotai'
 import PartySocket from 'partysocket'
 import usePartySocket from 'partysocket/react'
@@ -62,7 +62,7 @@ export default function PartyKitManager() {
     <>
       <div className='flex gap-4 items-center'>
         <span
-          className={cs(
+          className={cn(
             'w-3 h-3 rounded-full',
             connectionStatus === 'online' && 'bg-green-500',
             connectionStatus === 'connecting' && 'bg-amber-500',

@@ -1,4 +1,4 @@
-import cs from 'classnames'
+import cn from 'classnames'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { FunnelSimple } from '@phosphor-icons/react'
@@ -15,14 +15,14 @@ export default function OrdersList() {
   return (
     <div className='h-full flex-auto flex gap-4 overflow-hidden relative'>
       <div
-        className={cs(
+        className={cn(
           mode === 'buy' ? 'from-teal-400/10' : 'from-fuchsia-400/10',
           'bg-gradient-to-br to-violet-700/10 rounded-xl flex-auto h-full mx-auto flex flex-col'
         )}
       >
         <div className='flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-stretch px-2'>
           <div
-            className={cs(
+            className={cn(
               mode === 'buy'
                 ? 'border-teal-600 dark:border-teal-400'
                 : 'border-fuchsia-600 dark:border-fuchsia-400',
@@ -31,7 +31,7 @@ export default function OrdersList() {
           >
             <button
               onClick={() => setMode('buy')}
-              className={cs(
+              className={cn(
                 'transition-colors duration-300',
                 mode === 'buy'
                   ? 'bg-teal-600 dark:bg-teal-400 text-white dark:text-gray-800'
@@ -43,7 +43,7 @@ export default function OrdersList() {
             </button>
             <button
               onClick={() => setMode('sell')}
-              className={cs(
+              className={cn(
                 'transition-colors duration-300',
                 mode === 'sell'
                   ? 'bg-fuchsia-600 dark:bg-fuchsia-400 text-white dark:text-gray-800'
@@ -59,7 +59,7 @@ export default function OrdersList() {
               <button
                 onClick={() => selectCurrency(currency)}
                 key={currency}
-                className={cs(
+                className={cn(
                   'transition-colors duration-300',
                   'font-bold',
                   selectedCurrency === currency
@@ -79,7 +79,7 @@ export default function OrdersList() {
                 type='text'
                 placeholder='Amount'
                 inputMode='numeric'
-                className={cs(
+                className={cn(
                   'focus:outline-none',
                   mode === 'buy'
                     ? 'border-teal-600 outline-teal-600 dark:border-teal-400 dark:outline-teal-400'
@@ -93,7 +93,7 @@ export default function OrdersList() {
             <div className='flex items-center'>
               <button
                 onClick={() => setShowFilter((prev) => !prev)}
-                className={cs(
+                className={cn(
                   showFilter
                     ? 'bg-gray-200 dark:bg-gray-700'
                     : 'bg-transparent',
@@ -161,12 +161,12 @@ export default function OrdersList() {
       {/* show filter as sidebar */}
       {showFilter && (
         <div
-          className={cs(
+          className={cn(
             // showFilter ? 'w-80 opacity-100' : 'w-0 opacity-0',
             // 'transition-all duration-300',
             'overflow-hidden',
-            'w-[22.5rem] h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
-            'absolute 2xl:relative right-0'
+            'w-[22.5rem] portrait:w-full h-full flex-none flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl',
+            'absolute 2xl:relative right-0 z-20'
           )}
         >
           <div className='drop-shadow-xl 2xl:drop-shadow-none flex-none flex gap-4 h-14 w-full border-b border-gray-900/10 dark:border-gray-900/50 items-center px-4'>
