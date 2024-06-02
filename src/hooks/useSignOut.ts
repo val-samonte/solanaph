@@ -3,7 +3,7 @@ import { useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import { sign } from 'tweetnacl'
-import { storedSessionKeypairAtom } from '@/components/ConnectPrompt'
+import { storedSessionKeypairAtom } from '@/components/Authentication'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { Keypair } from '@solana/web3.js'
 
@@ -48,12 +48,10 @@ export const useSignOut = () => {
         if (!response.ok) {
           throw new Error('Signout failed')
         }
-
-        setStoredSession(null)
-        window.localStorage.removeItem(`session_${publicKey}`)
       } catch (e) {
         console.error(e)
       }
+      setStoredSession(null)
       router.push('/app')
     })()
     disconnect()

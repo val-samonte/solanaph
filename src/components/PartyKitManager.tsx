@@ -7,7 +7,7 @@ import { useEffect, useMemo } from 'react'
 import { sign } from 'tweetnacl'
 import { trimAddress } from '@/utils/trimAddress'
 import { Keypair } from '@solana/web3.js'
-import { walletAddressAtom } from './ConnectPrompt'
+import { walletAddressAtom } from './Authentication'
 
 type PartyKitConnectionStatus = 'online' | 'connecting' | 'offline'
 
