@@ -1,5 +1,6 @@
 import bs58 from 'bs58'
 import { useSetAtom } from 'jotai'
+import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import { sign } from 'tweetnacl'
 import { storedSessionKeypairAtom } from '@/components/ConnectPrompt'
@@ -8,6 +9,7 @@ import { Keypair } from '@solana/web3.js'
 
 export const useSignOut = () => {
   const { publicKey, disconnect } = useWallet()
+  const router = useRouter()
 
   const setStoredSession = useSetAtom(
     storedSessionKeypairAtom(publicKey?.toBase58() || '')
@@ -52,9 +54,10 @@ export const useSignOut = () => {
       } catch (e) {
         console.error(e)
       }
+      router.push('/app')
     })()
     disconnect()
-  }, [publicKey, setStoredSession])
+  }, [publicKey, router, setStoredSession])
 
   return signOut
 }

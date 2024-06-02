@@ -1,10 +1,13 @@
+import bs58 from 'bs58'
 import cn from 'classnames'
 import { atom, useAtomValue, useSetAtom } from 'jotai'
 import PartySocket from 'partysocket'
 import usePartySocket from 'partysocket/react'
 import { useEffect, useMemo } from 'react'
+import { sign } from 'tweetnacl'
 import { trimAddress } from '@/utils/trimAddress'
-import { useWallet } from '@solana/wallet-adapter-react'
+import { Keypair } from '@solana/web3.js'
+import { walletAddressAtom } from './ConnectPrompt'
 
 type PartyKitConnectionStatus = 'online' | 'connecting' | 'offline'
 
@@ -34,12 +37,13 @@ export const MessagesAtom = atom(
   (get) => get(MessagesBaseAtom),
   (get, set, text) => {
     const ws = get(PartyKitWebsocketAtom)
+    const address = get(walletAddressAtom)
 
-    if (ws) {
+    if (ws && address) {
       const messages = get(MessagesBaseAtom)
       const newMessage = {
         type: 'chat',
-        owner: ws.id,
+        owner: address,
         data: text,
         timestamp: Date.now(),
       } as ChatMessage
@@ -50,12 +54,12 @@ export const MessagesAtom = atom(
 )
 
 export default function PartyKitManager() {
-  const { publicKey } = useWallet()
   const connectionStatus = useAtomValue(PartyKitConnectionStatusAtom)
+  const address = useAtomValue(walletAddressAtom)
 
   const walletAddress = useMemo(
-    () => (publicKey ? trimAddress(publicKey.toBase58()) : null),
-    [publicKey]
+    () => (address ? trimAddress(address) : null),
+    [address]
   )
 
   return (
@@ -71,7 +75,7 @@ export default function PartyKitManager() {
         />
         <span className='capitalize'>{connectionStatus}</span>
       </div>
-      {publicKey && <PartyKitWebsocket id={publicKey.toBase58()} />}
+      {address && <PartyKitWebsocket id={address} />}
       {walletAddress && (
         <div className='flex items-center ml-auto gap-1'>
           {connectionStatus !== 'offline' && (
@@ -95,7 +99,24 @@ function PartyKitWebsocket({ id }: { id: string }) {
   const ws = usePartySocket({
     host: process.env.NEXT_PUBLIC_PARTYKIT_SERVER, // or localhost:1999 in dev
     room: 'solanaph-lobby',
-    id,
+    query: async () => {
+      const storedSessionJSON = JSON.parse(
+        window.localStorage.getItem(`session_${id}`) ?? 'null'
+      )
+      if (!storedSessionJSON) return {}
+
+      const sessionKeypair = Keypair.fromSecretKey(
+        bs58.decode(storedSessionJSON)
+      )
+
+      const signature = bs58.encode(
+        sign.detached(Buffer.from(id), sessionKeypair.secretKey)
+      )
+
+      return {
+        token: id + '.' + signature,
+      }
+    },
     onOpen() {
       console.log('connected')
       setConnectionStatus('online')
@@ -118,9 +139,11 @@ function PartyKitWebsocket({ id }: { id: string }) {
         }
       }
     },
-    onClose() {
-      console.log('closed')
-      setConnectionStatus('offline')
+    onClose(e) {
+      console.log('closed', e.code)
+
+      // switch (e.code) {
+      // }
     },
     onError(e) {
       console.log('error', e)
@@ -136,6 +159,21 @@ function PartyKitWebsocket({ id }: { id: string }) {
       setPartySocket(null)
     }
   }, [ws, setPartySocket])
+
+  useEffect(() => {
+    switch (ws.readyState) {
+      case WebSocket.CONNECTING:
+        setConnectionStatus('connecting')
+        break
+      case WebSocket.OPEN:
+        setConnectionStatus('online')
+        break
+      case WebSocket.CLOSING:
+      case WebSocket.CLOSED:
+        setConnectionStatus('offline')
+        break
+    }
+  }, [ws?.readyState, setConnectionStatus])
 
   return null
 }

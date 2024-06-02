@@ -1,7 +1,7 @@
 'use client'
 
 import bs58 from 'bs58'
-import { useAtom } from 'jotai'
+import { atom, useAtom, useSetAtom } from 'jotai'
 import { atomFamily, atomWithStorage } from 'jotai/utils'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { useSignOut } from '@/hooks/useSignOut'
@@ -11,14 +11,20 @@ import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 import { Keypair } from '@solana/web3.js'
 import { FancyButton } from './FancyButton'
 
+// https://github.com/zkemail
+
 export const storedSessionKeypairAtom = atomFamily((publicKey: string) =>
   atomWithStorage<string | null>(`session_${publicKey}`, null)
 )
+export const walletAddressAtom = atom<string | null>(null)
+
 // export const sessionKeypairAtom = atomFamily((_: string) =>
 //   atom<string | null>(null)
 // )
 // TODO: use pin-code (from the user) to encrypt session keypair
 // export const userPinCodeAtom = atom<string | null>(null)
+
+// TODO: refactor this mess
 
 export default function ConnectPrompt({
   children,
@@ -29,24 +35,37 @@ export default function ConnectPrompt({
   const [storedSession, setStoredSession] = useAtom(
     storedSessionKeypairAtom(publicKey?.toBase58() || '')
   )
-  const [authorized, setAuthorized] = useState(false)
+  const [authorized, setAuthorized] = useState<boolean | null>(null)
   const signOut = useSignOut()
+  const setWalletAddress = useSetAtom(walletAddressAtom)
+  const [busy, setBusy] = useState(false)
   // const [pinCode, setPinCode] = useAtom(userPinCodeAtom)
 
   useEffect(() => {
-    const isAuthorized = async () => {
-      if (!publicKey) return false
-      if (!storedSession) return false
+    setWalletAddress(publicKey?.toBase58() || null)
+  }, [publicKey, setWalletAddress])
 
+  useEffect(() => {
+    // console.log(JSON.stringify({ publicKey, storedSession, authorized }))
+    if (authorized) return
+    if (!publicKey) {
+      setAuthorized(null)
+      return
+    }
+    if (!storedSession) {
+      setAuthorized(false)
+      return
+    }
+    const isAuthorized = async () => {
       const storedSessionJSON = JSON.parse(
         window.localStorage.getItem(`session_${publicKey}`) ?? 'null'
       )
+
       if (!storedSessionJSON) return false
 
       try {
         const response = await fetch(
-          `/api/user/${publicKey.toBase58()}/session`,
-          { cache: 'no-store' }
+          `/api/user/${publicKey.toBase58()}/session`
         )
 
         if (!response.ok) {
@@ -54,6 +73,7 @@ export default function ConnectPrompt({
         }
 
         const sessionRegistered = await response.text()
+        // todo: was called twice
         const sessionKeypair = Keypair.fromSecretKey(
           bs58.decode(storedSessionJSON)
         )
@@ -64,14 +84,31 @@ export default function ConnectPrompt({
           throw new Error('Unauthorized')
         }
 
+        console.log('>>>', sessionRegistered)
+
         return true
       } catch (e) {
         console.error(e)
       }
       return false
     }
-    isAuthorized().then((authorized) => setAuthorized(authorized))
-  }, [publicKey, storedSession, setStoredSession, setAuthorized])
+    if (!busy) {
+      setBusy(true)
+      isAuthorized()
+        .then((authorized) => setAuthorized(authorized))
+        .finally(() => {
+          setBusy(false)
+        })
+    }
+  }, [
+    busy,
+    publicKey,
+    storedSession,
+    authorized,
+    setStoredSession,
+    setAuthorized,
+    setBusy,
+  ])
 
   const signIn = useCallback(async () => {
     if (!publicKey) return
@@ -119,14 +156,15 @@ export default function ConnectPrompt({
     }
   }, [publicKey, setStoredSession, signMessage])
 
+  if (busy) return null // <>Busy</>
   if (connecting) return null // <>Connecting</>
   if (disconnecting) return null // <>Disconnecting</>
 
-  if (authorized) {
+  if (authorized && publicKey && storedSession) {
     return <>{children}</>
   }
 
-  if (publicKey) {
+  if (publicKey && authorized !== null) {
     return (
       <div className='flex flex-col items-center justify-center w-full h-full gap-4 text-center'>
         <h1 className='text-3xl font-bold'>
@@ -144,7 +182,10 @@ export default function ConnectPrompt({
         <div>
           <button
             className='text-gray-500 hover:text-gray-800 dark:hover:text-gray-100 transition-all duration-300'
-            onClick={() => signOut()}
+            onClick={() => {
+              setAuthorized(false)
+              signOut()
+            }}
           >
             Or you can disconnect
           </button>
