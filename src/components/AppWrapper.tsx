@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { atom } from 'jotai'
 import { ReactNode } from 'react'
 import AppNav from './AppNav'
-import ConnectPrompt from './ConnectPrompt'
+import Authentication from './Authentication'
 import ContactsPanel from './ContactsPanel'
 import WalletAdapterWrapper from './WalletAdapterWrapper'
 
@@ -18,7 +18,7 @@ export default function AppWrapper({
   return (
     <WalletAdapterWrapper>
       <main className='fixed inset-0'>
-        <ConnectPrompt>
+        <Authentication>
           <div
             className={cn(
               'h-full p-2 gap-2 lg:p-4 lg:gap-4 flex portrait:flex-col-reverse'
@@ -32,7 +32,7 @@ export default function AppWrapper({
               </div>
             </div>
           </div>
-        </ConnectPrompt>
+        </Authentication>
       </main>
     </WalletAdapterWrapper>
   )

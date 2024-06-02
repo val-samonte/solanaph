@@ -1,13 +1,15 @@
 import bs58 from 'bs58'
 import { useSetAtom } from 'jotai'
+import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import { sign } from 'tweetnacl'
-import { storedSessionKeypairAtom } from '@/components/ConnectPrompt'
+import { storedSessionKeypairAtom } from '@/components/Authentication'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { Keypair } from '@solana/web3.js'
 
 export const useSignOut = () => {
   const { publicKey, disconnect } = useWallet()
+  const router = useRouter()
 
   const setStoredSession = useSetAtom(
     storedSessionKeypairAtom(publicKey?.toBase58() || '')
@@ -46,15 +48,14 @@ export const useSignOut = () => {
         if (!response.ok) {
           throw new Error('Signout failed')
         }
-
-        setStoredSession(null)
-        window.localStorage.removeItem(`session_${publicKey}`)
       } catch (e) {
         console.error(e)
       }
+      setStoredSession(null)
+      router.push('/app')
     })()
     disconnect()
-  }, [publicKey, setStoredSession])
+  }, [publicKey, router, setStoredSession])
 
   return signOut
 }

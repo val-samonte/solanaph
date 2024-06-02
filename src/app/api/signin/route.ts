@@ -47,5 +47,13 @@ export async function POST(request: Request) {
     return new Response('Internal Server Error', { status: 500 })
   }
 
+  try {
+    await sql`
+    INSERT INTO participants (owner_publickey, created_at)
+    VALUES (${owner_publickey}, NOW())
+    ON CONFLICT (owner_publickey) DO NOTHING;
+    `
+  } catch (e) {}
+
   return new Response('OK', { status: 200 })
 }
