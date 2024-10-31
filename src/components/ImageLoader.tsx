@@ -49,7 +49,7 @@ export const ImageLoader = (
   props: ImageLoaderProps & { fallback?: ReactNode }
 ) => {
   return (
-    <Suspense fallback={props.fallback || 'EH'}>
+    <Suspense fallback={props.fallback || 'Loading'}>
       <AsyncImage {...props} />
     </Suspense>
   )
