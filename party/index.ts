@@ -9,6 +9,9 @@ type Message = {
   timestamp: number
 }
 
+// post an offer
+// make a deal
+
 export default class Server implements Party.Server {
   constructor(readonly room: Party.Room) {}
 
@@ -32,12 +35,8 @@ export default class Server implements Party.Server {
     }
 
     const apiUrl =
-      (process.env.APP_HOST ?? 'http://localhost:3000') +
-      '/api/user/' +
-      address +
-      '/session'
-
-    console.log(apiUrl)
+      // 'https://solanaph.vercel.app' +
+      'http://localhost:3000' + '/api/user/' + address + '/session'
 
     let sessionRegistered = ''
 
@@ -71,13 +70,6 @@ export default class Server implements Party.Server {
       console.log(e)
       return new Response('Unauthorized', { status: 401 })
     }
-
-    // when joining a specific p2p room
-    // validate the signature of the hash of both
-    // users engaging in the p2p chat
-
-    // sign(hash([user1, user2].sort()))
-    // do not do anything when joining the lobby
 
     request.headers.set('X-Wallet-Address', address)
 
