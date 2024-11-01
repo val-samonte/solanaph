@@ -64,15 +64,15 @@ export default function Og() {
                             </div>
                           ))}
                         </div>
-                        <p className='text-center my-3 text-xl w-full max-w-sm'>
-                          Your share is around{' '}
-                          <span className='font-bold text-green-400'>
-                            ~{share.toFixed(4)} USD
-                          </span>{' '}
-                          worth of tokens. Congrats!
-                        </p>
                       </>
                     )}
+                    <p className='text-center my-3 text-xl w-full max-w-sm'>
+                      Your share is around{' '}
+                      <span className='font-bold text-green-400'>
+                        ~{share.toFixed(4)} USD
+                      </span>{' '}
+                      worth of tokens. Congrats!
+                    </p>
                   </>
                 )}
               </ImageLoader>
